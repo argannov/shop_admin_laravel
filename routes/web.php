@@ -11,10 +11,34 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/home', 'HomeController@index')->name('home');
+    //Личный кабинет
+    Route::get('/personal', 'LKController@index');
+    Route::get('/personal/orders', 'LKController@index');
+    Route::get('/personal/viewlist', 'LKController@index');
+    Route::get('/personal/bonus', 'LKController@index');
+    //****************
+
+    //Избранные товары
+    Route::get('/favorite', 'LikeGoodsController@index');
+    //****************
+    Route::get('/home', 'HomeController@index');
+
+});
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => 'admin:Администратор', //тут пока под вопросом, но частично работает
+    'as' => 'admin.',
+],
+    function () {
+        Route::get('/', 'Admin\DashboardController@index');
+    }
+);
+
