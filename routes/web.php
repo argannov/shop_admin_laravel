@@ -42,11 +42,15 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group([
     'prefix' => 'admin',
     'middleware' => 'admin:admin', //тут пока под вопросом, но частично работает
-    'as' => 'admin.',
 ],
     function () {
-        Route::get('/', 'Admin\DashboardController@index');
+    Route::get('/',function (){
+       return redirect('/dashboard');
+    });
+        Route::get('/dashboard', 'Admin\DashboardController@index');
         Route::get('/product', 'Admin\NewGoodsController@index');
+        Route::get('/product/create', 'Admin\NewGoodsController@formProduct');
+        Route::post('/product/create', 'Admin\NewGoodsController@addProduct');
         Route::get('/pages', 'Admin\NewPageController@index');
         Route::get('/orders', 'Admin\OrdersController@index');
         Route::get('/posts', 'Admin\NewPostController@index');
@@ -56,4 +60,4 @@ Route::group([
         Route::get('/store', 'Admin\NewStoreController@index');
     }
 );
-Route::get('/{slug}', 'PagesController@index');
+//Route::get('/{slug}', 'PagesController@index');
