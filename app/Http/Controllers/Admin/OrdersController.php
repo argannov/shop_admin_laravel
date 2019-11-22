@@ -7,5 +7,7 @@ use App\Http\Controllers\Controller;
 
 class OrdersController extends Controller
 {
-    //
+    function index(){
+        return view('admin.order.allorders');
+    }
 }

@@ -6,14 +6,14 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="all-goods-h1">
-                Все товары
+                Создание статьи
             </h1>
 
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fa fa-tv"></i>На сайт</a></li>
                 <li><a href="/admin/dashboard">Дашборд</a></li>
-                <li><a href="/admin/product">Все товары</a></li>
-                <li class="active">Добавление товара</li>
+                <li><a href="/admin/pages">Все статьи</a></li>
+                <li class="active">Добавление статьи</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -34,23 +34,22 @@
                             <div class="tab-content">
                                 <div class="active tab-pane fade in" id="tab1">
                                     <div class="form-group">
-                                        <label for="namegoods">Наименование товара</label>
-                                        <input type="text" class="form-control" name="namegoods" id="namegoods"
+                                        <label for="namepages">Наименование статьи</label>
+                                        <input type="text" class="form-control" name="namepages" id="namepages"
                                                placeholder="Введите название товара">
                                     </div>
                                     <div class="form-group">
-                                        <label for="sluggoods">Символьный код</label>
-                                        <input type="text" class="form-control" name="sluggoods" id="sluggoods"
+                                        <label for="slugpages">Символьный код</label>
+                                        <input type="text" class="form-control" name="slugpages" id="slugpages"
                                                placeholder="Введите символьный код товара">
                                     </div>
                                     <div class="form-group">
-                                        <label for="articulegoods">Артикул товара</label>
-                                        <input type="text" class="form-control" name="articulegoods" id="articulegoods"
-                                               placeholder="Введите артикул товара">
+                                        <label for="articulegoods">Контент для статьи</label>
+                                        <textarea></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label class="custom-file">
-                                            Изображение товара
+                                            Изображение статьи
                                             <input type="file" id="file" class="custom-file-input">
                                             <span class="custom-file-control"></span>
                                         </label>
@@ -81,7 +80,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="tab4">
                                     <div class="form-group">
-                                        <label for="statusgoods">Статус товара</label>
+                                        <label for="statusgoods">Статус страницы</label>
                                         <select name="statusgoods" id="statusgoods" class="form-control">
                                             <option value="published">Опубликован</option>
                                             <option value="testgoods">Черновик</option>

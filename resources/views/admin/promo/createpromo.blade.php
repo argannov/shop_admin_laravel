@@ -6,7 +6,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="all-goods-h1">
-                Все товары
+                Создание промокода
             </h1>
 
             <ol class="breadcrumb">
@@ -26,7 +26,7 @@
                             <!-- TAB NAVIGATION -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Основные</a></li>
-                                <li><a href="#tab2" role="tab" data-toggle="tab">SEO настройка</a></li>
+                                <li><a href="#tab2" role="tab" data-toggle="tab">Условия</a></li>
                                 <li><a href="#tab3" role="tab" data-toggle="tab">Дополнительные поля</a></li>
                                 <li><a href="#tab4" role="tab" data-toggle="tab">Доступность</a></li>
                             </ul>
@@ -34,46 +34,36 @@
                             <div class="tab-content">
                                 <div class="active tab-pane fade in" id="tab1">
                                     <div class="form-group">
-                                        <label for="namegoods">Наименование товара</label>
-                                        <input type="text" class="form-control" name="namegoods" id="namegoods"
-                                               placeholder="Введите название товара">
+                                        <label for="namepromo">Название промокода</label>
+                                        <input type="text" class="form-control" name="namepromo" id="namepromo"
+                                               placeholder="Введите название промокода">
                                     </div>
                                     <div class="form-group">
-                                        <label for="sluggoods">Символьный код</label>
-                                        <input type="text" class="form-control" name="sluggoods" id="sluggoods"
-                                               placeholder="Введите символьный код товара">
+                                        <label for="codepromo">Код</label>
+                                        <input type="text" class="form-control" name="codepromo" id="codepromo"
+                                               placeholder="Код">
                                     </div>
                                     <div class="form-group">
-                                        <label for="articulegoods">Артикул товара</label>
-                                        <input type="text" class="form-control" name="articulegoods" id="articulegoods"
-                                               placeholder="Введите артикул товара">
+                                        <label for="promocodedate">Продолжительность</label>
+                                        <input type="date" class="form-control" name="promocodedate" id="promocodedate">
                                     </div>
                                     <div class="form-group">
-                                        <label class="custom-file">
-                                            Изображение товара
-                                            <input type="file" id="file" class="custom-file-input">
-                                            <span class="custom-file-control"></span>
-                                        </label>
+                                        <label for="sizepromo">Размер скидки</label>
+                                        <input type="text" class="form-control" name="sizepromo" id="sizepromo"
+                                               placeholder="Введите размер скидки">
                                     </div>
 
                                 </div>
                                 <div class="tab-pane fade" id="tab2">
                                     <div class="form-group">
-                                        <label for="seotitlegoods">Заголовок страницы</label>
-                                        <input type="text" class="form-control" name="seotitlegoods" id="seotitlegoods"
-                                               placeholder="Введите заголовок товара">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="seokeywordgoods">Ключевые слова</label>
-                                        <input type="text" class="form-control" name="seokeywordgoods"
-                                               id="seokeywordgoods"
-                                               placeholder="Введите ключевые слова товара">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="seodescriptiongoods">Описание страницы (Description)</label>
-                                        <input type="text" class="form-control" name="seodescriptiongoods"
-                                               id="seodescriptiongoods"
-                                               placeholder="Введите описание">
+                                        <label for="goodspromo">Список товаров</label>
+                                        <select name="goodspromo" id="goodspromo" class="form-control" multiple>
+                                            <option value="1">Товар1</option>
+                                            <option value="2">Товар2</option>
+                                            <option value="3">Товар3</option>
+                                            <option value="4">Товар4</option>
+                                            <option value="5">Товар5</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tab3">

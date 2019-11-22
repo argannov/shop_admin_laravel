@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -149,9 +151,9 @@
                         <li><a href="/admin/product/create"><i class="fa fa-circle-o"></i>Создать новый товар</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li>
                     <a href="/admin/orders">
-                        <i class="fa fa-cart-arrow-down"></i>
+                        <i class="fa fa-rouble"></i>
                         <span>Заказы</span>
                         <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
@@ -175,7 +177,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="/admin/pages/create"><i class="fa fa-circle-o"></i> Создать страницу</a></li>
-                        <li><a href="/admin/pages/"><i class="fa fa-circle-o"></i> Все страницы</a></li>
+                        <li><a href="/admin/pages"><i class="fa fa-circle-o"></i> Все страницы</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

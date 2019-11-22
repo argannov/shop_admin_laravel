@@ -52,12 +52,20 @@ Route::group([
         Route::get('/product/create', 'Admin\NewGoodsController@formProduct');
         Route::post('/product/create', 'Admin\NewGoodsController@addProduct');
         Route::get('/pages', 'Admin\NewPageController@index');
+        Route::post('/pages/create', 'Admin\NewPageController@create');
+        Route::get('/pages/create', 'Admin\NewPageController@create');
         Route::get('/orders', 'Admin\OrdersController@index');
         Route::get('/posts', 'Admin\NewPostController@index');
+        Route::get('/posts/create', 'Admin\NewPostController@create');
+        Route::post('/posts/create', 'Admin\NewPostController@create');
         Route::get('/sale', 'Admin\NewPromocodeController@index');
+        Route::get('/sale/create', 'Admin\NewPromocodeController@create');
+        Route::post('/sale/create', 'Admin\NewPromocodeController@index');
         Route::get('/users', 'Admin\AllUsersController@index');
         Route::get('/roles', 'Admin\PermissionController@index');
         Route::get('/store', 'Admin\NewStoreController@index');
+        Route::get('/store/create', 'Admin\NewStoreController@create');
+        Route::post('/store/create', 'Admin\NewStoreController@create');
     }
 );
 //Route::get('/{slug}', 'PagesController@index');

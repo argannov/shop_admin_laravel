@@ -6,14 +6,14 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="all-goods-h1">
-                Все товары
+                Создание магазина
             </h1>
 
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fa fa-tv"></i>На сайт</a></li>
                 <li><a href="/admin/dashboard">Дашборд</a></li>
-                <li><a href="/admin/product">Все товары</a></li>
-                <li class="active">Добавление товара</li>
+                <li><a href="/admin/product">Все магазины</a></li>
+                <li class="active">Добавление магазина</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -26,7 +26,7 @@
                             <!-- TAB NAVIGATION -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Основные</a></li>
-                                <li><a href="#tab2" role="tab" data-toggle="tab">SEO настройка</a></li>
+                                <li><a href="#tab2" role="tab" data-toggle="tab">ГЕО положение</a></li>
                                 <li><a href="#tab3" role="tab" data-toggle="tab">Дополнительные поля</a></li>
                                 <li><a href="#tab4" role="tab" data-toggle="tab">Доступность</a></li>
                             </ul>
@@ -34,23 +34,18 @@
                             <div class="tab-content">
                                 <div class="active tab-pane fade in" id="tab1">
                                     <div class="form-group">
-                                        <label for="namegoods">Наименование товара</label>
-                                        <input type="text" class="form-control" name="namegoods" id="namegoods"
+                                        <label for="namestore">Наименование магазина</label>
+                                        <input type="text" class="form-control" name="namestore" id="namestore"
                                                placeholder="Введите название товара">
                                     </div>
                                     <div class="form-group">
-                                        <label for="sluggoods">Символьный код</label>
-                                        <input type="text" class="form-control" name="sluggoods" id="sluggoods"
+                                        <label for="slugstore">Символьный код</label>
+                                        <input type="text" class="form-control" name="slugstore" id="slugstore"
                                                placeholder="Введите символьный код товара">
                                     </div>
                                     <div class="form-group">
-                                        <label for="articulegoods">Артикул товара</label>
-                                        <input type="text" class="form-control" name="articulegoods" id="articulegoods"
-                                               placeholder="Введите артикул товара">
-                                    </div>
-                                    <div class="form-group">
                                         <label class="custom-file">
-                                            Изображение товара
+                                            Изображение магазина
                                             <input type="file" id="file" class="custom-file-input">
                                             <span class="custom-file-control"></span>
                                         </label>
@@ -59,22 +54,16 @@
                                 </div>
                                 <div class="tab-pane fade" id="tab2">
                                     <div class="form-group">
-                                        <label for="seotitlegoods">Заголовок страницы</label>
-                                        <input type="text" class="form-control" name="seotitlegoods" id="seotitlegoods"
-                                               placeholder="Введите заголовок товара">
+                                        <label for="adressstore">Адрес магазина</label>
+                                        <input type="text" class="form-control" name="adressstore" id="adressstore"
+                                               placeholder="Введите символьный код товара">
                                     </div>
                                     <div class="form-group">
-                                        <label for="seokeywordgoods">Ключевые слова</label>
-                                        <input type="text" class="form-control" name="seokeywordgoods"
-                                               id="seokeywordgoods"
-                                               placeholder="Введите ключевые слова товара">
+                                        <label for="coordstore">Коориднаты для карты</label>
+                                        <input type="text" class="form-control" name="coordstore" id="coordstore"
+                                               placeholder="Введите символьный код товара">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="seodescriptiongoods">Описание страницы (Description)</label>
-                                        <input type="text" class="form-control" name="seodescriptiongoods"
-                                               id="seodescriptiongoods"
-                                               placeholder="Введите описание">
-                                    </div>
+
                                 </div>
                                 <div class="tab-pane fade" id="tab3">
                                     Пока в разработке

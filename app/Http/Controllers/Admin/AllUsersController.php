@@ -7,5 +7,7 @@ use App\Http\Controllers\Controller;
 
 class AllUsersController extends Controller
 {
-    //
+    function index(){
+        return view('admin.users.index');
+    }
 }
