@@ -44,6 +44,9 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
+                            @php
+                                //echo "<pre>";print_r($pages);echo "</pre>";
+                            @endphp
                             <table class="table table-hover">
                                 <tr>
 
@@ -52,22 +55,25 @@
                                     <th>Дата Изм.</th>
                                     <th>Активность</th>
                                     <th>Описание</th>
-
+                                    <th>Удалить</th>
                                 </tr>
+                                @foreach($pages as $page)
                                 <tr>
-                                    <td>1</td>
-                                    <td><a href="#">О нас</a></td>
-                                    <td>31.10.2019 17:10</td>
-                                    <td><span class="label label-success">АКТИВЕН</span></td>
-                                    <td>Это страница о нас</td>
+                                    <td>{{$page['id']}}</td>
+                                    <td><a href="/admin/pages/edit/{{$page['id']}}">{{$page['title']}}</a></td>
+                                    <td>{{$page['created_at']}}</td>
+                                    <td>@if($page['status'] == 'published') <span
+                                            class="label label-success">АКТИВЕН</span> @elseif($page['status'] == "testgoods") <span
+                                            class="label label-warning">ЧЕРНОВИК</span> @endif</td>
+                                    <td>{{$page['meta_description']}}</td>
+                                    <td>
+                                        <form action="/admin/pages/delete/{{$page['id']}}" method="post">
+                                            <button type="submit" class="btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                            {{csrf_field()}}
+                                        </form>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><a href="#">Что-то там</a></td>
-                                    <td>31.10.2019 17:10</td>
-                                    <td><span class="label label-danger">НЕ АКТИВЕН</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
+                                @endforeach
                             </table>
                         </div>
                         <!-- /.box-body -->

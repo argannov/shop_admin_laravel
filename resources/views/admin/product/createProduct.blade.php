@@ -49,9 +49,31 @@
                                                placeholder="Введите артикул товара">
                                     </div>
                                     <div class="form-group">
+                                        <label for="categorygoods">Категория товара</label>
+                                        <input type="text" class="form-control" name="categorygoods" id="categorygoods"
+                                               placeholder="Введите артикул товара">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pricegoods">Цена</label>
+                                        <input type="number" class="form-control" name="pricegoods" id="pricegoods"
+                                               placeholder="Введите цену товара">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="body">Текст для товара</label>
+                                        <input type="text" class="form-control" name="body" id="body"
+                                               placeholder="Введите артикул товара">
+                                    </div>
+                                    <div class="form-group">
                                         <label class="custom-file">
-                                            Изображение товара
-                                            <input type="file" id="file" class="custom-file-input">
+                                            Анонс изображение товара
+                                            <input type="file" id="file" class="custom-file-input" name="imageanons">
+                                            <span class="custom-file-control"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="custom-file">
+                                            Подробное изображение товара
+                                            <input type="file" id="file" class="custom-file-input" name="imagedetail">
                                             <span class="custom-file-control"></span>
                                         </label>
                                     </div>
@@ -92,7 +114,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-success">Отправить</button>
-
+                            {{csrf_field()}}
                         </form>
                     </div>
                 </div>
