@@ -393,6 +393,7 @@ class ComposerStaticInit4187314d23426e69f58b54db06c6e8e2
         'App\\Http\\Controllers\\Admin\\NewPostController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/NewPostController.php',
         'App\\Http\\Controllers\\Admin\\NewPromocodeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/NewPromocodeController.php',
         'App\\Http\\Controllers\\Admin\\NewStoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/NewStoreController.php',
+        'App\\Http\\Controllers\\Admin\\OrdersController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OrdersController.php',
         'App\\Http\\Controllers\\Admin\\PermissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PermissionController.php',
         'App\\Http\\Controllers\\Admin\\SearchDashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SearchDashboardController.php',
         'App\\Http\\Controllers\\AllStoreController' => __DIR__ . '/../..' . '/app/Http/Controllers/AllStoreController.php',

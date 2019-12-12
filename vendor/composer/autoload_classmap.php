@@ -19,6 +19,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\NewPostController' => $baseDir . '/app/Http/Controllers/Admin/NewPostController.php',
     'App\\Http\\Controllers\\Admin\\NewPromocodeController' => $baseDir . '/app/Http/Controllers/Admin/NewPromocodeController.php',
     'App\\Http\\Controllers\\Admin\\NewStoreController' => $baseDir . '/app/Http/Controllers/Admin/NewStoreController.php',
+    'App\\Http\\Controllers\\Admin\\OrdersController' => $baseDir . '/app/Http/Controllers/Admin/OrdersController.php',
     'App\\Http\\Controllers\\Admin\\PermissionController' => $baseDir . '/app/Http/Controllers/Admin/PermissionController.php',
     'App\\Http\\Controllers\\Admin\\SearchDashboardController' => $baseDir . '/app/Http/Controllers/Admin/SearchDashboardController.php',
     'App\\Http\\Controllers\\AllStoreController' => $baseDir . '/app/Http/Controllers/AllStoreController.php',
