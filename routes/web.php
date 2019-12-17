@@ -16,9 +16,13 @@ Auth::routes();
 Route::get('/', 'PagesController@index');
 
 Route::get('/catalog', 'GoodsController@index');
-Route::get('/catalog/{slug}', 'GoodsController@index');
+Route::get('/catalog/{slug}', 'GoodsController@detailIndex');
 Route::get('/catalog/{slug}/{name}', 'GoodsController@index');
+
+
 Route::get('/cart', 'CartsController@index');
+Route::post('/cart/addCart/{slug}','CartsController@store');
+
 Route::get('/posts', 'PostsController@index');
 Route::get('/favorite', 'LikeGoodsController@index');
 Route::post('/search', 'SearchController@index');
@@ -51,6 +55,9 @@ Route::group([
         Route::get('/product', 'Admin\NewGoodsController@index');
         Route::get('/product/create', 'Admin\NewGoodsController@formProduct');
         Route::post('/product/create', 'Admin\NewGoodsController@addProduct');
+        Route::get('/product/edit/{slug}', 'Admin\NewGoodsController@editProduct');
+        Route::post('/product/edit/{slug}', 'Admin\NewGoodsController@saveEditProduct');
+        Route::post('/product/delete/{slug}', 'Admin\NewGoodsController@deleteProduct');
         //************************************************************
 
         //Создание и редактирование страниц в админке
@@ -75,7 +82,10 @@ Route::group([
         //Создание и редактирование скидок в админке
         Route::get('/sale', 'Admin\NewPromocodeController@index');
         Route::get('/sale/create', 'Admin\NewPromocodeController@create');
-        Route::post('/sale/create', 'Admin\NewPromocodeController@index');
+        Route::post('/sale/create', 'Admin\NewPromocodeController@createPromo');
+        Route::get('/sale/edit/{slug}','Admin\NewPromocodeController@edit');
+        Route::post('/sale/edit/{slug}','Admin\NewPromocodeController@editSend');
+        Route::post('/sale/delete/{slug}','Admin\NewPromocodeController@deletePromo');
         //************************************************************
 
         //Создание и редактирование пользователей в админке

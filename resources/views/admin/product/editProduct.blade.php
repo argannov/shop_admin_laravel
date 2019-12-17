@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box form-add-goods">
-                        <form action="" method="post" role="form" enctype="multipart/form-data">
+                        <form action="" method="post" role="form">
                             <!-- TAB NAVIGATION -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Основные</a></li>
@@ -36,41 +36,49 @@
                                     <div class="form-group">
                                         <label for="namegoods">Наименование товара</label>
                                         <input type="text" class="form-control" name="namegoods" id="namegoods"
-                                               placeholder="Введите название товара">
+                                               placeholder="Введите название товара" value="{{$good->title}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="sluggoods">Символьный код</label>
                                         <input type="text" class="form-control" name="sluggoods" id="sluggoods"
-                                               placeholder="Введите символьный код товара">
+                                               placeholder="Введите символьный код товара" value="{{$good->slug}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="articulegoods">Артикул товара</label>
                                         <input type="text" class="form-control" name="articulegoods" id="articulegoods"
-                                               placeholder="Введите артикул товара">
+                                               placeholder="Введите артикул товара" value="{{$good->article}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="categorygoods">Категория товара</label>
                                         <input type="text" class="form-control" name="categorygoods" id="categorygoods"
-                                               placeholder="Введите артикул товара">
+                                               placeholder="Введите артикул товара" value="{{$good->category}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="pricegoods">Цена</label>
                                         <input type="number" class="form-control" name="pricegoods" id="pricegoods"
-                                               placeholder="Введите цену товара">
+                                               placeholder="Введите цену товара" value="{{$good->price}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="body">Текст для товара</label>
                                         <input type="text" class="form-control" name="body" id="body"
-                                               placeholder="Введите артикул товара">
+                                               placeholder="Введите артикул товара" value="{{$good->body}}">
                                     </div>
                                     <div class="form-group">
-                                        <label class="custom-file">
+
+                                        @if($good->image_anons != null)
+                                            <img src="{{asset('/img/product').'/'.$good->article.'/'.$good->image_anons}}" alt="">
+                                        @endif
+
+                                            <label class="custom-file">
                                             Анонс изображение товара
                                             <input type="file" id="file" class="custom-file-input" name="imageanons">
                                             <span class="custom-file-control"></span>
                                         </label>
                                     </div>
                                     <div class="form-group">
+                                        @if($good->image_detail != null)
+                                            <img src="{{asset('/img/product').'/'.$good->article.'/'.$good->image_detail}}" alt="">
+                                        @endif
                                         <label class="custom-file">
                                             Подробное изображение товара
                                             <input type="file" id="file" class="custom-file-input" name="imagedetail">
@@ -81,21 +89,23 @@
                                 </div>
                                 <div class="tab-pane fade" id="tab2">
                                     <div class="form-group">
+
                                         <label for="seotitlegoods">Заголовок страницы</label>
                                         <input type="text" class="form-control" name="seotitlegoods" id="seotitlegoods"
-                                               placeholder="Введите заголовок товара">
+                                               placeholder="Введите заголовок товара" value="{{$good->title}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="seokeywordgoods">Ключевые слова</label>
                                         <input type="text" class="form-control" name="seokeywordgoods"
                                                id="seokeywordgoods"
-                                               placeholder="Введите ключевые слова товара">
+                                               placeholder="Введите ключевые слова товара"
+                                               value="{{$good->meta_keywords}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="seodescriptiongoods">Описание страницы (Description)</label>
                                         <input type="text" class="form-control" name="seodescriptiongoods"
                                                id="seodescriptiongoods"
-                                               placeholder="Введите описание">
+                                               placeholder="Введите описание" value="{{$good->meta_description}}">
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tab3">
@@ -105,8 +115,13 @@
                                     <div class="form-group">
                                         <label for="statusgoods">Статус товара</label>
                                         <select name="statusgoods" id="statusgoods" class="form-control">
-                                            <option value="published">Опубликован</option>
-                                            <option value="testgoods">Черновик</option>
+                                            @if($good->status == 'published')
+                                                <option value="published" selected>Опубликован</option>
+                                                <option value="testgoods">Черновик</option>
+                                            @elseif($good->status == 'testgoods')
+                                                <option value="published">Опубликован</option>
+                                                <option value="testgoods" selected>Черновик</option>
+                                            @endif
                                         </select>
                                     </div>
                                 </div>

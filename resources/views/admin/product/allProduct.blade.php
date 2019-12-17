@@ -22,6 +22,7 @@
         <!-- Main content -->
         <section class="content">
             <!-- Small boxes (Stat box) -->
+
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
@@ -51,23 +52,33 @@
                                     <th>Название</th>
                                     <th>Дата Изм.</th>
                                     <th>Активность</th>
-                                    <th>Сортировка</th>
+                                    <th>Цена</th>
+                                    <th>Удалить</th>
 
                                 </tr>
+                                @foreach($goods as $good)
                                     <tr>
-                                        <td>1</td>
-                                        <td><a href="#">Ботинки</a></td>
-                                        <td>31.10.2019 17:10</td>
-                                        <td><span class="label label-success">АКТИВЕН</span></td>
-                                        <td>500</td>
+                                        <td>{{$good['id']}}</td>
+                                        <td><a href="/admin/product/edit/{{$good['id']}}">{{$good['title']}}</a></td>
+                                        <td>{{$good['updated_at']}}</td>
+                                        <td><span class="label @if($good['status'] == 'published')
+                                                label-success
+                                                  @elseif($good['status'] == 'testgoods')
+                                                label-warning
+                                                @endif
+                                                ">
+                                                @if($good['status'] == 'published')Активен
+                                                @elseif($good['status'] == 'testgoods')Черновик
+                                                @endif</span></td>
+                                        <td>{{$good['price']}} ₽</td>
+                                        <td>
+                                            <form action="/admin/product/delete/{{$good['id']}}" method="post">
+                                                <button type="submit" class="btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                                {{csrf_field()}}
+                                            </form>
+                                        </td>
                                     </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Кросовки</td>
-                                    <td>31.10.2019 17:10</td>
-                                    <td><span class="label label-danger">НЕ АКТИВЕН</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
+                                @endforeach
                             </table>
                         </div>
                         <!-- /.box-body -->

@@ -6,7 +6,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="all-goods-h1">
-                Создание промокода
+                Редактирование промокода: {{$promo->discount_name}}
             </h1>
 
             <ol class="breadcrumb">
@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box form-add-goods">
-                        <form action="/admin/sale/create" method="post" role="form">
+                        <form action="/admin/sale/edit/{{$promo->id}}" method="post" role="form">
                             <!-- TAB NAVIGATION -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Основные</a></li>
@@ -36,28 +36,29 @@
                                     <div class="form-group">
                                         <label for="namepromo">Название промокода</label>
                                         <input type="text" class="form-control" name="namepromo" id="namepromo"
-                                               placeholder="Введите название промокода">
+                                               placeholder="Введите название промокода" value="{{$promo->discount_name}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="codepromo">Код</label>
                                         <input type="text" class="form-control" name="codepromo" id="codepromo"
-                                               placeholder="Код">
+                                               placeholder="Код" value="{{$promo->coupon}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="promocodedate">Продолжительность</label>
-                                        <input type="date" class="form-control" name="promocodedate" id="promocodedate">
+
+                                        <input type="datetime-local" class="form-control" name="promocodedate" id="promocodedate" value="{{$promo->date_apply}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="sizepromo">Размер скидки</label>
                                         <input type="text" class="form-control" name="sizepromo" id="sizepromo"
-                                               placeholder="Введите размер скидки">
+                                               placeholder="Введите размер скидки" value="{{$promo->size_promo}}">
                                     </div>
 
                                 </div>
                                 <div class="tab-pane fade" id="tab2">
                                     <div class="form-group">
                                         <label for="goodspromo">Список товаров</label>
-                                        <select name="goodspromo" id="goodspromo" class="form-control" multiple>
+                                        <select name="goodspromo[]" id="goodspromo" class="form-control" multiple>
                                             @foreach($goods as $itemGood)
                                                 <option value="{{$itemGood->id}}">{{$itemGood->title}}</option>
                                             @endforeach
@@ -71,8 +72,8 @@
                                     <div class="form-group">
                                         <label for="statusgoods">Статус товара</label>
                                         <select name="statusgoods" id="statusgoods" class="form-control">
-                                            <option value="published">Опубликован</option>
-                                            <option value="testgoods">Черновик</option>
+                                            <option value="published" @if($promo->status == 'published') selected @endif>Опубликован</option>
+                                            <option value="testgoods" @if($promo->status == 'testgoods') selected @endif>Черновик</option>
                                         </select>
                                     </div>
                                 </div>
