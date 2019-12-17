@@ -52,15 +52,24 @@
                                     <th>Размер скидки</th>
                                     <th>Дата окончания скидки</th>
                                     <th>Статус</th>
+                                    <th>Удалить</th>
                                 </tr>
+                                @foreach($promo as $itemPromo)
                                 <tr>
-                                    <td>1</td>
-                                    <td><a href="#">Новогодняя скидка</a></td>
-                                    <td>CDFF-GDGF-4GF2-DGGT-HHH4</td>
-                                    <td>30%</td>
-                                    <td>31.12.2019</td>
-                                    <td><span class="label label-success">Активен</span></td>
+                                    <td>{{$itemPromo->id}}</td>
+                                    <td><a href="/admin/sale/edit/{{$itemPromo->id}}">{{$itemPromo->discount_name}}</a></td>
+                                    <td>{{$itemPromo->coupon}}</td>
+                                    <td>{{$itemPromo->size_promo}}%</td>
+                                    <td>{{$itemPromo->date_apply}}</td>
+                                    <td>@if($itemPromo->active == 'published')<span class="label label-success">Активен</span>@elseif($itemPromo->active == 'testgoods')<span class="label label-warning">Черновик</span>@endif</td>
+                                    <td>
+                                        <form action="/admin/sale/delete/{{$itemPromo['id']}}" method="post">
+                                            <button type="submit" class="btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                            {{csrf_field()}}
+                                        </form>
+                                    </td>
                                 </tr>
+                                @endforeach
                             </table>
                         </div>
                         <!-- /.box-body -->

@@ -14,7 +14,14 @@ class GoodsController extends Controller
      */
     public function index()
     {
-        //
+        $goods = Goods::all();
+
+        return view('client-part.catalog.catalogIndex',['goods'=>$goods]);
+    }
+
+    public function detailIndex($slug){
+        $good = Goods::where('slug','=',$slug)->first();
+        return view('client-part.catalog.detail',['good'=>$good]);
     }
 
     /**
