@@ -26,7 +26,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Всего: 1337</h3>
+                            <h3 class="box-title">Всего: {{$count}}</h3>
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
@@ -68,7 +68,7 @@
                                     <td>{{$page['meta_description']}}</td>
                                     <td>
                                         <form action="/admin/pages/delete/{{$page['id']}}" method="post">
-                                            <button type="submit" class="btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                            <div class="btn-group btn-group-xs"> <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></div>
                                             {{csrf_field()}}
                                         </form>
                                     </td>

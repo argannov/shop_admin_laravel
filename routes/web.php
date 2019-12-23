@@ -33,11 +33,17 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Личный кабинет
     Route::get('/personal', 'LKController@index');
-    Route::get('/personal/orders', 'LKController@index');
+    Route::get('/personal/orders', 'LKController@listOrder');
     Route::get('/personal/viewlist', 'LKController@index');
     Route::get('/personal/bonus', 'LKController@index');
-    //****************
-    Route::get('/order', 'OrdersController@index');
+    //**************************************************
+
+    //Заказы
+    Route::post('/order', 'OrdersController@create');
+    Route::post('/order/create', 'OrdersController@success');
+    Route::get('/order/success', 'OrdersController@successOrder');
+    //**********************************************************
+
     Route::get('/home', 'HomeController@index');
 
 });

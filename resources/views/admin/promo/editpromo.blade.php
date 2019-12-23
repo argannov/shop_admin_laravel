@@ -36,7 +36,8 @@
                                     <div class="form-group">
                                         <label for="namepromo">Название промокода</label>
                                         <input type="text" class="form-control" name="namepromo" id="namepromo"
-                                               placeholder="Введите название промокода" value="{{$promo->discount_name}}">
+                                               placeholder="Введите название промокода"
+                                               value="{{$promo->discount_name}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="codepromo">Код</label>
@@ -46,7 +47,8 @@
                                     <div class="form-group">
                                         <label for="promocodedate">Продолжительность</label>
 
-                                        <input type="datetime-local" class="form-control" name="promocodedate" id="promocodedate" value="{{$promo->date_apply}}">
+                                        <input type="datetime-local" class="form-control" name="promocodedate"
+                                               id="promocodedate" value="{{$promo->date_apply}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="sizepromo">Размер скидки</label>
@@ -60,7 +62,9 @@
                                         <label for="goodspromo">Список товаров</label>
                                         <select name="goodspromo[]" id="goodspromo" class="form-control" multiple>
                                             @foreach($goods as $itemGood)
-                                                <option value="{{$itemGood->id}}">{{$itemGood->title}}</option>
+                                                <option value="{{$itemGood->id}}"
+                                                        @if($promo->goods_items === $itemGood->id) selected @endif>
+                                                    {{$itemGood->title}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -72,8 +76,12 @@
                                     <div class="form-group">
                                         <label for="statusgoods">Статус товара</label>
                                         <select name="statusgoods" id="statusgoods" class="form-control">
-                                            <option value="published" @if($promo->status == 'published') selected @endif>Опубликован</option>
-                                            <option value="testgoods" @if($promo->status == 'testgoods') selected @endif>Черновик</option>
+                                            <option value="published"
+                                                    @if($promo->status == 'published') selected @endif>Опубликован
+                                            </option>
+                                            <option value="testgoods"
+                                                    @if($promo->status == 'testgoods') selected @endif>Черновик
+                                            </option>
                                         </select>
                                     </div>
                                 </div>

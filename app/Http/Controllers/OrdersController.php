@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Orders;
 use Illuminate\Http\Request;
+use App\Carts;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class OrdersController extends Controller
 {
@@ -22,9 +25,63 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $user_id = $request->user_info;
+        if($user_id == Auth::id()) {
+            $product_list = array();
+            $delivery = 300;
+            $sum = 0;
+            $sum = $sum + $delivery;
+            $cart_arr = Carts::where('user_id', $user_id)->get();
+            //dd($cart_arr);
+            foreach ($cart_arr as $itemCart){
+                $product_list[] = $itemCart->product_id;
+                $sum = $sum + $itemCart->price;
+            }
+            return view('client-part.order.indexOrder',['sum'=>$sum,'delivery'=>$delivery]);
+        }
+        else {
+            return redirect('/cart');
+        }
+    }
+
+    public function success(Request $request)
+    {
+        $order = new Orders();
+        $order->name = $request->name_user;
+        $order->surname = $request->fio_user;
+        $order->last_name = $request->lastname_user;
+        $order->phone = $request->phone_user;
+        $order->delivery_name = $request->delivery;
+        $order->pay_name = $request->pay;
+        $order->user_id = Auth::id();
+        $order->payed = 'N';
+        $order->date_payed = null;
+        $order->price_delivery = 300;
+        $order->price = $request->price_order;
+        $order->canceled = 'N';
+        $order->date_canceled = null;
+        $order->updated_at = Carbon::now();
+        $order->created_at = Carbon::now();
+        $cart_arr = Carts::where('user_id', Auth::id())->get();
+        foreach ($cart_arr as $itemCart){
+            $product_list[] = $itemCart->product_id;
+        }
+        $product_list = json_encode($product_list);
+        $order->product_list = $product_list;
+        $order->currency = 'RUB';
+        $order->street = $request->street;
+        $order->house = $request->house;
+        $order->kvoroffice = $request->numberkv;
+        $order->save();
+        Carts::where('user_id',Auth::id())->delete();
+        return redirect('/order/success');
+    }
+
+    public function successOrder()
+    {
+        return redirect('/personal/orders')->with('status','Заказ офомрлен!');
     }
 
     /**

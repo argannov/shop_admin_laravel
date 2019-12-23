@@ -13,8 +13,11 @@ class NewPromocodeController extends Controller
     public function index(){
 
         $promo = Promocods::all();
-
-        return view("admin.promo.index",['promo'=>$promo]);
+        $count = 0;
+        foreach ($promo as $itemPromo){
+            $count = $count + 1;
+        }
+        return view("admin.promo.index",['promo'=>$promo,'count'=>$count]);
     }
     public function create(){
         $goods = Goods::all();
@@ -51,9 +54,10 @@ class NewPromocodeController extends Controller
         $goodsItem = array();
         $intArr = 0;
         foreach ($goods as $intArr => $goodsItemArrDate) {
-            $goodsItem[$intArr]['goodItem'] = $goodsItemArrDate;
+            $goodsItem[$intArr] = $goodsItemArrDate;
             $intArr++;
         }
+        //dd($goodsItem);
         $encode = json_encode($goodsItem);
         $promo->goods_items = $encode;
 
