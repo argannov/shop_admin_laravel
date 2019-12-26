@@ -6,7 +6,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="all-goods-h1">
-                Создание статьи
+                Редактирование статьи: {{$post->title}}
             </h1>
 
             <ol class="breadcrumb">
@@ -36,23 +36,24 @@
                                     <div class="form-group">
                                         <label for="namepages">Наименование статьи</label>
                                         <input type="text" class="form-control" name="namepages" id="namepages"
-                                               placeholder="Введите название товара">
+                                               placeholder="Введите название товара" value="{{$post->title}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="slugpages">Символьный код</label>
                                         <input type="text" class="form-control" name="slugpages" id="slugpages"
-                                               placeholder="Введите символьный код статьи">
+                                               placeholder="Введите символьный код статьи" value="{{$post->slug}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="anonspages">Анонс статьи</label>
                                         <input type="text" class="form-control" name="anonspages" id="anonspages"
-                                               placeholder="Введите краткое описание статьи">
+                                               placeholder="Введите краткое описание статьи" value="{{$post->anons}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="articulegoods">Контент для статьи</label>
-                                        <textarea name="post_body"></textarea>
+                                        <textarea name="post_body">{{$post->body}}</textarea>
                                     </div>
                                     <div class="form-group">
+                                        <img src="/img/posts/{{$post->image}}" alt="">
                                         <label class="custom-file">
                                             Изображение статьи
                                             <input type="file" id="file" name="imagepost" class="custom-file-input">
@@ -65,19 +66,19 @@
                                     <div class="form-group">
                                         <label for="seotitlegoods">Заголовок страницы</label>
                                         <input type="text" class="form-control" name="seotitlegoods" id="seotitlegoods"
-                                               placeholder="Введите заголовок товара">
+                                               placeholder="Введите заголовок товара" value="{{$post->title}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="seokeywordgoods">Ключевые слова</label>
                                         <input type="text" class="form-control" name="seokeywordgoods"
                                                id="seokeywordgoods"
-                                               placeholder="Введите ключевые слова товара">
+                                               placeholder="Введите ключевые слова товара" value="{{$post->meta_keywords}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="seodescriptiongoods">Описание страницы (Description)</label>
                                         <input type="text" class="form-control" name="seodescriptiongoods"
                                                id="seodescriptiongoods"
-                                               placeholder="Введите описание">
+                                               placeholder="Введите описание" value="{{$post->meta_description}}">
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="tab3">
@@ -87,8 +88,13 @@
                                     <div class="form-group">
                                         <label for="statusgoods">Статус страницы</label>
                                         <select name="statusgoods" id="statusgoods" class="form-control">
-                                            <option value="published">Опубликован</option>
+                                            @if($post->status == 'published')
+                                            <option value="published" selected>Опубликован</option>
                                             <option value="testgoods">Черновик</option>
+                                                @else
+                                                <option value="published" >Опубликован</option>
+                                                <option value="testgoods" selected>Черновик</option>
+                                            @endif
                                         </select>
                                     </div>
                                 </div>

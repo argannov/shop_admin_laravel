@@ -46,7 +46,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/catalog">Каталог</a></li>
                 <li><a href="/cart">Корзина</a></li>
-                <li><a href="/order">Оформление заказа</a></li>
+                <li><a href="/news">Статьи</a></li>
                 <li><a href="/contacts">Контакты</a></li>
                 <li><a href="/personal">Личный кабинет</a></li>
                 <li><a href="/search">Поиск</a></li>

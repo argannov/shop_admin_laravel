@@ -23,7 +23,8 @@ Route::get('/catalog/{slug}/{name}', 'GoodsController@index');
 Route::get('/cart', 'CartsController@index');
 Route::post('/cart/addCart/{slug}','CartsController@store');
 
-Route::get('/posts', 'PostsController@index');
+Route::get('/news', 'PostsController@index');
+Route::get('/news/{slug}','PostsController@onePost');
 Route::get('/favorite', 'LikeGoodsController@index');
 Route::post('/search', 'SearchController@index');
 Route::get('/stores', 'PagesController@index');
@@ -33,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Личный кабинет
     Route::get('/personal', 'LKController@index');
+    Route::post('/personal/edit', 'LKController@editProfile');
     Route::get('/personal/orders', 'LKController@listOrder');
     Route::get('/personal/viewlist', 'LKController@index');
     Route::get('/personal/bonus', 'LKController@index');
@@ -82,7 +84,9 @@ Route::group([
         //Создание и редактирование записей в админке
         Route::get('/posts', 'Admin\NewPostController@index');
         Route::get('/posts/create', 'Admin\NewPostController@create');
-        Route::post('/posts/create', 'Admin\NewPostController@create');
+        Route::post('/posts/create', 'Admin\NewPostController@created');
+        Route::get('/posts/{slug}', 'Admin\NewPostController@editPost');
+        Route::post('/posts/{slug}','Admin\NewPostController@edit');
         //************************************************************
 
         //Создание и редактирование скидок в админке
@@ -104,6 +108,18 @@ Route::group([
         Route::get('/store/create', 'Admin\NewStoreController@create');
         Route::post('/store/create', 'Admin\NewStoreController@create');
         //************************************************************
+
+        //Бонусная система в админке
+        Route::get('/bonus', 'Admin\BonusController@index');
+        Route::get('/bonus/{slug}', 'Admin\BonusController@oneBonus');
+        Route::post('/bonus/{slug}', 'Admin\BonusController@edit');
+        //************************************************************
+
+        // Настройки админки
+        Route::get('/setting','Admin\SettingController@index');
+        Route::post('/setting','Admin\SettingController@edit');
+        //************************************************************
+
     }
 );
 Route::get('/{slug}', 'PagesController@otherPage');

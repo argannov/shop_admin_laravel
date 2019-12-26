@@ -153,7 +153,7 @@
                 </li>
                 <li>
                     <a href="/admin/orders">
-                        <i class="fa fa-rouble"></i>
+                        <i class="fa fa-cubes"></i>
                         <span>Заказы</span>
                         <span class="pull-right-container">
               <span class="label label-primary pull-right">{{count($order = \App\Orders::all())}}</span>
@@ -216,6 +216,20 @@
                         <li><a href="/admin/store/"><i class="fa fa-circle-o"></i>Все магазины</a></li>
                         <li><a href="/admin/store/create"><i class="fa fa-circle-o"></i>Добавить магазин</a></li>
                     </ul>
+                </li>
+                <li>
+                    <a href="/admin/bonus">
+                        <i class="fa fa-trophy"></i> <span>Бонусная система</span>
+                        <span class="pull-right-container">
+            </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/setting">
+                        <i class="fa fa-cogs"></i> <span>Настройки</span>
+                        <span class="pull-right-container">
+            </span>
+                    </a>
                 </li>
             </ul>
         </section>

@@ -30,7 +30,7 @@ class CartsController extends Controller
         } else {
             $id_user = Auth::id();
             $cart = Carts::where('user_id', '=', $id_user)->get();
-            if(!empty($cart)) {
+            if(count($cart) != 0) {
                 foreach ($cart as $item) {
                     $product_id = $item->product_id;
                     $good[] = Goods::where('id', $product_id)->get();

@@ -6,17 +6,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="all-goods-h1">
-                Все статьи
+                Все бонусные карты
             </h1>
-
-            <div class="input-group-btn">
-                <a href="/admin/posts/create" class="btn btn-success">Добавить статью</a>
-            </div>
 
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fa fa-tv"></i>На сайт</a></li>
                 <li><a href="/admin/dashboard">Дашборд</a></li>
-                <li class="active">Все статьи</li>
+                <li class="active">Все бонусные карты</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -26,7 +22,9 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Всего: {{$count}}</h3>
+                            <h3 class="box-title">Всего: 1
+
+                            </h3>
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
@@ -48,21 +46,23 @@
                                 <tr>
 
                                     <th>ID</th>
-                                    <th>Название</th>
-                                    <th>Дата Изм.</th>
-                                    <th>Активность</th>
-                                    <th>Описание</th>
+                                    <th>ФИО клиента</th>
+                                    <th>Номер карты</th>
+                                    <th>Бонусный процент</th>
+                                    <th>Дата создания</th>
+                                    <th>Статус</th>
 
                                 </tr>
-                                @foreach($posts as $post)
-                                <tr>
-                                    <td>{{$post->id}}</td>
-                                    <td><a href="/admin/posts/{{$post->slug}}">{{$post->title}}</a></td>
-                                    <td>{{$post->created_at}}</td>
-                                    <td>@if($post->status == 'published')<span class="label label-success">АКТИВЕН</span>@else <span class="label label-warning">ЧЕРНОВИК</span>@endif</td>
-                                    <td>{{$post->anons}}</td>
-                                </tr>
-                               @endforeach
+{{--                                @foreach($orders as $order)--}}
+{{--                                    <tr>--}}
+{{--                                        <td><a href="#">{{$order->id}}</a></td>--}}
+{{--                                        <td>{{$order->surname}} {{$order->name}} {{$order->last_name}}</td>--}}
+{{--                                        <td>{{$order->street}},{{$order->house}} кв/оф №{{$order->kvoroffice}}</td>--}}
+{{--                                        <td>{{$order->created_at}}</td>--}}
+{{--                                        <td>{{$order->price+$order->price_delivery}} ₽</td>--}}
+{{--                                        <td><span class="label label-warning">Обработка</span></td>--}}
+{{--                                    </tr>--}}
+{{--                                @endforeach--}}
                             </table>
                         </div>
                         <!-- /.box-body -->

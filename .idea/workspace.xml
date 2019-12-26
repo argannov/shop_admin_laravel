@@ -2,39 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3123798-7653-47d6-897a-ed8b4bea0670" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/users/user-default.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/client-part/cart/indexCart.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/client-part/order/indexOrder.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/client-part/personal/bonusPersonal.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/client-part/personal/indexPersonal.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/client-part/personal/orders.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/client-part/personal/viewList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Carts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Carts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Goods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AllUsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/AllUsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewGoodsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewGoodsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewPageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewPageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewPromocodeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewPromocodeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PermissionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PermissionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BonusController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SettingController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/posts/post_5e020be1a9bc3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/users/avatar_5e01ecd2736c4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/bonus/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/posts/editPost.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/setting/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/client-part/posts/indexPost.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/client-part/posts/onePost.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/05656fb2-875a-4e5c-9e68-d2f4bf8814d4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/05656fb2-875a-4e5c-9e68-d2f4bf8814d4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewPostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NewPostController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GoodsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GoodsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LKController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LKController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Orders.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Orders.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/order/allorders.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/order/allorders.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/pages/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/pages/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/product/allProduct.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/product/allProduct.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/promo/editpromo.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/promo/editpromo.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/promo/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/promo/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/client-part/catalog/catalogIndex.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/client-part/catalog/catalogIndex.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/client-part/catalog/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/client-part/catalog/detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PostsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Posts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/posts/createposts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/posts/createposts.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/posts/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/posts/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/client-part/personal/indexPersonal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/client-part/personal/indexPersonal.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/client-part-layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/client-part-layout.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -82,6 +68,13 @@
         <item name="host1593539_shop@185.26.122.14" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="host1593539_shop: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="bonuses: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="host1593539_shop@185.26.122.14" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="host1593539_shop: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="carts: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
@@ -97,6 +90,13 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="host1593539_shop: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="permissions_role: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="host1593539_shop@185.26.122.14" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="host1593539_shop: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="posts: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -132,8 +132,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="Артем &lt;argannov@firecode.ru&gt;" />
         <option value="Артем &lt;argannov@yandex.ru&gt;" />
+        <option value="Артем &lt;argannov@firecode.ru&gt;" />
       </list>
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -265,17 +265,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:host1593539_shop@185.26.122.14" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:host1593539_shop@185.26.122.14" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@22e9e551" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -316,7 +306,10 @@
       <workItem from="1576828693421" duration="12809000" />
       <workItem from="1577074973416" duration="3466000" />
       <workItem from="1577079240080" duration="15527000" />
-      <workItem from="1577097523943" duration="4264000" />
+      <workItem from="1577097523943" duration="4792000" />
+      <workItem from="1577175148001" duration="8132000" />
+      <workItem from="1577188675314" duration="9796000" />
+      <workItem from="1577333863375" duration="5785000" />
     </task>
     <task id="LOCAL-00001" summary="Новое подключение к удаленной базе">
       <created>1575963752237</created>
@@ -339,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576586275259</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Сделал основной функционал работы с товарами: &#10;-создание и отображение товаров&#10;-добавление в корзину&#10;-создание заказа &#10;-отображение заказа &#10;Сделал начальный функционал отображения ЛК&#10;Починил аватарки и подписи в админке, такие как: &#10;-ФИО&#10;-логин&#10;-аватарка&#10;-количество элементов&#10;Ну и мелкие фиксы по проекту, в гите задачи актуальные">
+      <created>1577103556246</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1577103556246</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,7 +365,8 @@
     <MESSAGE value="Новое подключение к удаленной базе" />
     <MESSAGE value="Сделал полный функционал добавления страниц + первое отображение&#10;+ создание товаров, уже создаёт" />
     <MESSAGE value="-Полное создание товаров + загрузка картинок из формы на диск и удаление. &#10;-Создание скидок для товара(еще не связано, но привязка товаров есть)&#10;-Уже есть наброски клиент части по каталогу" />
-    <option name="LAST_COMMIT_MESSAGE" value="-Полное создание товаров + загрузка картинок из формы на диск и удаление. &#10;-Создание скидок для товара(еще не связано, но привязка товаров есть)&#10;-Уже есть наброски клиент части по каталогу" />
+    <MESSAGE value="Сделал основной функционал работы с товарами: &#10;-создание и отображение товаров&#10;-добавление в корзину&#10;-создание заказа &#10;-отображение заказа &#10;Сделал начальный функционал отображения ЛК&#10;Починил аватарки и подписи в админке, такие как: &#10;-ФИО&#10;-логин&#10;-аватарка&#10;-количество элементов&#10;Ну и мелкие фиксы по проекту, в гите задачи актуальные" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сделал основной функционал работы с товарами: &#10;-создание и отображение товаров&#10;-добавление в корзину&#10;-создание заказа &#10;-отображение заказа &#10;Сделал начальный функционал отображения ЛК&#10;Починил аватарки и подписи в админке, такие как: &#10;-ФИО&#10;-логин&#10;-аватарка&#10;-количество элементов&#10;Ну и мелкие фиксы по проекту, в гите задачи актуальные" />
   </component>
   <component name="WindowStateProjectService">
     <state x="979" y="174" width="800" height="658" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576127288114">
@@ -380,26 +381,27 @@
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
     <state x="629" y="70" width="652" height="914" key="#php56/Dockerfile/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1575954437611" />
-    <state x="517" y="37" width="876" height="979" key="CommitChangelistDialog2" timestamp="1576586274695">
-      <screen x="0" y="27" width="1920" height="1004" />
+    <state x="2437" y="11" width="876" height="979" key="CommitChangelistDialog2" timestamp="1577103555448">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="517" y="37" width="876" height="979" key="CommitChangelistDialog2/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1576586274695" />
-    <state width="1291" height="239" key="GridCell.Tab.0.bottom" timestamp="1576770815643">
+    <state x="2437" y="11" key="CommitChangelistDialog2/0.27.1920.1004/1920.0.1920.1080@1920.0.1920.1080" timestamp="1577103555448" />
+    <state width="1291" height="264" key="GridCell.Tab.0.bottom" timestamp="1577175658812">
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
-    <state width="1291" height="239" key="GridCell.Tab.0.bottom/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1576770815643" />
-    <state width="1291" height="239" key="GridCell.Tab.0.center" timestamp="1576770815643">
+    <state width="1291" height="264" key="GridCell.Tab.0.bottom/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577175658812" />
+    <state width="1291" height="264" key="GridCell.Tab.0.center" timestamp="1577175658811">
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
-    <state width="1291" height="239" key="GridCell.Tab.0.center/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1576770815643" />
-    <state width="1291" height="239" key="GridCell.Tab.0.left" timestamp="1576770815643">
+    <state width="1291" height="264" key="GridCell.Tab.0.center/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577175658811" />
+    <state width="1291" height="264" key="GridCell.Tab.0.left" timestamp="1577175658811">
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
-    <state width="1291" height="239" key="GridCell.Tab.0.left/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1576770815643" />
-    <state width="1291" height="239" key="GridCell.Tab.0.right" timestamp="1576770815643">
+    <state width="1291" height="264" key="GridCell.Tab.0.left/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577175658811" />
+    <state width="1291" height="264" key="GridCell.Tab.0.right" timestamp="1577175658811">
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
-    <state width="1291" height="239" key="GridCell.Tab.0.right/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1576770815643" />
+    <state width="1291" height="264" key="GridCell.Tab.0.right/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577175658811" />
     <state width="263" height="541" key="HiddenNamespacesPopup" timestamp="1576127249651">
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
@@ -408,30 +410,32 @@
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
     <state x="640" y="200" key="SettingsEditor/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577080965004" />
-    <state x="555" y="261" width="800" height="532" key="Vcs.Push.Dialog.v2" timestamp="1576586284763">
-      <screen x="0" y="27" width="1920" height="1004" />
+    <state x="2475" y="252" width="800" height="532" key="Vcs.Push.Dialog.v2" timestamp="1577103575333">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="555" y="261" width="800" height="532" key="Vcs.Push.Dialog.v2/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1576586284763" />
-    <state x="665" y="184" width="566" height="724" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1577093663074">
+    <state x="2475" y="252" key="Vcs.Push.Dialog.v2/0.27.1920.1004/1920.0.1920.1080@1920.0.1920.1080" timestamp="1577103575333" />
+    <state x="665" y="184" width="566" height="724" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1577358477140">
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
-    <state x="665" y="184" width="566" height="724" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577093663074" />
-    <state x="517" y="385" key="com.intellij.ide.util.TipDialog" timestamp="1577097524584">
-      <screen x="0" y="27" width="1920" height="1004" />
+    <state x="665" y="184" width="566" height="724" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577358477140" />
+    <state x="2437" y="385" key="com.intellij.ide.util.TipDialog" timestamp="1577175623311">
+      <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="517" y="385" key="com.intellij.ide.util.TipDialog/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577097524584" />
-    <state x="596" y="249" width="727" height="560" key="find.popup" timestamp="1576820886138">
+    <state x="2437" y="385" key="com.intellij.ide.util.TipDialog/0.27.1920.1004/1920.0.1920.1080@1920.0.1920.1080" timestamp="1577175623311" />
+    <state x="596" y="249" width="727" height="560" key="find.popup" timestamp="1577194492503">
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
-    <state x="596" y="249" width="727" height="560" key="find.popup/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1576820886138" />
+    <state x="596" y="249" width="727" height="560" key="find.popup/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577194492503" />
     <state x="611" y="304" width="698" height="445" key="git4idea.merge.GitPullDialog" timestamp="1576586447573">
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
     <state x="611" y="304" width="698" height="445" key="git4idea.merge.GitPullDialog/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1576586447573" />
-    <state x="624" y="242" key="run.anything.popup" timestamp="1577089988643">
+    <state x="624" y="242" key="run.anything.popup" timestamp="1577196135496">
       <screen x="0" y="27" width="1920" height="1004" />
     </state>
-    <state x="624" y="242" key="run.anything.popup/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577089988643" />
+    <state x="624" y="242" key="run.anything.popup/0.27.1920.1004/1920.0.1920.1080@0.27.1920.1004" timestamp="1577196135496" />
     <state x="623" y="247" width="672" height="678" key="search.everywhere.popup" timestamp="1576150728726">
       <screen x="0" y="27" width="1920" height="1004" />
     </state>

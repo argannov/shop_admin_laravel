@@ -7,7 +7,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 h1">
                 Личный кабинет
             </div>
-            <form action="/personal/edit" method="post">
+            <form action="/personal/edit" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="avatar" class="col-sm-1 control-label">Аватар</label>
                     <div class="col-sm-11">
