@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Carts;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Bonus;
 
 class OrdersController extends Controller
 {
@@ -37,7 +38,7 @@ class OrdersController extends Controller
             //dd($cart_arr);
             foreach ($cart_arr as $itemCart){
                 $product_list[] = $itemCart->product_id;
-                $sum = $sum + $itemCart->price;
+                $sum = $sum + ($itemCart->price*$itemCart->quantity);
             }
             return view('client-part.order.indexOrder',['sum'=>$sum,'delivery'=>$delivery]);
         }
@@ -75,6 +76,33 @@ class OrdersController extends Controller
         $order->house = $request->house;
         $order->kvoroffice = $request->numberkv;
         $order->save();
+
+        $allOrder = Orders::select('price')->where('user_id',Auth::id())->get();
+        $summ = 0;
+        foreach ($allOrder as $itemOrder){
+            $summ = $itemOrder->price + $summ;
+        }
+
+        $bonuses = Bonus::where('id_users',Auth::id())->first();
+        if(!$bonuses)
+        {
+            $bonuses = new Bonus();
+            $bonuses->id_users = Auth::id();
+            $bonuses->val_bonus = ($summ/100)*5;
+            $bonuses->active = 'Y';
+            $bonuses->updated_at = Carbon::now();
+            $bonuses->created_at = Carbon::now();
+            $permitted_chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $number_card = substr(str_shuffle($permitted_chars), 0, 10);
+            $bonuses->card_number = $number_card;
+            $bonuses->save();
+        }
+        else {
+            $summaBallov = $bonuses->val_bonus;
+            $bonuses->val_bonus = ($request->price_order/100)*5 + $summaBallov;
+            $bonuses->save();
+        }
+
         Carts::where('user_id',Auth::id())->delete();
         return redirect('/order/success');
     }

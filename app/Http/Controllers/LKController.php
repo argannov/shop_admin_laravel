@@ -7,6 +7,7 @@ use App\Orders;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\File;
+use App\Bonus;
 
 class LKController extends Controller
 {
@@ -43,4 +44,11 @@ class LKController extends Controller
         $orders = Orders::where('user_id', Auth::id())->get();
         return view('client-part.personal.orders', ['order' => $orders]);
     }
+
+    public function BonusIndex()
+    {
+        $bonusUser = Bonus::where('id_users',Auth::id())->first();
+        return view('client-part.personal.bonusPersonal',['bonuses'=>$bonusUser]);
+    }
+
 }

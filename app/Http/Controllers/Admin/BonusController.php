@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Bonus;
 
 class BonusController extends Controller
 {
@@ -14,7 +15,8 @@ class BonusController extends Controller
      */
     public function index()
     {
-        return view('admin.bonus.index');
+        $bonuses = Bonus::all();
+        return view('admin.bonus.index',['bonuses'=>$bonuses]);
     }
 
     /**

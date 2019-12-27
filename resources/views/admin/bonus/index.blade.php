@@ -22,7 +22,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Всего: 1
+                            <h3 class="box-title">Всего: {{count(\App\Bonus::all())}}
 
                             </h3>
 
@@ -48,21 +48,21 @@
                                     <th>ID</th>
                                     <th>ФИО клиента</th>
                                     <th>Номер карты</th>
-                                    <th>Бонусный процент</th>
+                                    <th>Количество баллов</th>
                                     <th>Дата создания</th>
                                     <th>Статус</th>
 
                                 </tr>
-{{--                                @foreach($orders as $order)--}}
-{{--                                    <tr>--}}
-{{--                                        <td><a href="#">{{$order->id}}</a></td>--}}
-{{--                                        <td>{{$order->surname}} {{$order->name}} {{$order->last_name}}</td>--}}
-{{--                                        <td>{{$order->street}},{{$order->house}} кв/оф №{{$order->kvoroffice}}</td>--}}
-{{--                                        <td>{{$order->created_at}}</td>--}}
-{{--                                        <td>{{$order->price+$order->price_delivery}} ₽</td>--}}
-{{--                                        <td><span class="label label-warning">Обработка</span></td>--}}
-{{--                                    </tr>--}}
-{{--                                @endforeach--}}
+                                @foreach($bonuses as $bonus)
+                                    <tr>
+                                        <td>{{$bonus->id}}</td>
+                                        <td><a href="/admin/users/{{$bonus->id_users}}">{{\App\User::where('id',$bonus->id_users)->first()->fio}}</a></td>
+                                        <td>{{$bonus->card_number}}</td>
+                                        <td>{{$bonus->val_bonus}}</td>
+                                        <td>{{$bonus->created_at}}</td>
+                                        <td>@if($bonus->status == 'Y') Активен @else Не активен @endif</td>
+                                    </tr>
+                                @endforeach
                             </table>
                         </div>
                         <!-- /.box-body -->

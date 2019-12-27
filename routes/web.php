@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/personal/edit', 'LKController@editProfile');
     Route::get('/personal/orders', 'LKController@listOrder');
     Route::get('/personal/viewlist', 'LKController@index');
-    Route::get('/personal/bonus', 'LKController@index');
+    Route::get('/personal/bonus', 'LKController@BonusIndex');
     //**************************************************
 
     //Заказы

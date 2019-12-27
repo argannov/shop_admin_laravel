@@ -82,12 +82,28 @@ class NewGoodsController extends Controller
         $goods->meta_keywords = $request->seokeywordgoods;
         $goods->meta_description = $request->seodescriptiongoods;
         $goods->price = $request->pricegoods;
-        $goods->image_anons = $request->imageanons;
-        $goods->image_detail = $request->imagedetail;
+        $imgfile = $request->file('imageanons');
+        $imgfileDetail = $request->file('imagedetail');
+        $imgpath = public_path() . '/img/product';
+        File::makeDirectory($imgpath, $mode = 0777, true, true);
+        $imgDestinationPath = $imgpath . '/' . $request->articulegoods;
+        if($imgfile) {
+            $ext1 = $imgfile->getClientOriginalExtension();
+            $filename1 = uniqid('vid_') . '.' . $ext1;
+            $goods->image_anons = $filename1;
+            $imgfile->move($imgDestinationPath, $filename1);
+        }
+        if($imgfileDetail) {
+            $ext2 = $imgfileDetail->getClientOriginalExtension();
+            $filename2 = uniqid('vid_') . '.' . $ext2;
+            $goods->image_detail = $filename2;
+            $imgfileDetail->move($imgDestinationPath, $filename2);
+        }
         $goods->status = $request->statusgoods;
         $goods->body = $request->body;
         $goods->category = $request->categorygoods;
         $goods->save();
+        return redirect('/admin/product');
     }
 
     public function deleteProduct($slug)

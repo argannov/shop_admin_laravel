@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box form-add-goods">
-                        <form action="" method="post" role="form">
+                        <form action="" method="post" role="form" enctype="multipart/form-data">
                             <!-- TAB NAVIGATION -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Основные</a></li>
