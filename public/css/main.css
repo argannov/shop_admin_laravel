@@ -13,6 +13,12 @@
 
 /*КЛИЕНТ ЧАСТЬ*/
 
+/*лк*/
+
+.personal-avatar {
+    width: 50px;
+}
+
 /*футер*/
 .footer-bs {
     background-color: #3c3d41;

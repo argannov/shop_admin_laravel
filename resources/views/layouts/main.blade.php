@@ -76,16 +76,16 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Логин</span>
+                            <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}" class="user-image" alt="User Image">
+                            <span class="hidden-xs">{{\App\User::where('id',Auth::id())->first()->fio}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Тут фио - Роль
+                                    {{\App\User::where('id',Auth::id())->first()->fio}}
                                 </p>
                             </li>
 
@@ -118,10 +118,10 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Тут фио</p>
+                    <p>{{\App\User::where('id',Auth::id())->first()->fio}}</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -139,7 +139,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">Основное меню</li>
-                <li class="active treeview">
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-cube"></i> <span>Товары</span>
                         <span class="pull-right-container">
@@ -153,10 +153,10 @@
                 </li>
                 <li>
                     <a href="/admin/orders">
-                        <i class="fa fa-rouble"></i>
+                        <i class="fa fa-cubes"></i>
                         <span>Заказы</span>
                         <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
+              <span class="label label-primary pull-right">{{count($order = \App\Orders::all())}}</span>
             </span>
                     </a>
                 </li>
@@ -216,6 +216,20 @@
                         <li><a href="/admin/store/"><i class="fa fa-circle-o"></i>Все магазины</a></li>
                         <li><a href="/admin/store/create"><i class="fa fa-circle-o"></i>Добавить магазин</a></li>
                     </ul>
+                </li>
+                <li>
+                    <a href="/admin/bonus">
+                        <i class="fa fa-trophy"></i> <span>Бонусная система</span>
+                        <span class="pull-right-container">
+            </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/setting">
+                        <i class="fa fa-cogs"></i> <span>Настройки</span>
+                        <span class="pull-right-container">
+            </span>
+                    </a>
                 </li>
             </ul>
         </section>

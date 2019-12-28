@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box form-add-goods">
-                        <form action="" method="post" role="form">
+                        <form action="" method="post" role="form" enctype="multipart/form-data">
                             <!-- TAB NAVIGATION -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Основные</a></li>
@@ -41,16 +41,21 @@
                                     <div class="form-group">
                                         <label for="slugpages">Символьный код</label>
                                         <input type="text" class="form-control" name="slugpages" id="slugpages"
-                                               placeholder="Введите символьный код товара">
+                                               placeholder="Введите символьный код статьи">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="anonspages">Анонс статьи</label>
+                                        <input type="text" class="form-control" name="anonspages" id="anonspages"
+                                               placeholder="Введите краткое описание статьи">
                                     </div>
                                     <div class="form-group">
                                         <label for="articulegoods">Контент для статьи</label>
-                                        <textarea></textarea>
+                                        <textarea name="post_body"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label class="custom-file">
                                             Изображение статьи
-                                            <input type="file" id="file" class="custom-file-input">
+                                            <input type="file" id="file" name="imagepost" class="custom-file-input">
                                             <span class="custom-file-control"></span>
                                         </label>
                                     </div>
@@ -89,7 +94,7 @@
                                 </div>
 
                             </div>
-
+                            {{csrf_field()}}
                             <button type="submit" class="btn btn-success">Отправить</button>
 
                         </form>

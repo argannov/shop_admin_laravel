@@ -46,7 +46,7 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/catalog">Каталог</a></li>
                 <li><a href="/cart">Корзина</a></li>
-                <li><a href="/order">Оформление заказа</a></li>
+                <li><a href="/news">Статьи</a></li>
                 <li><a href="/contacts">Контакты</a></li>
                 <li><a href="/personal">Личный кабинет</a></li>
                 <li><a href="/search">Поиск</a></li>
@@ -156,5 +156,6 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="{{asset('js/main.js')}}"></script>
 </body>
 </html>

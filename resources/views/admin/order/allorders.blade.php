@@ -22,7 +22,9 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Всего: 1337</h3>
+                            <h3 class="box-title">Всего:
+                               {{$count}}
+                            </h3>
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
@@ -51,14 +53,16 @@
                                     <th>Статус</th>
 
                                 </tr>
-                                <tr>
-                                    <td><a href="#">1</a></td>
-                                    <td>Иванов Иван Иванович</td>
-                                    <td>г. Ростов-на-Дону ул. Большая Садовая 169</td>
-                                    <td>31.10.2019 17:10</td>
-                                    <td>12 000 ₽</td>
-                                    <td><span class="label label-warning">Обработка</span></td>
-                                </tr>
+                                @foreach($orders as $order)
+                                    <tr>
+                                        <td><a href="#">{{$order->id}}</a></td>
+                                        <td>{{$order->surname}} {{$order->name}} {{$order->last_name}}</td>
+                                        <td>{{$order->street}},{{$order->house}} кв/оф №{{$order->kvoroffice}}</td>
+                                        <td>{{$order->created_at}}</td>
+                                        <td>{{$order->price+$order->price_delivery}} ₽</td>
+                                        <td><span class="label label-warning">Обработка</span></td>
+                                    </tr>
+                                @endforeach
                             </table>
                         </div>
                         <!-- /.box-body -->

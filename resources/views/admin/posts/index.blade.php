@@ -26,7 +26,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Всего: 1337</h3>
+                            <h3 class="box-title">Всего: {{$count}}</h3>
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
@@ -54,20 +54,15 @@
                                     <th>Описание</th>
 
                                 </tr>
+                                @foreach($posts as $post)
                                 <tr>
-                                    <td>1</td>
-                                    <td><a href="#">О нас</a></td>
-                                    <td>31.10.2019 17:10</td>
-                                    <td><span class="label label-success">АКТИВЕН</span></td>
-                                    <td>Это страница о нас</td>
+                                    <td>{{$post->id}}</td>
+                                    <td><a href="/admin/posts/{{$post->slug}}">{{$post->title}}</a></td>
+                                    <td>{{$post->created_at}}</td>
+                                    <td>@if($post->status == 'published')<span class="label label-success">АКТИВЕН</span>@else <span class="label label-warning">ЧЕРНОВИК</span>@endif</td>
+                                    <td>{{$post->anons}}</td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><a href="#">Что-то там</a></td>
-                                    <td>31.10.2019 17:10</td>
-                                    <td><span class="label label-danger">НЕ АКТИВЕН</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                </tr>
+                               @endforeach
                             </table>
                         </div>
                         <!-- /.box-body -->

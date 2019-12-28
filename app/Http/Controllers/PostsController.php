@@ -14,7 +14,13 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Posts::all();
+        return view('client-part.posts.indexPost',['posts'=>$posts]);
+    }
+
+    public function onePost($slug){
+        $post = Posts::where('slug',$slug)->first();
+        return view('client-part.posts.onePost',['post'=>$post]);
     }
 
     /**
