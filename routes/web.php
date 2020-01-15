@@ -106,7 +106,10 @@ Route::group([
         //Создание и редактирование магазинов в админке
         Route::get('/store', 'Admin\NewStoreController@index');
         Route::get('/store/create', 'Admin\NewStoreController@create');
-        Route::post('/store/create', 'Admin\NewStoreController@create');
+        Route::post('/store/create', 'Admin\NewStoreController@create')->name('create_store');
+        Route::get('/store/edit/{slug}', 'Admin\NewStoreController@update');
+        Route::post('/store/edit/{slug}', 'Admin\NewStoreController@update')->name('update_store');
+        Route::post('/store/delete/{slug}', 'Admin\NewStoreController@delete')->name('delete_store');
         //************************************************************
 
         //Бонусная система в админке
