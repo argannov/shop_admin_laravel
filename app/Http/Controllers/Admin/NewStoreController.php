@@ -22,6 +22,10 @@ class NewStoreController extends Controller
         return view('admin.store.index', ['stores' => $this->repository->all()]);
     }
 
+    public function show($slug) {
+        return view('admin.store.detailstore', ['store' => $this->repository->get($slug)]);
+    }
+
     /**
      * @param NewStoreRequest $request
      * @return array|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -52,7 +56,7 @@ class NewStoreController extends Controller
         $store = $this->repository->get($slug);
 
         if ($request->isMethod('GET')) {
-            return view('admin.store.createstore', ['model' => $store]);
+            return view('admin.store.createstore', ['store' => $store]);
         }
 
         try {

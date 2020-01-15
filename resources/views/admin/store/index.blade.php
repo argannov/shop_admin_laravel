@@ -26,7 +26,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Всего: 1337</h3>
+                        <h3 class="box-title">Всего: {{ count($stores) }}</h3>
 
                         <div class="box-tools">
                             <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
@@ -54,20 +54,18 @@
                                 <th>Активность</th>
 
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Пятерочка епта</td>
-                                <td>г. Ростов-на-Дону, ул. Кривая д.69</td>
-                                <td>[43.2233,42.43434]</td>
-                                <td><span class="label label-success">АКТИВЕН</span></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Пятерочка епта2</td>
-                                <td>г. Ростов-на-Дону, ул. Кривая д.69</td>
-                                <td>[43.2233,42.43434]</td>
-                                <td><span class="label label-danger">НЕ АКТИВЕН</span></td>
-                            </tr>
+                            @foreach($stores as $store)
+                                <tr>
+                                    <td>{{ $store->id }}</td>
+                                    <td><a href="{{ route('show_store', ['slug' => $store->slug]) }}">{{ $store->name }}</a></td>
+                                    <td>{{ $store->address }}</td>
+                                    <td>{{ $store->geolocation }}</td>
+                                    <td><span class="label {{ $store->active ? 'label-success' : 'label-danger' }}">{{ $store->active ? 'АКТИВЕН' : 'НЕ АКТИВЕН' }}</span></td>
+                                    <td>
+                                        <button class="btn btn-danger delete-btn" data-route="{{ route('delete_store', ['slug' => $store->slug]) }}">Удалить</button>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </table>
                     </div>
                     <!-- /.box-body -->

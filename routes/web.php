@@ -105,6 +105,7 @@ Route::group([
 
         //Создание и редактирование магазинов в админке
         Route::get('/store', 'Admin\NewStoreController@index');
+        Route::get('/store/show/{slug}', 'Admin\NewStoreController@show')->name('show_store');
         Route::get('/store/create', 'Admin\NewStoreController@create');
         Route::post('/store/create', 'Admin\NewStoreController@create')->name('create_store');
         Route::get('/store/edit/{slug}', 'Admin\NewStoreController@update');

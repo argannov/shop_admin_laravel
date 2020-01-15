@@ -6,7 +6,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="all-goods-h1">
-                @if (!empty($store)) Обновление @else Создание @endif магазина
+                {{ $store->name }}
             </h1>
 
             <ol class="breadcrumb">
@@ -54,15 +54,11 @@
                                 <div class="active tab-pane fade in" id="tab1">
                                     <div class="form-group">
                                         <label for="name">Наименование магазина</label>
-                                        <input type="text" class="form-control" name="name" id="name"
-                                               placeholder="Введите название товара"
-                                               @if (!empty($store) && isset($store->name)) value="{{ $store->name }}" @endif>
+                                        <p class="font-weight-normal">{{ $store->name }}</p>
                                     </div>
                                     <div class="form-group">
                                         <label for="slug">Символьный код</label>
-                                        <input type="text" class="form-control" name="slug" id="slug"
-                                               placeholder="Введите символьный код товара"
-                                               @if (!empty($store) && isset($store->slug)) value="{{ $store->slug }}" @endif>
+                                        <p class="font-weight-normal">{{ $store->slug }}</p>
                                     </div>
                                     <div class="form-group">
                                         <label class="custom-file">
@@ -76,15 +72,11 @@
                                 <div class="tab-pane fade" id="tab2">
                                     <div class="form-group">
                                         <label for="address">Адрес магазина</label>
-                                        <input type="text" class="form-control" name="address" id="address"
-                                               placeholder="Введите символьный код товара"
-                                               @if (!empty($store) && isset($store->address)) value="{{ $store->address }}" @endif>
+                                        <p class="font-weight-normal">{{ $store->address }}</p>
                                     </div>
                                     <div class="form-group">
                                         <label for="geolocation">Коориднаты для карты</label>
-                                        <input type="text" class="form-control" name="geolocation" id="geolocation"
-                                               placeholder="Введите символьный код товара"
-                                               @if (!empty($store) && isset($store->geolocation)) value="{{ $store->geolocation }}" @endif>
+                                        <p class="font-weight-normal">{{ $store->geolocation }}</p>
                                     </div>
 
                                 </div>
