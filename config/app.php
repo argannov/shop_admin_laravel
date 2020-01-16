@@ -165,6 +165,9 @@ return [
         /*
          * Package Service Providers...
          */
+//        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
+        ScoutElastic\ScoutElasticServiceProvider::class,
 
         /*
          * Application Service Providers...

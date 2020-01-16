@@ -16,7 +16,7 @@ Auth::routes();
 Route::get('/', 'PagesController@index');
 
 Route::get('/catalog', 'GoodsController@index');
-Route::get('/catalog/{slug}', 'GoodsController@detailIndex');
+Route::get('/catalog/{slug}', 'GoodsController@detailIndex')->name('show_good');
 Route::get('/catalog/{slug}/{name}', 'GoodsController@index');
 
 
@@ -85,7 +85,7 @@ Route::group([
         Route::get('/posts', 'Admin\NewPostController@index');
         Route::get('/posts/create', 'Admin\NewPostController@create');
         Route::post('/posts/create', 'Admin\NewPostController@created');
-        Route::get('/posts/{slug}', 'Admin\NewPostController@editPost');
+        Route::get('/posts/{slug}', 'Admin\NewPostController@editPost')->name('show_post');
         Route::post('/posts/{slug}','Admin\NewPostController@edit');
         //************************************************************
 
@@ -105,10 +105,9 @@ Route::group([
 
         //Создание и редактирование магазинов в админке
         Route::get('/store', 'Admin\NewStoreController@index');
-        Route::get('/store/show/{slug}', 'Admin\NewStoreController@show')->name('show_store');
         Route::get('/store/create', 'Admin\NewStoreController@create');
         Route::post('/store/create', 'Admin\NewStoreController@create')->name('create_store');
-        Route::get('/store/edit/{slug}', 'Admin\NewStoreController@update');
+        Route::get('/store/edit/{slug}', 'Admin\NewStoreController@update')->name('show_store');
         Route::post('/store/edit/{slug}', 'Admin\NewStoreController@update')->name('update_store');
         Route::post('/store/delete/{slug}', 'Admin\NewStoreController@delete')->name('delete_store');
         //************************************************************
@@ -123,6 +122,9 @@ Route::group([
         Route::get('/setting','Admin\SettingController@index');
         Route::post('/setting','Admin\SettingController@edit');
         //************************************************************
+
+        //Поиск в админке
+        Route::get('/search/{keywords}', 'Admin\SearchDashboardController@search');
 
     }
 );
