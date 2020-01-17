@@ -7,6 +7,32 @@ use App\Search\Rules\OrdersSearchRule;
 use Illuminate\Database\Eloquent\Model;
 use ScoutElastic\Searchable;
 
+/**
+ * @property $id int
+ * @property $user_id int
+ * @property $payed string
+ * @property $pay_name string
+ * @property $date_payed datetime
+ * @property $delivery_name string
+ * @property $price_delivery int
+ * @property $price int
+ * @property $canceled string
+ * @property $date_canceled datetime
+ * @property $updated_at datetime
+ * @property $created_at datetime
+ * @property $product_list string
+ * @property $surname string
+ * @property $name string
+ * @property $last_name string
+ * @property $phone string
+ * @property $currency string
+ * @property $street string
+ * @property $house string
+ * @property $kvoroffice string
+ *
+ * Class Orders
+ * @package App
+ */
 class Orders extends Model
 {
     use Searchable;

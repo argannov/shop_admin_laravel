@@ -7,6 +7,25 @@ use App\Search\Rules\GoodsSearchRule;
 use Illuminate\Database\Eloquent\Model;
 use ScoutElastic\Searchable;
 
+/**
+ * @property $id int
+ * @property $title string
+ * @property $category string
+ * @property $article string
+ * @property $slug string
+ * @property $body string
+ * @property $image_anons string
+ * @property $image_detail string
+ * @property $meta_description string
+ * @property $meta_keywords string
+ * @property $price int
+ * @property $status string
+ * @property $create_at timestamp
+ * @property $updated_at timestamp
+ *
+ * Class Goods
+ * @package App
+ */
 class Goods extends Model
 {
     use Searchable;
