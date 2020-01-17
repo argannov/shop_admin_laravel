@@ -124,7 +124,7 @@ Route::group([
         //************************************************************
 
         //Поиск в админке
-        Route::get('/search/{keywords}', 'Admin\SearchDashboardController@search');
+        Route::get('/search/{text}', 'Admin\SearchDashboardController@search');
 
     }
 );

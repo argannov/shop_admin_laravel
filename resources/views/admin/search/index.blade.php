@@ -5,7 +5,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="all-goods-h1">
-                Результаты поиска по запросу: "{{ $keywords }}"
+                Результаты поиска по запросу: "{{ $text }}"
             </h1>
 
             <ol class="breadcrumb">

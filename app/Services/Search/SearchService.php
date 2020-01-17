@@ -10,15 +10,15 @@ use App\Stores;
 class SearchService
 {
     /** @var string */
-    private $keywords;
+    private $text;
 
     /**
-     * @param $keywords string
+     * @param $text string
      * @return array
      */
-    public function search($keywords)
+    public function search($text)
     {
-        $this->keywords = $keywords;
+        $this->text = $text;
 
         return [
             $this->searchGoods(),
@@ -38,7 +38,7 @@ class SearchService
             'title' => 'Продукты'
         ];
 
-        $goods = Goods::search($this->keywords)->get();
+        $goods = Goods::search($this->text)->get();
 
         /** @var Goods $good */
         foreach ($goods as $good) {
@@ -61,7 +61,7 @@ class SearchService
             'title' => 'Заказы'
         ];
 
-        $orders = Orders::search($this->keywords)->get();
+        $orders = Orders::search($this->text)->get();
 
         /** @var Orders $order */
         foreach ($orders as $order) {
@@ -83,7 +83,7 @@ class SearchService
             'title' => 'Публикации'
         ];
 
-        $posts = Posts::search($this->keywords)->get();
+        $posts = Posts::search($this->text)->get();
 
         /** @var Posts $post */
         foreach ($posts as $post) {
@@ -106,7 +106,7 @@ class SearchService
             'title' => 'Магазины'
         ];
 
-        $stores = Stores::search($this->keywords)->get();
+        $stores = Stores::search($this->text)->get();
 
         /** @var Stores $store */
         foreach ($stores as $store) {

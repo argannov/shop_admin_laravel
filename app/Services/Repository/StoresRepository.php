@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 15.01.2020
- * Time: 14:43
- */
 
 namespace App\Services\Repository;
-
 
 use App\Services\Repository\Interfaces\Repository;
 use App\Stores;
@@ -69,14 +62,15 @@ class StoresRepository implements Repository
      */
     public function delete($model): bool
     {
-        return (bool) $model->delete();
+        return (bool)$model->delete();
     }
 
     /**
      * @param $store
      * @param Request $request
      */
-    private function uploadImage($store, Request $request) {
+    private function uploadImage($store, Request $request)
+    {
         if ($request->hasFile('image')) {
             /** @var UploadedFile $file */
             $file = $request->file('image');
