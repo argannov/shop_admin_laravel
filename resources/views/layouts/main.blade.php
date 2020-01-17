@@ -38,6 +38,10 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script>
+        var csrfToken = "{!! csrf_token() !!}";
+    </script>
+
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -126,9 +130,9 @@
                 </div>
             </div>
             <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
+            <form action="{{ route('search_admin') }}" method="get" class="sidebar-form">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Поиск ...">
+                    <input type="text" name="text" class="form-control" placeholder="Поиск ..." @if (isset($text)) value="{{ $text }}" @endif>
                     <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -289,28 +293,5 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 <script src="{{ asset('/js/main.js') }}"></script>
-
-{{--Обработчик кнопки удаления магазина--}}
-<script>
-    $(function ($) {
-        var $deleteBtn = $('.delete-btn');
-        $deleteBtn && $deleteBtn.on('click', function () {
-            if (!confirm('Вы уверены, что хохите удалить магазин?')) {
-                return;
-            }
-
-            $.ajax({
-                type: 'POST',
-                url: $(this).data('route'),
-                data: {
-                    "_token": "{{ csrf_token() }}"
-                },
-                success: function (data) {
-                   window.location.reload();
-                }
-            });
-        });
-    });
-</script>
 </body>
 </html>
