@@ -5,14 +5,7 @@ namespace App\Search\Configurators;
 use ScoutElastic\IndexConfigurator;
 use ScoutElastic\Migratable;
 
-class StoresIndexConfigurator extends IndexConfigurator
+class StoresIndexConfigurator extends BaseConfigurator
 {
-    use Migratable;
-
-    /**
-     * @var array
-     */
-    protected $settings = [
-        //
-    ];
+    protected $name = 'stores';
 }

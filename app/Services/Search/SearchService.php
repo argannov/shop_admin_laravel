@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: User
- * Date: 16.01.2020
- * Time: 16:03
- */
 
 namespace App\Services\Search;
-
 
 use App\Goods;
 use App\Orders;
@@ -23,7 +16,8 @@ class SearchService
      * @param $keywords string
      * @return array
      */
-    public function search($keywords) {
+    public function search($keywords)
+    {
         $this->keywords = $keywords;
 
         return [
@@ -38,7 +32,8 @@ class SearchService
     /**
      * @return array
      */
-    private function searchGoods() {
+    private function searchGoods()
+    {
         $result = [
             'title' => 'Продукты'
         ];
@@ -60,7 +55,8 @@ class SearchService
     /**
      * @return array
      */
-    private function searchOrders() {
+    private function searchOrders()
+    {
         $result = [
             'title' => 'Заказы'
         ];
@@ -81,7 +77,8 @@ class SearchService
     /**
      * @return array
      */
-    private function searchPosts() {
+    private function searchPosts()
+    {
         $result = [
             'title' => 'Публикации'
         ];
@@ -103,7 +100,8 @@ class SearchService
     /**
      * @return array
      */
-    private function searchStores() {
+    private function searchStores()
+    {
         $result = [
             'title' => 'Магазины'
         ];

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Search\Configurators\StoresIndexConfigurator;
+use App\Search\Rules\StoresSearchRule;
 use Illuminate\Database\Eloquent\Model;
 use ScoutElastic\Searchable;
 
@@ -30,13 +31,14 @@ class Stores extends Model
     ];
 
     protected $searchRules = [
-        //
+        StoresSearchRule::class
     ];
 
     protected $mapping = [
         'properties' => [
             'name' => [
                 'type' => 'text',
+                'analyzer' => 'rebuilt_russian',
                 'fields' => [
                     'raw' => [
                         'type' => 'keyword',

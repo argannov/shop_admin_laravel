@@ -21,18 +21,4 @@ class GoodsSearchRule extends SearchRule
             ]
         ];
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function buildQueryPayload()
-    {
-        return [
-            'must' => [
-                'query_string' => [
-                    'query' => $this->builder->query
-                ]
-            ]
-        ];
-    }
 }

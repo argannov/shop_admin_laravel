@@ -14,8 +14,8 @@ class Goods extends Model
     protected $indexConfigurator = GoodsIndexConfigurator::class;
 
     protected $table = "goods";
-    protected $fillable = ['id','title','category','article','slug','body','image_anons','image_detail','meta_description','meta_keywords','price','status','created_at','updated_at'];
-    protected $dates = ['created_at','updated_at'];
+    protected $fillable = ['id', 'title', 'category', 'article', 'slug', 'body', 'image_anons', 'image_detail', 'meta_description', 'meta_keywords', 'price', 'status', 'created_at', 'updated_at'];
+    protected $dates = ['created_at', 'updated_at'];
 
     protected $searchRules = [
         GoodsSearchRule::class
@@ -25,6 +25,7 @@ class Goods extends Model
         'properties' => [
             'title' => [
                 'type' => 'text',
+                'analyzer' => 'rebuilt_russian',
                 'fields' => [
                     'raw' => [
                         'type' => 'keyword',
