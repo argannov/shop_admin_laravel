@@ -24,6 +24,7 @@ use ScoutElastic\Searchable;
  * @property $updated_at timestamp
  *
  * Class Goods
+ * @mixin \Eloquent
  * @package App
  */
 class Goods extends Model

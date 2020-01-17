@@ -23,6 +23,7 @@ use ScoutElastic\Searchable;
  * @property $updated_at timestamp
  *
  * Class Posts
+ * @mixin \Eloquent
  * @package App
  */
 class Posts extends Model

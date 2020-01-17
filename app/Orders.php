@@ -31,6 +31,7 @@ use ScoutElastic\Searchable;
  * @property $kvoroffice string
  *
  * Class Orders
+ * @mixin \Eloquent
  * @package App
  */
 class Orders extends Model
