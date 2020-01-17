@@ -6,6 +6,8 @@ use App\Goods;
 use App\Orders;
 use App\Posts;
 use App\Stores;
+use Illuminate\Database\Eloquent\Model;
+use ScoutElastic\Searchable;
 
 class SearchService
 {
@@ -43,8 +45,8 @@ class SearchService
         /** @var Goods $good */
         foreach ($goods as $good) {
             $result['list'][] = [
-                'title' => $good->title ?? null,
-                'highlight' => $good->getHighlightAttribute()->title ?? null,
+                'title' => $good->getHighlightAttribute()->title[0] ?? $good->title ?? null,
+                'highlight' => $this->getHighlight($good, ['title']),
                 'link' => route('show_good', ['slug' => $good->slug])
             ];
         }
@@ -66,8 +68,8 @@ class SearchService
         /** @var Orders $order */
         foreach ($orders as $order) {
             $result['list'][] = [
-                'title' => $order->payed ?? null,
-                'highlight' => $order->getHighlightAttribute()->payed ?? null,
+                'title' => $order->getHighlightAttribute()->payed[0] ?? $order->payed ?? null,
+                'highlight' => $this->getHighlight($order, ['order']),
             ];
         }
 
@@ -88,8 +90,8 @@ class SearchService
         /** @var Posts $post */
         foreach ($posts as $post) {
             $result['list'][] = [
-                'title' => $post->title ?? null,
-                'highlight' => $post->getHighlightAttribute()->title ?? null,
+                'title' => $post->getHighlightAttribute()->title[0] ?? $post->title ?? null,
+                'highlight' => $this->getHighlight($post, ['title']),
                 'link' => route('show_post', ['slug' => $post->slug])
             ];
         }
@@ -111,12 +113,45 @@ class SearchService
         /** @var Stores $store */
         foreach ($stores as $store) {
             $result['list'][] = [
-                'title' => $store->name ?? null,
-                'highlight' => $store->getHighlightAttribute()->name ?? null,
+                'title' => $store->getHighlightAttribute()->name[0] ?? $store->name ?? null,
+                'highlight' => $this->getHighlight($store, ['title']),
                 'link' => route('show_store', ['slug' => $store->slug])
             ];
         }
 
         return $result;
+    }
+
+
+    /**
+     * @param $searchable Searchable|Model
+     * @param $exept array
+     * @return string
+     */
+    private function getHighlight($searchable, $exept)
+    {
+        $result = '';
+
+        $highlight = $searchable->getHighlightAttribute();
+
+        if (empty($highlight)) {
+            return $result;
+        }
+
+        foreach (array_keys($searchable->getAttributes()) as $attr) {
+            if (in_array($attr, $exept)) {
+                continue;
+            }
+
+            $value = $highlight->$attr;
+
+            if (empty($value)) {
+                continue;
+            }
+
+            $result .= (is_array($value) ? $value[0] : $value) . '; ';
+        }
+
+        return trim($result);
     }
 }

@@ -2,23 +2,6 @@
 
 namespace App\Search\Rules;
 
-use ScoutElastic\SearchRule;
-
-class OrdersSearchRule extends SearchRule
+class OrdersSearchRule extends BaseSearchRule
 {
-    /**
-     * @inheritdoc
-     */
-    public function buildHighlightPayload()
-    {
-        return [
-            'fields' => [
-                'payed' => [
-                    'type' => 'plain',
-                    'pre_tags' => '<b>',
-                    'post_tags' => '</b>'
-                ]
-            ]
-        ];
-    }
 }

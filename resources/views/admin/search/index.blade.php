@@ -26,42 +26,49 @@
                         @endif
 
                         <div class="box">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">{{ $result['title'] }}</h3>
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body">
-                                    <table class="table table-bordered">
-                                        <tbody><tr>
-                                            <th style="width: 10px">#</th>
-                                        </tr>
-                                        @foreach ($result['list'] as $key => $item)
-                                            <tr>
-                                                <td>{{ $key + 1 }}.</td>
-                                                <td>
-                                                    @if (isset($item['link']))
-                                                        <a href="{{ $item['link'] }}">
-                                                            {{ $item['title'] }}
-                                                        </a>
-                                                    @else
-                                                        {{ $item['title'] }}
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody></table>
-                                </div>
-                                <!-- /.box-body -->
-                                <div class="box-footer clearfix">
-                                    <ul class="pagination pagination-sm no-margin pull-right">
-                                        <li><a href="#">«</a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">»</a></li>
-                                    </ul>
-                                </div>
+                            <div class="box-header with-border">
+                                <h3 class="box-title">{{ $result['title'] }}</h3>
                             </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                    @foreach ($result['list'] as $key => $item)
+                                        <tr>
+                                            <td style="width: 10px">{{ $key + 1 }}</td>
+                                            <td>
+                                                @if (isset($item['link']))
+                                                    <a href="{{ $item['link'] }}">
+                                                        {!! $item['title'] !!}
+                                                    </a>
+                                                    <p>
+                                                        {!! $item['highlight'] !!}
+                                                    </p>
+                                                @else
+                                                    <p>
+                                                        {!! $item['title'] !!}
+                                                    </p>
+                                                    <p>
+                                                        {!! $item['highlight'] !!}
+                                                    </p>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer clearfix">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <li><a href="#">«</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
+                            </div>
+                        </div>
                     @endforeach
                 </div>
             </div>
