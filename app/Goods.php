@@ -52,6 +52,15 @@ class Goods extends Model
                     ]
                 ]
             ],
+            'body' => [
+                'type' => 'text',
+                'analyzer' => 'rebuilt_russian',
+                'fields' => [
+                    'raw' => [
+                        'type' => 'keyword',
+                    ]
+                ]
+            ],
         ]
     ];
 }
