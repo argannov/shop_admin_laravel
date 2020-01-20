@@ -125,6 +125,10 @@ Route::group([
 
         //Поиск в админке
         Route::get('/search/{text?}', 'Admin\SearchDashboardController@search')->name('search_admin');
+        Route::get('/search/of/store/{text?}', 'Admin\SearchDashboardController@searchGoods')->name('search_stores_admin');
+        Route::get('/search/of/goods/{text?}', 'Admin\SearchDashboardController@searchGoods')->name('search_goods_admin');
+        Route::get('/search/of/orders/{text?}', 'Admin\SearchDashboardController@searchOrders')->name('search_orders_admin');
+        Route::get('/search/of/posts/{text?}', 'Admin\SearchDashboardController@searchPosts')->name('search_posts_admin');
 
     }
 );

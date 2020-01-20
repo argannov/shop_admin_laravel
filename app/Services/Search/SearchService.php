@@ -11,40 +11,28 @@ use ScoutElastic\Searchable;
 
 class SearchService
 {
-    /** @var string */
-    private $text;
+
+    const DEFAULT_OFFSET = 0;
+    const DEFAULT_TAKE = 10;
 
     /**
-     * @param $text string
+     * @param string $text
+     * @param int $offset
+     * @param int $take
      * @return array
      */
-    public function search($text)
+    public function searchGoods($text, $offset = self::DEFAULT_OFFSET, $take = self::DEFAULT_TAKE)
     {
-        $this->text = $text;
+        $result = [];
 
-        return [
-            $this->searchGoods(),
-            $this->searchOrders(),
-            $this->searchPosts(),
-            $this->searchStores()
-        ];
-    }
-
-
-    /**
-     * @return array
-     */
-    private function searchGoods()
-    {
-        $result = [
-            'title' => 'Продукты'
-        ];
-
-        $goods = Goods::search($this->text)->get();
+        $goods = Goods::search($text)
+            ->from($offset)
+            ->take($take)
+            ->get();
 
         /** @var Goods $good */
         foreach ($goods as $good) {
-            $result['list'][] = [
+            $result[] = [
                 'title' => $good->getHighlightAttribute()->title[0] ?? $good->title ?? null,
                 'highlight' => $this->getHighlight($good, ['title']),
                 'link' => route('show_good', ['slug' => $good->slug])
@@ -55,19 +43,23 @@ class SearchService
     }
 
     /**
+     * @param string $text
+     * @param int $offset
+     * @param int $take
      * @return array
      */
-    private function searchOrders()
+    public function searchOrders($text, $offset = self::DEFAULT_OFFSET, $take = self::DEFAULT_TAKE)
     {
-        $result = [
-            'title' => 'Заказы'
-        ];
+        $result = [];
 
-        $orders = Orders::search($this->text)->get();
+        $orders = Orders::search($text)
+            ->from($offset)
+            ->take($take)
+            ->get();
 
         /** @var Orders $order */
         foreach ($orders as $order) {
-            $result['list'][] = [
+            $result[] = [
                 'title' => $order->getHighlightAttribute()->payed[0] ?? $order->payed ?? null,
                 'highlight' => $this->getHighlight($order, ['order']),
             ];
@@ -77,19 +69,23 @@ class SearchService
     }
 
     /**
+     * @param string $text
+     * @param int $offset
+     * @param int $take
      * @return array
      */
-    private function searchPosts()
+    public function searchPosts($text, $offset = self::DEFAULT_OFFSET, $take = self::DEFAULT_TAKE)
     {
-        $result = [
-            'title' => 'Публикации'
-        ];
+        $result = [];
 
-        $posts = Posts::search($this->text)->get();
+        $posts = Posts::search($text)
+            ->from($offset)
+            ->take($take)
+            ->get();
 
         /** @var Posts $post */
         foreach ($posts as $post) {
-            $result['list'][] = [
+            $result[] = [
                 'title' => $post->getHighlightAttribute()->title[0] ?? $post->title ?? null,
                 'highlight' => $this->getHighlight($post, ['title']),
                 'link' => route('show_post', ['slug' => $post->slug])
@@ -100,21 +96,25 @@ class SearchService
     }
 
     /**
+     * @param string $text
+     * @param int $offset
+     * @param int $take
      * @return array
      */
-    private function searchStores()
+    public function searchStores($text, $offset = self::DEFAULT_OFFSET, $take = self::DEFAULT_TAKE)
     {
-        $result = [
-            'title' => 'Магазины'
-        ];
+        $result = [];
 
-        $stores = Stores::search($this->text)->get();
+        $stores = Stores::search($text)
+            ->from($offset)
+            ->take($take)
+            ->get();
 
         /** @var Stores $store */
         foreach ($stores as $store) {
-            $result['list'][] = [
+            $result[] = [
                 'title' => $store->getHighlightAttribute()->name[0] ?? $store->name ?? null,
-                'highlight' => $this->getHighlight($store, ['title']),
+                'highlight' => $this->getHighlight($store, ['name']),
                 'link' => route('show_store', ['slug' => $store->slug])
             ];
         }
@@ -124,11 +124,11 @@ class SearchService
 
 
     /**
-     * @param $searchable Searchable|Model
-     * @param $exept array
+     * @param Searchable|Model $searchable
+     * @param array $except
      * @return string
      */
-    private function getHighlight($searchable, $exept)
+    private function getHighlight($searchable, $except)
     {
         $result = '';
 
@@ -139,7 +139,7 @@ class SearchService
         }
 
         foreach (array_keys($searchable->getAttributes()) as $attr) {
-            if (in_array($attr, $exept)) {
+            if (in_array($attr, $except)) {
                 continue;
             }
 
