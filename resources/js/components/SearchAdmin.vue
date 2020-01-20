@@ -2,7 +2,7 @@
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                <h3 class="box-title">Всего записей найдено: {{ text }}</h3>
+                <h3></h3>
             </div>
         </div>
         <search-box title="Товары" v-bind:route="this.generateRoute('goods')" v-bind:text="text"/>

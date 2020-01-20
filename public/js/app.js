@@ -2055,10 +2055,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.fetchItems(this.text, this.offset, this.take);
+    this.fetchResult(this.text, this.offset, this.take);
   },
   methods: {
-    fetchItems: function fetchItems(text, offset, take) {
+    fetchResult: function fetchResult(text, offset, take) {
       this.loading = true;
       var vm = this;
       axios.get(this.url(text), {
@@ -37526,13 +37526,7 @@ var render = function() {
     "section",
     { staticClass: "content" },
     [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-xs-12" }, [
-          _c("h3", { staticClass: "box-title" }, [
-            _vm._v("Всего записей найдено: " + _vm._s(_vm.text))
-          ])
-        ])
-      ]),
+      _vm._m(0),
       _vm._v(" "),
       _c("search-box", {
         attrs: {
@@ -37569,7 +37563,16 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-xs-12" }, [_c("h3")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -37665,7 +37668,7 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            _vm.fetchItems(
+                            _vm.fetchResult(
                               _vm.text,
                               parseInt(_vm.offset) - parseInt(_vm.take),
                               _vm.take
@@ -37688,7 +37691,11 @@ var render = function() {
                       attrs: { href: "#", disabled: !page.current },
                       on: {
                         click: function($event) {
-                          return _vm.fetchItems(_vm.text, page.offset, _vm.take)
+                          return _vm.fetchResult(
+                            _vm.text,
+                            page.offset,
+                            _vm.take
+                          )
                         }
                       }
                     },
@@ -37713,7 +37720,7 @@ var render = function() {
                         on: {
                           click: function($event) {
                             $event.preventDefault()
-                            _vm.fetchItems(
+                            _vm.fetchResult(
                               _vm.text,
                               parseInt(_vm.offset) + parseInt(_vm.take),
                               _vm.take

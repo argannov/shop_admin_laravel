@@ -30,18 +30,18 @@
 
         <div class="box-footer clearfix" v-if="successful && filled && pages.length > 1">
             <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#" v-on:click.prevent="fetchItems(text, parseInt(offset) - parseInt(take), take)"
+                <li><a href="#" v-on:click.prevent="fetchResult(text, parseInt(offset) - parseInt(take), take)"
                        v-if="offset >= take">«</a>
                 </li>
                 <li>
                     <a href="#" v-for="page in pages"
                        v-bind:disabled="!page.current"
                        v-bind:class="{'label-primary': page.current}"
-                       v-on:click="fetchItems(text, page.offset, take)">
+                       v-on:click="fetchResult(text, page.offset, take)">
                         {{ page.number }}
                     </a>
                 </li>
-                <li><a href="#" v-on:click.prevent="fetchItems(text, parseInt(offset) + parseInt(take), take)"
+                <li><a href="#" v-on:click.prevent="fetchResult(text, parseInt(offset) + parseInt(take), take)"
                        v-if="offset < total - take">»</a>
                 </li>
             </ul>
@@ -84,13 +84,13 @@
             }
         },
         created() {
-            this.fetchItems(this.text, this.offset, this.take);
+            this.fetchResult(this.text, this.offset, this.take);
         },
         methods: {
-            fetchItems: function (text, offset, take) {
+            fetchResult: function (text, offset, take) {
                 this.loading = true;
 
-                var vm = this;
+                const vm = this;
                 axios.get(this.url(text), {
                     params: {
                         offset: offset,
