@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('/css/spinner.css') }}">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({selector: 'textarea'});</script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

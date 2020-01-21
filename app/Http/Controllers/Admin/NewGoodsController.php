@@ -12,7 +12,19 @@ class NewGoodsController extends Controller
     //
     function index()
     {
-        return view('admin.product.allProduct');
+
+        $settings = [
+            'columns' => [
+                ['title' => 'ID'],
+                ['title' => 'Название'],
+                ['title' => 'Дата Изм.'],
+                ['title' => 'Активность'],
+                ['title' => 'Цена'],
+                ['title' => 'Удалить'],
+            ]
+        ];
+
+        return view('admin.product.allProduct', ['settings' => json_encode($settings)]);
     }
 
     /**
@@ -127,7 +139,7 @@ class NewGoodsController extends Controller
         return redirect('/admin/product');
     }
 
-    public function deleteProduct($slug)
+    public function deleteProduct(Request $request, $slug)
     {
         $goods = Goods::where('id', '=', $slug)->first();
 
@@ -143,6 +155,7 @@ class NewGoodsController extends Controller
             File::delete($pathDetail);
         }
         $goods->delete();
-        return redirect('/admin/product/');
+
+        return ['success' => true];
     }
 }

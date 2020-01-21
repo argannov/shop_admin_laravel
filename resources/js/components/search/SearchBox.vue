@@ -25,7 +25,7 @@
                 </tbody>
             </table>
 
-            <div class="alert alert-danger  fade in" v-if="unsuccessful" v-html="errorMessage"></div>
+            <error-alert v-if="unsuccessful" v-bind:message="errorMessage"/>
         </div>
 
         <div class="box-footer clearfix" v-if="successful && filled && pages.length > 1">

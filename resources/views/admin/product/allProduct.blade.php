@@ -20,14 +20,14 @@
             </ol>
         </section>
         <!-- Main content -->
-        <section class="content">
+        <section class="content" id="app">
             <!-- Small boxes (Stat box) -->
 
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Всего: {{$count}}</h3>
+                            {{--<h3 class="box-title">Всего: {{$count}}</h3>--}}
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
@@ -43,45 +43,13 @@
 
                             </div>
                         </div>
-                        <!-- /.box-header -->
-                        <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover">
-                                <tr>
-
-                                    <th>ID</th>
-                                    <th>Название</th>
-                                    <th>Дата Изм.</th>
-                                    <th>Активность</th>
-                                    <th>Цена</th>
-                                    <th>Удалить</th>
-
-                                </tr>
-                                @foreach($goods as $good)
-                                    <tr>
-                                        <td>{{$good['id']}}</td>
-                                        <td><a href="/admin/product/edit/{{$good['id']}}">{{$good['title']}}</a></td>
-                                        <td>{{$good['updated_at']}}</td>
-                                        <td><span class="label @if($good['status'] == 'published')
-                                                label-success
-                                                  @elseif($good['status'] == 'testgoods')
-                                                label-warning
-                                                @endif
-                                                ">
-                                                @if($good['status'] == 'published')Активен
-                                                @elseif($good['status'] == 'testgoods')Черновик
-                                                @endif</span></td>
-                                        <td>{{$good['price']}} ₽</td>
-                                        <td>
-                                            <form action="/admin/product/delete/{{$good['id']}}" method="post">
-                                                <button type="submit" class="btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                                                {{csrf_field()}}
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
+                        <data-table
+                            v-bind:settings="{{ $settings }}"
+                            route="{{ route('fetch_product') }}"
+                            edit-route="{{ route('edit_product') }}"
+                            delete-route="{{ route('delete_product') }}"
+                            csrf-token="{{ csrf_token() }}"
+                        />
                     </div>
                     <!-- /.box -->
                 </div>

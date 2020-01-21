@@ -1,31 +1,42 @@
 <template>
     <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
+
+        <spinner v-if="loading"/>
+
+
+        <div class="box-body" v-if="successful && unfilled">
+            <p>Ничего не найдено</p>
+        </div>
+
+        <table class="table table-hover" v-if="successful && filled">
+            <tbody>
             <tr>
-                <th v-for="column in settings.columns">{{ column.title }}</th>
+                <th v-if="settings" v-for="column in settings.columns">{{ column.title }}</th>
             </tr>
 
-            <tr v-for="good in result.goods">
+            <tr v-for="(good, index) in result.goods">
                 <td>{{ good.id }}</td>
-                <td><a v-bind:href="good.id">{{ good.title }}</a></td>
+                <td><a v-bind:href="edit(good.id)">{{ good.title }}</a></td>
                 <td>{{ good.updated_at }}</td>
                 <td>
-                    <span
-                        v-bind:class="{'label-success': this.isPublished(good), 'label-warning': !this.isPublished(good)}">
-                        {{ this.getMessage(good) }}
-                    </span>
+                        <span
+                            v-bind:class="[{'label-success': isPublished(good), 'label-warning': !isPublished(good)}, 'label']">
+                            {{ getMessage(good) }}
+                        </span>
                 </td>
                 <td>{{ good.price }} ₽</td>
                 <td>
-                    <form v-bind:action="good.id" method="post">
-                        <button type="submit" class="btn-danger"><span class="glyphicon glyphicon-trash"></span>
+                    <form v-on:submit.prevent="remove(good.id, index)">
+                        <button type="submit" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-trash"></span>
                         </button>
-                        <!--csrf field-->
                     </form>
                 </td>
             </tr>
-
+            </tbody>
         </table>
+
+        <error-alert v-if="unsuccessful" v-bind:message="errorMessage"/>
     </div>
 </template>
 
@@ -45,41 +56,73 @@
         },
         props: {
             settings: Object,
-            route: String
+            route: String,
+            editRoute: String,
+            deleteRoute: String,
+            csrfToken: String,
+        },
+        computed: {
+            successful: function () {
+                return !this.loading && !this.error;
+            },
+            unsuccessful: function () {
+                return !this.loading && this.error;
+            },
+            filled: function () {
+                return this.successful && this.result.count > 0;
+            },
+            unfilled: function () {
+                return !this.filled;
+            }
         },
         created: function () {
             this.fetchResult();
         },
-        methods: function () {
-            return {
-                fetchResult: function () {
-                    this.loading = true;
+        methods: {
+            fetchResult: function () {
+                this.loading = true;
 
-                    let vm = this;
-                    axios.get(this.route, {
-                        params: settings.params
+                let vm = this;
+                axios.get(this.route, {
+                    params: vm.settings.params
+                })
+                    .then(function (response) {
+                        vm.result = response.data;
+                        vm.loading = false;
                     })
-                        .then(function (response) {
-                            vm.result = response.data;
-                            vm.loading = false;
-                        })
-                        .catch(function (error) {
-                            vm.error = true;
-                            vm.errorMessage = error;
-                            vm.loading = false;
-                        });
-                },
-                isPublished: function (good) {
-                    return good.status === 'published';
-                },
-                getMessage: function (good) {
-                    return this.isPublished(good) ? 'Активен' : 'Черновик';
+                    .catch(function (error) {
+                        vm.error = true;
+                        vm.errorMessage = error;
+                        vm.loading = false;
+                    });
+            },
+            isPublished: function (good) {
+                return good.status === 'published';
+            },
+            getMessage: function (good) {
+                return this.isPublished(good) ? 'Активен' : 'Черновик';
+            },
+            edit: function (slug) {
+                return this.editRoute + '/' + slug;
+            },
+            remove: function (slug, index) {
+                if (!confirm('Вы уверены, что хотите удалить запись?')) {
+                    return;
                 }
+
+                let vm = this;
+                if (!vm.settings.params) {
+                    vm.settings.params = {};
+                }
+                vm.settings.params._token = vm.csrfToken;
+                axios.post(this.deleteRoute + '/' + slug, vm.settings.params)
+                    .then(function () {
+                        vm.result.goods.splice(index, 1);
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
             }
         }
     }
 </script>
-
-<style scoped>
-
-</style>
