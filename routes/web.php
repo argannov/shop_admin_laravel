@@ -61,6 +61,7 @@ Route::group([
 
         //Создание и редактирование товаров в админке
         Route::get('/product', 'Admin\NewGoodsController@index');
+        Route::get('/product/fetch', 'Admin\NewGoodsController@fetch');
         Route::get('/product/create', 'Admin\NewGoodsController@formProduct');
         Route::post('/product/create', 'Admin\NewGoodsController@addProduct');
         Route::get('/product/edit/{slug}', 'Admin\NewGoodsController@editProduct');
