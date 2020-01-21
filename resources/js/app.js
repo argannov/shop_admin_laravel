@@ -4,7 +4,7 @@ window.Vue = require('vue');
 
 
 Vue.component('spinner', require('./components/spinner/Spinner.vue').default);
-Vue.component('spinner-second', require('./components/spinner/SpinnerSecond.vue').default);
+Vue.component('processing-spinner', require('./components/spinner/ProcessingSpinner.vue').default);
 Vue.component('error-alert', require('./components/error/Error.vue').default);
 
 Vue.component('search-admin', require('./components/search/SearchAdmin.vue').default);

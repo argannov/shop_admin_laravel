@@ -7,10 +7,12 @@
         <div class="box-body" v-if="unfilled">
             <p>Ничего не найдено</p>
         </div>
-        <div class="box-body">
-            <spinner v-if="loading"/>
+        <div class="box-body" style="position: relative;">
+            <processing-spinner v-if="processing"/>
 
-            <table class="table table-bordered" v-if="successful">
+            <spinner v-if="loading && !processing"/>
+
+            <table class="table table-bordered" v-if="successful || processing">
                 <tbody>
                 <tr v-for="item in result.data.items">
                     <td>
@@ -28,20 +30,20 @@
             <error-alert v-if="unsuccessful" v-bind:message="errorMessage"/>
         </div>
 
-        <div class="box-footer clearfix" v-if="successful && filled && pages.length > 1">
+        <div class="box-footer clearfix" v-if="(successful && filled && pages.length > 1) || processing">
             <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#" v-on:click.prevent="fetchResult(text, parseInt(offset) - parseInt(take), take)"
+                <li><a href="#" v-on:click.prevent="leaf(text, 0, take)"
                        v-if="offset >= take">«</a>
                 </li>
                 <li>
                     <a href="#" v-for="page in pages"
                        v-bind:disabled="!page.current"
                        v-bind:class="{'label-primary': page.current}"
-                       v-on:click="fetchResult(text, page.offset, take)">
-                        {{ page.number }}
+                       v-on:click="leaf(text, page.offset, take)">
+                        {{ Math.round(page.number) }}
                     </a>
                 </li>
-                <li><a href="#" v-on:click.prevent="fetchResult(text, parseInt(offset) + parseInt(take), take)"
+                <li><a href="#" v-on:click.prevent="leaf(text, Number(total) - Number(take), take)"
                        v-if="offset < total - take">»</a>
                 </li>
             </ul>
@@ -55,10 +57,11 @@
         data: function () {
             return {
                 loading: true,
+                processing: false,
                 result: [],
                 total: 0,
                 offset: 0,
-                take: 10,
+                take: 4,
                 pages: [],
                 error: false,
                 errorMessage: ''
@@ -88,8 +91,6 @@
         },
         methods: {
             fetchResult: function (text, offset, take) {
-                this.loading = true;
-
                 const vm = this;
                 axios.get(this.url(text), {
                     params: {
@@ -101,11 +102,13 @@
                         vm.result = response;
                         vm.initPagination(offset, take);
                         vm.loading = false;
+                        vm.processing = false;
                     })
                     .catch(function (error) {
                         vm.error = true;
                         vm.errorMessage = error;
                         vm.loading = false;
+                        vm.processing = false;
                     });
             },
             url: function (text) {
@@ -117,6 +120,7 @@
 
                 let currentPage = (this.offset / this.take) + 1;
                 let residualPages = ((this.result.data.pagination.total - this.result.data.pagination.offset) / this.take) - 1;
+                let pages = residualPages;
 
                 let maxNumberOfPaginationButtons = 2;
                 if (residualPages > maxNumberOfPaginationButtons) {
@@ -124,10 +128,17 @@
                 }
 
                 this.pages = [];
+                if (residualPages === 0) {
+                    this.pages.push({number: currentPage - 2, offset: offset - take, current: false})
+                }
+
                 if (currentPage > 1) {
                     this.pages.push({number: currentPage - 1, offset: offset - take, current: false})
                 }
+
                 this.pages.push({number: currentPage, current: true});
+
+                console.log(residualPages);
 
                 for (let i = 0; i < residualPages; i++) {
                     this.pages.push({number: currentPage + (i + 1), offset: offset + take, current: false});
@@ -135,8 +146,11 @@
                         break;
                     }
                 }
+            },
+            leaf: function (text, offset, take) {
+                this.processing = true;
+                this.fetchResult(text, offset, take);
             }
-
         }
     }
 </script>

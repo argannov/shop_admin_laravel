@@ -1,5 +1,6 @@
 <template>
-    <div class="box-body table-responsive no-padding">
+    <div class="box-body table-responsive no-padding" style="position: relative;">
+        <processing-spinner v-if="processing"/>
 
         <spinner v-if="loading"/>
 
@@ -46,6 +47,7 @@
         data: function () {
             return {
                 loading: true,
+                processing: false,
                 result: [],
                 total: 0,
                 offset: 0,
@@ -110,6 +112,8 @@
                     return;
                 }
 
+                this.processing = true;
+
                 let vm = this;
                 if (!vm.settings.params) {
                     vm.settings.params = {};
@@ -118,9 +122,11 @@
                 axios.post(this.deleteRoute + '/' + slug, vm.settings.params)
                     .then(function () {
                         vm.result.goods.splice(index, 1);
+                        vm.processing = false;
                     })
                     .catch(function (error) {
                         alert(error);
+                        vm.processing = false;
                     });
             }
         }
