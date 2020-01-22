@@ -18,6 +18,7 @@
                         v-bind:title="column.title"
                         v-bind:name="column.field.name"
                         v-bind:type="column.field.type"
+                        v-bind:elements="column.field.elements"
                     />
 
                 </div>

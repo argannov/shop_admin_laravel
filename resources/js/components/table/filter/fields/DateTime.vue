@@ -1,15 +1,17 @@
 <template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
-    <date-range-picker
-        ref="picker"
-        :locale-data="{ firstDay: 1, format: 'DD-MM-YYYY HH:mm:ss' }"
-        minDate="2019-05-02 04:00:00"
-        maxDate="2019-12-26 14:00:00"
-        v-model="dateRange"
-    >
-        <template v-slot:input="picker" style="min-width: 350px;">
-            {{ picker.startDate | date }} - {{ picker.endDate | date }}
-        </template>
-    </date-range-picker>
+    <div class="form-group">
+        <date-range-picker
+            ref="picker"
+            :locale-data="{ firstDay: 1, format: 'DD-MM-YYYY HH:mm:ss' }"
+            minDate="2019-05-02 04:00:00"
+            maxDate="2019-12-26 14:00:00"
+            v-model="dateRange"
+        >
+            <template v-slot:input="picker" style="min-width: 350px;">
+                {{ picker.startDate | date }} - {{ picker.endDate | date }}
+            </template>
+        </date-range-picker>
+    </div>
 </template>
 
 <script>

@@ -43,8 +43,12 @@ class NewGoodsController extends Controller
                 [
                     'title' => 'Активность',
                     'field' => [
-                        'component' => 'checkbox',
-                        'name' => 'active',
+                        'component' => 'data-filter-select',
+                        'name' => 'status',
+                        'elements' => [
+                            'published' => 'Опубликовано',
+                            'draft' => 'Черновик'
+                        ]
                     ]
                 ],
                 [

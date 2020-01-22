@@ -14,6 +14,7 @@ Vue.component('data-table', require('./components/table/table/DataTable.vue').de
 Vue.component('data-filter', require('./components/table/filter/DataFilter.vue').default);
 Vue.component('text-field', require('./components/table/filter/fields/TextField.vue').default);
 Vue.component('datetime', require('./components/table/filter/fields/DateTime.vue').default);
+Vue.component('data-filter-select', require('./components/table/filter/fields/Select.vue').default);
 Vue.component('date-range-picker', require('vue2-daterange-picker').default);
 Vue.component('checkbox', require('./components/table/filter/fields/Checkbox.vue').default);
 Vue.component('table-with-filter', require('./components/table/TableWithFilter.vue').default);
