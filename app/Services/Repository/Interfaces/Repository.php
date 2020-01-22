@@ -7,10 +7,22 @@ use Illuminate\Http\Request;
 
 interface Repository
 {
+    /**
+     * @param string $slug
+     * @return mixed
+     */
     public function get($slug);
 
-    public function all();
+    /**
+     * @param Request|null $request
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function all(Request $request = null);
 
+    /**
+     * @param Request $request
+     * @return bool
+     */
     public function create(Request $request): bool;
 
     /**

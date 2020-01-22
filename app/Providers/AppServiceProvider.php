@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Admin\NewGoodsController;
 use App\Http\Controllers\Admin\NewStoreController;
+use App\Services\Repository\GoodsRepository;
 use App\Services\Repository\Interfaces\Repository;
 use App\Services\Repository\StoresRepository;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
             ->needs(Repository::class)
             ->give(function () {
                 return new StoresRepository();
+            });
+
+        $this->app->when(NewGoodsController::class)
+            ->needs(Repository::class)
+            ->give(function () {
+                return new GoodsRepository();
             });
     }
 

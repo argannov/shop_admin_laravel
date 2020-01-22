@@ -61,12 +61,12 @@ Route::group([
 
         //Создание и редактирование товаров в админке
         Route::get('/product', 'Admin\NewGoodsController@index');
-        Route::get('/product/fetch', 'Admin\NewGoodsController@fetch')->name('fetch_product');
+        Route::get('/product/fetch', 'Admin\NewGoodsController@all')->name('fetch_product');
         Route::get('/product/create', 'Admin\NewGoodsController@formProduct');
-        Route::post('/product/create', 'Admin\NewGoodsController@addProduct');
-        Route::get('/product/edit/{slug?}', 'Admin\NewGoodsController@editProduct')->name('edit_product');
-        Route::post('/product/edit/{slug?}', 'Admin\NewGoodsController@saveEditProduct');
-        Route::post('/product/delete/{slug?}', 'Admin\NewGoodsController@deleteProduct')->name('delete_product');
+        Route::post('/product/create', 'Admin\NewGoodsController@create');
+        Route::get('/product/edit/{slug?}', 'Admin\NewGoodsController@update')->name('edit_product');
+        Route::post('/product/edit/{slug?}', 'Admin\NewGoodsController@update');
+        Route::post('/product/delete/{slug?}', 'Admin\NewGoodsController@delete')->name('delete_product');
         //************************************************************
 
         //Создание и редактирование страниц в админке

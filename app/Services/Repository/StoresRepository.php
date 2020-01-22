@@ -9,20 +9,24 @@ use Illuminate\Http\UploadedFile;
 
 class StoresRepository implements Repository
 {
-
+    /**
+     * @inheritdoc
+     */
     public function get($slug)
     {
         return Stores::where('slug', '=', $slug)->first();
     }
 
-    public function all()
+    /**
+     * @inheritdoc
+     */
+    public function all(Request $request = null)
     {
         return Stores::all();
     }
 
     /**
-     * @param Request $request
-     * @return bool
+     * @inheritdoc
      */
     public function create(Request $request): bool
     {
@@ -39,8 +43,7 @@ class StoresRepository implements Repository
     }
 
     /**
-     * @param $model Stores
-     * @return bool
+     * @inheritdoc
      */
     public function update($model, Request $request): bool
     {
@@ -56,9 +59,7 @@ class StoresRepository implements Repository
     }
 
     /**
-     * @param $model Stores
-     * @return bool
-     * @throws \Throwable
+     * @inheritdoc
      */
     public function delete($model): bool
     {
@@ -66,8 +67,7 @@ class StoresRepository implements Repository
     }
 
     /**
-     * @param $store
-     * @param Request $request
+     * @inheritdoc
      */
     private function uploadImage($store, Request $request)
     {
