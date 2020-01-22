@@ -44,11 +44,8 @@
             applyFiltering: function (event) {
                 let elements = event.target.elements;
                 let params = {};
-                for (let element in elements) {
-                    if (!elements.hasOwnProperty(element)) {
-                        continue;
-                    }
-                    params[element.name] = element.value;
+                for (let i = 0; i < elements.length; i++) {
+                    params[elements[i].name] = elements[i].value;
                 }
                 this.dataParams = params;
             }

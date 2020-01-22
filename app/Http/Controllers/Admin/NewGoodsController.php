@@ -22,11 +22,39 @@ class NewGoodsController extends Controller
 
         $settings = [
             'columns' => [
-                ['title' => 'ID'],
-                ['title' => 'Название'],
-                ['title' => 'Дата Изм.'],
-                ['title' => 'Активность'],
-                ['title' => 'Цена'],
+                [
+                    'title' => 'ID',
+                ],
+                [
+                    'title' => 'Название',
+                    'field' => [
+                        'component' => 'text-field',
+                        'name' => 'title',
+                        'type' => 'text'
+                    ]
+                ],
+                [
+                    'title' => 'Дата Изм.',
+                    'field' => [
+                        'component' => 'datetime',
+                        'name' => 'updated_at',
+                    ]
+                ],
+                [
+                    'title' => 'Активность',
+                    'field' => [
+                        'component' => 'checkbox',
+                        'name' => 'active',
+                    ]
+                ],
+                [
+                    'title' => 'Цена',
+                    'field' => [
+                        'component' => 'text-field',
+                        'name' => 'price',
+                        'type' => 'number'
+                    ]
+                ],
                 ['title' => 'Удалить'],
             ]
         ];

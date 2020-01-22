@@ -6,8 +6,7 @@
     export default {
         name: "Error",
         props: {
-            error: {
-                type: String,
+            message: {
                 default: function () {
                     return '';
                 }

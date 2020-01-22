@@ -102,11 +102,13 @@
                     .then(function (response) {
                         vm.result = response.data;
                         vm.loading = false;
+                        vm.processing = false;
                     })
                     .catch(function (error) {
                         vm.error = true;
                         vm.errorMessage = error;
                         vm.loading = false;
+                        vm.processing = false;
                     });
             },
             isPublished: function (good) {
