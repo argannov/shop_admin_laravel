@@ -2330,6 +2330,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DataFilter",
   props: {
@@ -56796,53 +56804,75 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.settings
-    ? _c("div", { staticClass: "box-header" }, [
-        _c("h3", { staticClass: "box-title" }, [_vm._v(_vm._s(_vm.title))]),
-        _vm._v(" "),
-        _c(
-          "form",
-          {
-            attrs: { role: "form" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.submit($event)
-              }
+  return _c("div", { staticClass: "box box-default" }, [
+    _vm.settings
+      ? _c("div", { staticClass: "box-header" }, [
+          _c("h3", { staticClass: "box-title" }, [_vm._v(_vm._s(_vm.title))]),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "box-body" }, [
+      _c(
+        "form",
+        {
+          attrs: { role: "form" },
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
             }
-          },
-          [
+          }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "box-body" },
+            _vm._l(_vm.settings.columns, function(column) {
+              return column.field
+                ? _c(column.field.component, {
+                    tag: "component",
+                    attrs: {
+                      title: column.title,
+                      name: column.field.name,
+                      type: column.field.type
+                    }
+                  })
+                : _vm._e()
+            }),
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "box-footer" }, [
             _c(
-              "div",
-              { staticClass: "box-body" },
-              _vm._l(_vm.settings.columns, function(column) {
-                return column.field
-                  ? _c(column.field.component, {
-                      tag: "component",
-                      attrs: {
-                        title: column.title,
-                        name: column.field.name,
-                        type: column.field.type
-                      }
-                    })
-                  : _vm._e()
-              }),
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "box-footer" }, [
-              _c(
-                "button",
-                { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                [_vm._v(_vm._s(_vm.applyText))]
-              )
-            ])
-          ]
-        )
-      ])
-    : _vm._e()
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v(_vm._s(_vm.applyText))]
+            )
+          ])
+        ]
+      )
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-tools pull-right" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-box-tool",
+          attrs: { type: "button", "data-widget": "collapse" }
+        },
+        [_c("i", { staticClass: "fa fa-minus" })]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

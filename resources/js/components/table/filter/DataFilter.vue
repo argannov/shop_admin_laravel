@@ -1,24 +1,32 @@
 <template>
-    <div class="box-header" v-if="settings">
-        <h3 class="box-title">{{ title }}</h3>
-        <form role="form" v-on:submit.prevent="submit($event)">
-            <div class="box-body">
-
-                <component
-                    v-for="column in settings.columns"
-                    v-if="column.field"
-                    v-bind:is="column.field.component"
-                    v-bind:title="column.title"
-                    v-bind:name="column.field.name"
-                    v-bind:type="column.field.type"
-                />
-
+    <div class="box box-default">
+        <div class="box-header" v-if="settings">
+            <h3 class="box-title">{{ title }}</h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
             </div>
+        </div>
+        <div class="box-body">
+            <form role="form" v-on:submit.prevent="submit($event)">
+                <div class="box-body">
 
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">{{ applyText }}</button>
-            </div>
-        </form>
+                    <component
+                        v-for="column in settings.columns"
+                        v-if="column.field"
+                        v-bind:is="column.field.component"
+                        v-bind:title="column.title"
+                        v-bind:name="column.field.name"
+                        v-bind:type="column.field.type"
+                    />
+
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">{{ applyText }}</button>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
 
