@@ -10,8 +10,9 @@ Vue.component('error-alert', require('./components/error/Error.vue').default);
 Vue.component('search-admin', require('./components/search/SearchAdmin.vue').default);
 Vue.component('search-box', require('./components/search/SearchBox.vue').default);
 
-Vue.component('data-table', require('./components/table/Table.vue').default);
-Vue.component('filter', require('./components/table/filter/Filter.vue').default);
+Vue.component('data-table', require('./components/table/table/DataTable.vue').default);
+Vue.component('data-filter', require('./components/table/filter/DataFilter.vue').default);
+Vue.component('table-with-filter', require('./components/table/TableWithFilter.vue').default);
 
 const app = new Vue({
     el: '#app',

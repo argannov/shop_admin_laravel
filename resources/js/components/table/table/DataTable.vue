@@ -43,7 +43,7 @@
 
 <script>
     export default {
-        name: "Table",
+        name: "DataTable",
         data: function () {
             return {
                 loading: true,
@@ -58,10 +58,23 @@
         },
         props: {
             settings: Object,
+            params: {
+                type: Object,
+                default: function () {
+                    return {};
+                }
+            },
             route: String,
             editRoute: String,
             deleteRoute: String,
             csrfToken: String,
+        },
+        watch: {
+            params: {
+                handler: function () {
+                    this.applyFiltering();
+                }
+            }
         },
         computed: {
             successful: function () {
@@ -82,11 +95,9 @@
         },
         methods: {
             fetchResult: function () {
-                this.loading = true;
-
                 let vm = this;
                 axios.get(this.route, {
-                    params: vm.settings.params
+                    params: vm.params
                 })
                     .then(function (response) {
                         vm.result = response.data;
@@ -115,11 +126,11 @@
                 this.processing = true;
 
                 let vm = this;
-                if (!vm.settings.params) {
-                    vm.settings.params = {};
+                if (!vm.params) {
+                    vm.params = {};
                 }
-                vm.settings.params._token = vm.csrfToken;
-                axios.post(this.deleteRoute + '/' + slug, vm.settings.params)
+                vm.params._token = vm.csrfToken;
+                axios.post(this.deleteRoute + '/' + slug, vm.params)
                     .then(function () {
                         vm.result.goods.splice(index, 1);
                         vm.processing = false;
@@ -128,6 +139,10 @@
                         alert(error);
                         vm.processing = false;
                     });
+            },
+            applyFiltering: function () {
+                this.processing = true;
+                this.fetchResult();
             }
         }
     }

@@ -25,33 +25,13 @@
 
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            {{--<h3 class="box-title">Всего: {{$count}}</h3>--}}
-
-                            <div class="box-tools">
-                                <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control pull-right"
-                                           placeholder="Поиск...">
-
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <data-table
-                            v-bind:settings="{{ $settings }}"
-                            route="{{ route('fetch_product') }}"
-                            edit-route="{{ route('edit_product') }}"
-                            delete-route="{{ route('delete_product') }}"
-                            csrf-token="{{ csrf_token() }}"
-                        />
-                    </div>
-                    <!-- /.box -->
+                    <table-with-filter
+                        v-bind:settings="{{ $settings }}"
+                        route="{{ route('fetch_product') }}"
+                        edit-route="{{ route('edit_product') }}"
+                        delete-route="{{ route('delete_product') }}"
+                        csrf-token="{{ csrf_token() }}"
+                    />
                 </div>
             </div>
         </section>
