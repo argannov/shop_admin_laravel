@@ -2467,7 +2467,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     });
     $picker.on('apply.daterangepicker', function (ev, picker) {
-      $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
     });
     $picker.on('cancel.daterangepicker', function (ev, picker) {
       $picker.val('');

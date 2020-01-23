@@ -35,7 +35,11 @@ class GoodsRepository implements Repository
         }
 
         if ($updatedAt = $request->get('updated_at')) {
-            $queryBuilder->where('updated_at', $updatedAt);
+            list($startDate, $endDate) = array_map(function ($value) {
+                return date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $value)));
+            }, explode(' - ', $updatedAt));
+
+            $queryBuilder->whereBetween('updated_at', [$startDate, $endDate]);
         }
 
         if ($status = $request->get('status')) {
@@ -142,6 +146,6 @@ class GoodsRepository implements Repository
             File::delete($pathDetail);
         }
 
-        return (bool) $model->delete();
+        return (bool)$model->delete();
     }
 }
