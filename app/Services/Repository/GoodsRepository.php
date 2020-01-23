@@ -4,12 +4,23 @@ namespace App\Services\Repository;
 
 
 use App\Goods;
+use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
 use App\Services\Repository\Interfaces\Repository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class GoodsRepository implements Repository
 {
+    /**
+     * @var FiltrationKeeper
+     */
+    private $filtrationKeeper;
+
+    public function __construct(FiltrationKeeper $filtrationKeeper)
+    {
+        $this->filtrationKeeper = $filtrationKeeper;
+    }
+
     /**
      * @inheritdoc
      */
@@ -49,6 +60,8 @@ class GoodsRepository implements Repository
         if ($price = $request->get('price')) {
             $queryBuilder->where('price', $price);
         }
+
+        $this->filtrationKeeper->saveParams(Goods::class, $request->all());
 
         return $queryBuilder->get();
     }

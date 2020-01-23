@@ -45,7 +45,7 @@
             }
         },
         created: function () {
-            this.dataParams = this.params;
+            this.dataParams = (this.settings.filter && this.settings.filter.params) ? this.settings.filter.params : this.params;
         },
         methods: {
             applyFiltering: function () {

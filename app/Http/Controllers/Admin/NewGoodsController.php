@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
 use App\Services\Repository\Interfaces\Repository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,10 +18,13 @@ class NewGoodsController extends Controller
         $this->repository = $repository;
     }
 
-    function index()
+    function index(FiltrationKeeper $filtrationKeeper)
     {
 
         $settings = [
+            'filter' => [
+                'params' => $filtrationKeeper->getParams(Goods::class)
+            ],
             'columns' => [
                 [
                     'title' => 'ID',
@@ -59,7 +63,9 @@ class NewGoodsController extends Controller
                         'type' => 'number'
                     ]
                 ],
-                ['title' => 'Удалить'],
+                [
+                    'title' => 'Удалить'
+                ],
             ]
         ];
 

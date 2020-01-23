@@ -2286,7 +2286,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.dataParams = this.params;
+    this.dataParams = this.settings.filter && this.settings.filter.params ? this.settings.filter.params : this.params;
   },
   methods: {
     applyFiltering: function applyFiltering() {
