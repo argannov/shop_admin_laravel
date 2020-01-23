@@ -6,7 +6,12 @@
             <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
             </div>
-            <input v-bind:name="name" type="text" class="form-control pull-right" id="reservationtime">
+            <input autocomplete="off"
+                   v-bind:name="name"
+                   v-bind:value="defaultValue"
+                   type="text"
+                   class="form-control pull-right"
+                   id="reservationtime">
         </div>
     </div>
 </template>
@@ -14,6 +19,11 @@
 <script>
     export default {
         name: "DateTimeRange",
+        data: function () {
+            return {
+                picker: Object
+            }
+        },
         props: {
             title: {
                 type: String,
@@ -26,15 +36,37 @@
                 default: function () {
                     return '';
                 }
+            },
+            value: {
+                type: String,
+            }
+        },
+        computed: {
+            defaultValue: function () {
+                return this.value ? this.value : '';
             }
         },
         mounted: function () {
+
+            let startDate = new Date();
+            let endDate = new Date();
+
+            if (this.value) {
+                let range = this.value.split(' - ');
+                if (range.length === 2) {
+                    startDate = new Date(range[0].split('/').reverse().join('-'));
+                    endDate = new Date(range[1].split('/').reverse().join('-'));
+                }
+            }
+
             let $picker = $('#reservationtime');
             $picker.daterangepicker({
                 opens: 'right',
                 autoUpdateInput: false,
                 timePicker: true,
                 timePicker24Hour: true,
+                startDate: startDate,
+                endDate: endDate,
                 locale: {
                     format: 'DD/MM/YYYY',
                     "separator": " - ",

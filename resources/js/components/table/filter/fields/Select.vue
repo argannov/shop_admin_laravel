@@ -8,8 +8,8 @@
                 aria-hidden="true"
                 v-bind:name="name"
         >
-            <option selected value=""></option>
-            <option v-for="(element, key) in elements" v-bind:value="key">{{ element }}</option>
+            <option></option>
+            <option v-for="(element, key) in elements" v-bind:value="key" v-bind:selected="key === value">{{ element }}</option>
         </select>
     </div>
 </template>
@@ -31,6 +31,12 @@
                 }
             },
             name: {
+                type: String,
+                default: function () {
+                    return '';
+                }
+            },
+            value: {
                 type: String,
                 default: function () {
                     return '';

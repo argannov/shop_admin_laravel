@@ -26,7 +26,7 @@ class GoodsRepository implements Repository
      */
     public function get($slug)
     {
-        return Goods::where('slug', '=', $slug)->first();
+        return Goods::where('id', '=', $slug)->first();
     }
 
 
@@ -38,7 +38,7 @@ class GoodsRepository implements Repository
         $queryBuilder = Goods::query();
 
         if ($title = $request->get('title')) {
-            $queryBuilder->where('title', $title);
+            $queryBuilder->where('title', 'like', '%'.$title.'%');
         }
 
         if ($category = $request->get('category')) {

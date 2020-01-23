@@ -13,17 +13,22 @@ class NewGoodsController extends Controller
     /** @var Repository */
     private $repository;
 
-    public function __construct(Repository $repository)
+    /** @var FiltrationKeeper */
+    private $filtrationKeeper;
+
+    public function __construct(Repository $repository, FiltrationKeeper $filtrationKeeper)
     {
         $this->repository = $repository;
+        $this->filtrationKeeper = $filtrationKeeper;
     }
 
-    function index(FiltrationKeeper $filtrationKeeper)
+    function index()
     {
+        $params = $this->filtrationKeeper->getParams(Goods::class);
 
         $settings = [
             'filter' => [
-                'params' => $filtrationKeeper->getParams(Goods::class)
+                'params' => $params
             ],
             'columns' => [
                 [
@@ -34,7 +39,8 @@ class NewGoodsController extends Controller
                     'field' => [
                         'component' => 'text-field',
                         'name' => 'title',
-                        'type' => 'text'
+                        'type' => 'text',
+                        'value' => $params['title'] ?? null
                     ]
                 ],
                 [
@@ -42,6 +48,7 @@ class NewGoodsController extends Controller
                     'field' => [
                         'component' => 'datetime-range',
                         'name' => 'updated_at',
+                        'value' => $params['updated_at'] ?? null
                     ]
                 ],
                 [
@@ -52,7 +59,8 @@ class NewGoodsController extends Controller
                         'elements' => [
                             'published' => 'Опубликовано',
                             'draft' => 'Черновик'
-                        ]
+                        ],
+                        'value' => $params['status'] ?? null
                     ]
                 ],
                 [
@@ -60,7 +68,8 @@ class NewGoodsController extends Controller
                     'field' => [
                         'component' => 'text-field',
                         'name' => 'price',
-                        'type' => 'number'
+                        'type' => 'number',
+                        'value' => $params['price'] ?? null
                     ]
                 ],
                 [

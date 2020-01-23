@@ -2286,7 +2286,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.dataParams = this.settings.filter && this.settings.filter.params ? this.settings.filter.params : this.params;
+    this.dataParams = this.settings.filter && Object.keys(this.settings.filter.params).length > 0 ? this.settings.filter.params : this.params;
   },
   methods: {
     applyFiltering: function applyFiltering() {
@@ -2328,6 +2328,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -2468,8 +2469,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DateTimeRange",
+  data: function data() {
+    return {
+      picker: Object
+    };
+  },
   props: {
     title: {
       type: String,
@@ -2482,15 +2493,37 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return '';
       }
+    },
+    value: {
+      type: String
+    }
+  },
+  computed: {
+    defaultValue: function defaultValue() {
+      return this.value ? this.value : '';
     }
   },
   mounted: function mounted() {
+    var startDate = new Date();
+    var endDate = new Date();
+
+    if (this.value) {
+      var range = this.value.split(' - ');
+
+      if (range.length === 2) {
+        startDate = new Date(range[0].split('/').reverse().join('-'));
+        endDate = new Date(range[1].split('/').reverse().join('-'));
+      }
+    }
+
     var $picker = $('#reservationtime');
     $picker.daterangepicker({
       opens: 'right',
       autoUpdateInput: false,
       timePicker: true,
       timePicker24Hour: true,
+      startDate: startDate,
+      endDate: endDate,
       locale: {
         format: 'DD/MM/YYYY',
         "separator": " - ",
@@ -2559,6 +2592,12 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return '';
       }
+    },
+    value: {
+      type: String,
+      "default": function _default() {
+        return '';
+      }
     }
   }
 });
@@ -2574,6 +2613,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2601,6 +2646,17 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return '';
       }
+    },
+    value: {
+      type: String,
+      "default": function _default() {
+        return '';
+      }
+    }
+  },
+  computed: {
+    defaultValue: function defaultValue() {
+      return this.value ? this.value : '';
     }
   }
 });
@@ -58506,6 +58562,7 @@ var render = function() {
                       tag: "component",
                       attrs: {
                         title: column.title,
+                        value: column.field.value,
                         name: column.field.name,
                         type: column.field.type,
                         elements: column.field.elements
@@ -58630,7 +58687,13 @@ var render = function() {
       _vm._v(" "),
       _c("input", {
         staticClass: "form-control pull-right",
-        attrs: { name: _vm.name, type: "text", id: "reservationtime" }
+        attrs: {
+          autocomplete: "off",
+          name: _vm.name,
+          type: "text",
+          id: "reservationtime"
+        },
+        domProps: { value: _vm.defaultValue }
       })
     ])
   ])
@@ -58686,12 +58749,14 @@ var render = function() {
               }
             },
             [
-              _c("option", { attrs: { selected: "", value: "" } }),
+              _c("option"),
               _vm._v(" "),
               _vm._l(_vm.elements, function(element, key) {
-                return _c("option", { domProps: { value: key } }, [
-                  _vm._v(_vm._s(element))
-                ])
+                return _c(
+                  "option",
+                  { domProps: { value: key, selected: key === _vm.value } },
+                  [_vm._v(_vm._s(element))]
+                )
               })
             ],
             2
@@ -58732,7 +58797,8 @@ var render = function() {
         type: _vm.type,
         id: _vm.name,
         placeholder: _vm.title
-      }
+      },
+      domProps: { value: _vm.defaultValue }
     })
   ])
 }
