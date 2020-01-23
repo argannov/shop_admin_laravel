@@ -1,5 +1,5 @@
 <template>
-    <div class="box box-default" v-bind:class="{'active': filterActive}">
+    <div class="box box-default" v-bind:class="{'active': active}">
         <div class="box-header" v-if="settings">
             <h3 class="box-title">{{ title }}</h3>
             <div class="box-tools pull-right">
@@ -23,9 +23,9 @@
 
                 </div>
 
-                <div class="box-footer" v-bind:class="{'active_footer__transparent': filterActive, 'no-border': filterActive}">
+                <div class="box-footer" v-bind:class="{'active_footer__transparent': active, 'no-border': active}">
                     <button type="submit" class="btn btn-primary">{{ applyText }}</button>
-                    <button v-if="filterActive" type="reset" class="btn btn-default" v-on:click="reset($event)">{{ cancelText }}</button>
+                    <button v-if="active" type="reset" class="btn btn-default" v-on:click="reset($event)">{{ cancelText }}</button>
                 </div>
             </form>
         </div>
@@ -67,9 +67,6 @@
             },
             settings: Object,
             route: String
-        },
-        created: function () {
-            this.filterActive = this.settings.filter ? this.settings.filter.active : this.active;
         },
         methods: {
             submit: function (event) {

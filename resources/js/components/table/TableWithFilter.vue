@@ -14,7 +14,6 @@
             v-bind:edit-route="editRoute"
             v-bind:delete-route="deleteRoute"
             v-bind:csrf-token="csrfToken"
-            v-on:data-table-success="onSuccess($event)"
         />
     </div>
 </template>
@@ -24,8 +23,7 @@
         name: "TableWithFilter",
         data: function () {
             return {
-                dataParams: Object,
-                filterActive: Boolean
+                dataParams: Object
             }
         },
         props: {
@@ -41,8 +39,12 @@
             deleteRoute: String,
             csrfToken: String
         },
+        computed: {
+            filterActive: function () {
+                return Object.keys(this.dataParams).length > 0;
+            }
+        },
         created: function () {
-            this.filterActive = false;
             this.dataParams = this.params;
         },
         methods: {

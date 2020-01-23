@@ -2260,13 +2260,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "TableWithFilter",
   data: function data() {
     return {
-      dataParams: Object,
-      filterActive: Boolean
+      dataParams: Object
     };
   },
   props: {
@@ -2282,8 +2280,12 @@ __webpack_require__.r(__webpack_exports__);
     deleteRoute: String,
     csrfToken: String
   },
+  computed: {
+    filterActive: function filterActive() {
+      return Object.keys(this.dataParams).length > 0;
+    }
+  },
   created: function created() {
-    this.filterActive = false;
     this.dataParams = this.params;
   },
   methods: {
@@ -2394,9 +2396,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     settings: Object,
     route: String
-  },
-  created: function created() {
-    this.filterActive = this.settings.filter ? this.settings.filter.active : this.active;
   },
   methods: {
     submit: function submit(event) {
@@ -58445,11 +58444,6 @@ var render = function() {
           "edit-route": _vm.editRoute,
           "delete-route": _vm.deleteRoute,
           "csrf-token": _vm.csrfToken
-        },
-        on: {
-          "data-table-success": function($event) {
-            return _vm.onSuccess($event)
-          }
         }
       })
     ],
@@ -58480,7 +58474,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "box box-default", class: { active: _vm.filterActive } },
+    { staticClass: "box box-default", class: { active: _vm.active } },
     [
       _vm.settings
         ? _c("div", { staticClass: "box-header" }, [
@@ -58527,8 +58521,8 @@ var render = function() {
               {
                 staticClass: "box-footer",
                 class: {
-                  active_footer__transparent: _vm.filterActive,
-                  "no-border": _vm.filterActive
+                  active_footer__transparent: _vm.active,
+                  "no-border": _vm.active
                 }
               },
               [
@@ -58538,7 +58532,7 @@ var render = function() {
                   [_vm._v(_vm._s(_vm.applyText))]
                 ),
                 _vm._v(" "),
-                _vm.filterActive
+                _vm.active
                   ? _c(
                       "button",
                       {
