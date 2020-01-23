@@ -34,9 +34,9 @@ class NewGoodsController extends Controller
                     ]
                 ],
                 [
-                    'title' => 'Дата Изм.',
+                    'title' => 'Дата изменения',
                     'field' => [
-                        'component' => 'datetime',
+                        'component' => 'datetime-range',
                         'name' => 'updated_at',
                     ]
                 ],

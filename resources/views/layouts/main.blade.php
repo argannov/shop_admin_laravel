@@ -29,6 +29,8 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({selector: 'textarea'});</script>
@@ -306,5 +308,8 @@
 <script src="{{ asset('admin/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('/js/main.js') }}"></script>
 <script src="{{ asset('/js/app.js') }}"></script>
+<script>
+    $(".alert").alert()
+</script>
 </body>
 </html>
