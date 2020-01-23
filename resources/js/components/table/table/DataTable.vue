@@ -103,6 +103,7 @@
                         vm.result = response.data;
                         vm.loading = false;
                         vm.processing = false;
+                        vm.$emit('data-table-success', event);
                     })
                     .catch(function (error) {
                         vm.error = true;

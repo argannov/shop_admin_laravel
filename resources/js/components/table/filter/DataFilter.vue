@@ -1,5 +1,5 @@
 <template>
-    <div class="box box-default">
+    <div class="box box-default" v-bind:class="{'active': filterActive}">
         <div class="box-header" v-if="settings">
             <h3 class="box-title">{{ title }}</h3>
             <div class="box-tools pull-right">
@@ -23,8 +23,9 @@
 
                 </div>
 
-                <div class="box-footer">
+                <div class="box-footer" v-bind:class="{'active_footer__transparent': filterActive, 'no-border': filterActive}">
                     <button type="submit" class="btn btn-primary">{{ applyText }}</button>
+                    <button v-if="filterActive" type="reset" class="btn btn-default" v-on:click="reset($event)">{{ cancelText }}</button>
                 </div>
             </form>
         </div>
@@ -34,6 +35,11 @@
 <script>
     export default {
         name: "DataFilter",
+        data: function () {
+            return {
+                filterActive: Boolean
+            }
+        },
         props: {
             title: {
                 type: String,
@@ -53,13 +59,34 @@
                     return 'Сбросить';
                 }
             },
+            active: {
+                type: Boolean,
+                default: function () {
+                    return false;
+                }
+            },
             settings: Object,
             route: String
+        },
+        created: function () {
+            this.filterActive = this.settings.filter ? this.settings.filter.active : this.active;
         },
         methods: {
             submit: function (event) {
                 this.$emit('data-filter-submit', event);
+            },
+            reset: function (event) {
+                this.$emit('data-filter-reset', event);
             }
         }
     }
 </script>
+
+<style scoped>
+    .active {
+        background-color: #00a65a4d;
+    }
+    .active_footer__transparent {
+        background: transparent;
+    }
+</style>

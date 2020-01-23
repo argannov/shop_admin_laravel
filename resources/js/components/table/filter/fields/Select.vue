@@ -8,6 +8,7 @@
                 aria-hidden="true"
                 v-bind:name="name"
         >
+            <option selected value=""></option>
             <option v-for="(element, key) in elements" v-bind:value="key">{{ element }}</option>
         </select>
     </div>
