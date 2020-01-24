@@ -13,21 +13,22 @@
             <tbody>
             <tr>
                 <th v-if="settings" v-for="column in settings.columns">{{ column.title }}</th>
+                <th v-if="settings" v-for="action in settings.actions">{{ action.title }}</th>
             </tr>
 
-            <tr v-for="(good, index) in result.goods">
-                <td>{{ good.id }}</td>
-                <td><a v-bind:href="edit(good.id)">{{ good.title }}</a></td>
-                <td>{{ good.updated_at }}</td>
-                <td>
-                        <span
-                            v-bind:class="[{'label-success': isPublished(good), 'label-warning': !isPublished(good)}, 'label']">
-                            {{ getMessage(good) }}
-                        </span>
+            <tr v-for="(element, index) in result.elements" v-bind:data-edit="edit(element.id)">
+                <td v-for="(column, key) in settings.columns"
+                    v-if="Object.keys(element).includes(key)">
+                    {{ (column.before ? column.before : '') + element[key] + (column.after ? column.after : '')}}
                 </td>
-                <td>{{ good.price }} ₽</td>
-                <td>
-                    <form v-on:submit.prevent="remove(good.id, index)">
+                <!--<td>-->
+                        <!--<span-->
+                            <!--v-bind:class="[{'label-success': isPublished(element), 'label-warning': !isPublished(element)}, 'label']">-->
+                            <!--{{ getMessage(element) }}-->
+                        <!--</span>-->
+                <!--</td>-->
+                <td v-if="settings.actions && settings.actions.delete">
+                    <form v-on:submit.prevent="remove(element.id, index)">
                         <button type="submit" class="btn btn-danger">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
@@ -112,11 +113,11 @@
                         vm.processing = false;
                     });
             },
-            isPublished: function (good) {
-                return good.status === 'published';
+            isPublished: function (element) {
+                return element.status === 'published';
             },
-            getMessage: function (good) {
-                return this.isPublished(good) ? 'Активен' : 'Черновик';
+            getMessage: function (element) {
+                return this.isPublished(element) ? 'Активен' : 'Черновик';
             },
             edit: function (slug) {
                 return this.editRoute + '/' + slug;
@@ -135,7 +136,7 @@
                 vm.params._token = vm.csrfToken;
                 axios.post(this.deleteRoute + '/' + slug, vm.params)
                     .then(function () {
-                        vm.result.goods.splice(index, 1);
+                        vm.result.elements.splice(index, 1);
                         vm.processing = false;
                     })
                     .catch(function (error) {

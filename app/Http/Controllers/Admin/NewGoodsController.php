@@ -31,10 +31,10 @@ class NewGoodsController extends Controller
                 'params' => $params
             ],
             'columns' => [
-                [
+                'id' => [
                     'title' => 'ID',
                 ],
-                [
+                'title' => [
                     'title' => 'Название',
                     'field' => [
                         'component' => 'text-field',
@@ -43,7 +43,7 @@ class NewGoodsController extends Controller
                         'value' => $params['title'] ?? null
                     ]
                 ],
-                [
+                'updated_at' => [
                     'title' => 'Дата изменения',
                     'field' => [
                         'component' => 'datetime-range',
@@ -51,7 +51,7 @@ class NewGoodsController extends Controller
                         'value' => $params['updated_at'] ?? null
                     ]
                 ],
-                [
+                'status' => [
                     'title' => 'Активность',
                     'field' => [
                         'component' => 'data-filter-select',
@@ -63,8 +63,9 @@ class NewGoodsController extends Controller
                         'value' => $params['status'] ?? null
                     ]
                 ],
-                [
+                'price' => [
                     'title' => 'Цена',
+                    'after' => '₽',
                     'field' => [
                         'component' => 'text-field',
                         'name' => 'price',
@@ -72,9 +73,11 @@ class NewGoodsController extends Controller
                         'value' => $params['price'] ?? null
                     ]
                 ],
-                [
+            ],
+            'actions' => [
+                'delete' => [
                     'title' => 'Удалить'
-                ],
+                ]
             ]
         ];
 
@@ -93,7 +96,7 @@ class NewGoodsController extends Controller
     public function all(Request $request)
     {
         $goods = $this->repository->all($request);
-        return ['goods' => $goods, 'count' => $goods->count()];
+        return ['elements' => $goods, 'count' => $goods->count()];
     }
 
     public function create(Request $request)

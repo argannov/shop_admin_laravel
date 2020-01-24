@@ -18,12 +18,14 @@ class CreateQuestionsTable extends Migration
             $table->string('subject');
             $table->string('email');
             $table->text('text');
-            $table->unsignedBigInteger('responding_user_id');
+            $table->unsignedTinyInteger('status_id')->default(1);
+            $table->unsignedBigInteger('responding_user_id')->nullable();
             $table->unsignedBigInteger('issue_id')->nullable();
             $table->timestamps();
 
             $table->foreign('responding_user_id')->references('id')->on('users');
             $table->foreign('issue_id')->references('id')->on('issues');
+            $table->foreign('status_id')->references('id')->on('help_statuses');
         });
     }
 

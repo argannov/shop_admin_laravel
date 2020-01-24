@@ -131,6 +131,23 @@ Route::group([
         Route::get('/search/of/orders/{text?}', 'Admin\SearchDashboardController@searchOrders')->name('search_orders_admin');
         Route::get('/search/of/posts/{text?}', 'Admin\SearchDashboardController@searchPosts')->name('search_posts_admin');
 
+        //Техническая поддержка - Обращения по email
+        Route::get('/support/questions', 'TechSupport\QuestionsController@index')->name('show_questions');
+        Route::get('/support/questions/fetch', 'TechSupport\QuestionsController@all')->name('fetch_questions');
+        Route::get('/support/questions/create', 'TechSupport\QuestionsController@create');
+        Route::post('/support/questions/create', 'TechSupport\QuestionsController@create')->name('create_question');
+        Route::get('/support/questions/edit/{id?}', 'TechSupport\QuestionsController@edit');
+        Route::post('/support/questions/edit/{id?}', 'TechSupport\QuestionsController@edit')->name('edit_question');
+        Route::post('/support/questions/delete/{id?}', 'TechSupport\QuestionsController@delete')->name('delete_question');
+
+        //Техническая поддержка - тикеты
+        Route::get('/support/issues', 'TechSupport\IssuesController@index')->name('support_issues');
+        Route::get('/support/issues/create', 'TechSupport\IssuesController@create');
+        Route::post('/support/issues/create', 'TechSupport\IssuesController@create')->name('create_issues');
+        Route::get('/support/issues/edit/{id}', 'TechSupport\IssuesController@edit');
+        Route::post('/support/issues/edit/{id}', 'TechSupport\IssuesController@edit')->name('edit_issues');
+        Route::post('/support/issues/delete/{id}', 'TechSupport\IssuesController@delete')->name('delete_issues');
+
     }
 );
 Route::get('/{slug}', 'PagesController@otherPage');

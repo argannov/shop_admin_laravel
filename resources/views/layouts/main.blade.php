@@ -29,7 +29,7 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -245,6 +245,19 @@
 {{--              <span class="label label-primary pull-right">{{count($order = \App\Help::all())}}</span>--}}
             </span>
                     </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-at"></i>
+                        <span>Техническая поддержка</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('show_questions') }}"><i class="fa fa-circle-o"></i>Обращения</a></li>
+                        <li><a href="{{ route('create_question') }}"><i class="fa fa-circle-o"></i>Написать обращение</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="/admin/setting">

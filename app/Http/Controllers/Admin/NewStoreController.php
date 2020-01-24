@@ -65,7 +65,7 @@ class NewStoreController extends Controller
             \Log::error($e->getMessage());
         }
 
-        return view('admin.store.createstore', ['model' => $store]);
+        return view('admin.store.createstore', ['store' => $store]);
     }
 
     public function delete($slug)

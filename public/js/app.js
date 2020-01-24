@@ -2715,6 +2715,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DataTable",
   data: function data() {
@@ -2783,11 +2784,11 @@ __webpack_require__.r(__webpack_exports__);
         vm.processing = false;
       });
     },
-    isPublished: function isPublished(good) {
-      return good.status === 'published';
+    isPublished: function isPublished(element) {
+      return element.status === 'published';
     },
-    getMessage: function getMessage(good) {
-      return this.isPublished(good) ? 'Активен' : 'Черновик';
+    getMessage: function getMessage(element) {
+      return this.isPublished(element) ? 'Активен' : 'Черновик';
     },
     edit: function edit(slug) {
       return this.editRoute + '/' + slug;
@@ -2806,7 +2807,7 @@ __webpack_require__.r(__webpack_exports__);
 
       vm.params._token = vm.csrfToken;
       axios.post(this.deleteRoute + '/' + slug, vm.params).then(function () {
-        vm.result.goods.splice(index, 1);
+        vm.result.elements.splice(index, 1);
         vm.processing = false;
       })["catch"](function (error) {
         alert(error);
@@ -58848,65 +58849,62 @@ var render = function() {
               [
                 _c(
                   "tr",
-                  _vm._l(_vm.settings.columns, function(column) {
-                    return _vm.settings
-                      ? _c("th", [_vm._v(_vm._s(column.title))])
-                      : _vm._e()
-                  }),
-                  0
+                  [
+                    _vm._l(_vm.settings.columns, function(column) {
+                      return _vm.settings
+                        ? _c("th", [_vm._v(_vm._s(column.title))])
+                        : _vm._e()
+                    }),
+                    _vm._v(" "),
+                    _vm._l(_vm.settings.actions, function(action) {
+                      return _vm.settings
+                        ? _c("th", [_vm._v(_vm._s(action.title))])
+                        : _vm._e()
+                    })
+                  ],
+                  2
                 ),
                 _vm._v(" "),
-                _vm._l(_vm.result.goods, function(good, index) {
-                  return _c("tr", [
-                    _c("td", [_vm._v(_vm._s(good.id))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("a", { attrs: { href: _vm.edit(good.id) } }, [
-                        _vm._v(_vm._s(good.title))
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(good.updated_at))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "span",
-                        {
-                          class: [
-                            {
-                              "label-success": _vm.isPublished(good),
-                              "label-warning": !_vm.isPublished(good)
-                            },
-                            "label"
-                          ]
-                        },
-                        [
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(_vm.getMessage(good)) +
-                              "\n                    "
-                          )
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(good.price) + " ₽")]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "form",
-                        {
-                          on: {
-                            submit: function($event) {
-                              $event.preventDefault()
-                              return _vm.remove(good.id, index)
-                            }
-                          }
-                        },
-                        [_vm._m(0, true)]
-                      )
-                    ])
-                  ])
+                _vm._l(_vm.result.elements, function(element, index) {
+                  return _c(
+                    "tr",
+                    { attrs: { "data-edit": _vm.edit(element.id) } },
+                    [
+                      _vm._l(_vm.settings.columns, function(column, key) {
+                        return Object.keys(element).includes(key)
+                          ? _c("td", [
+                              _vm._v(
+                                "\n                " +
+                                  _vm._s(
+                                    (column.before ? column.before : "") +
+                                      element[key] +
+                                      (column.after ? column.after : "")
+                                  ) +
+                                  "\n            "
+                              )
+                            ])
+                          : _vm._e()
+                      }),
+                      _vm._v(" "),
+                      _vm.settings.actions && _vm.settings.actions.delete
+                        ? _c("td", [
+                            _c(
+                              "form",
+                              {
+                                on: {
+                                  submit: function($event) {
+                                    $event.preventDefault()
+                                    return _vm.remove(element.id, index)
+                                  }
+                                }
+                              },
+                              [_vm._m(0, true)]
+                            )
+                          ])
+                        : _vm._e()
+                    ],
+                    2
+                  )
                 })
               ],
               2
