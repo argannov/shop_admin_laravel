@@ -53,6 +53,10 @@ class NewGoodsController extends Controller
                 ],
                 'status' => [
                     'title' => 'Активность',
+                    'criteria' => [
+                        'published' => 'label-success',
+                        'draft' => 'label-warning'
+                    ],
                     'field' => [
                         'component' => 'data-filter-select',
                         'name' => 'status',

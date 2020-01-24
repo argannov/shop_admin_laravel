@@ -19,14 +19,10 @@
             <tr v-for="(element, index) in result.elements" v-bind:data-edit="edit(element.id)">
                 <td v-for="(column, key) in settings.columns"
                     v-if="Object.keys(element).includes(key)">
-                    {{ (column.before ? column.before : '') + element[key] + (column.after ? column.after : '')}}
+                    <span v-bind:class="[{'label': key === 'status'}, (key === 'status' && column.criteria) ? column.criteria[element[key]] : '']">
+                        {{ (column.before ? column.before : '') + element[key] + (column.after ? column.after : '')}}
+                    </span>
                 </td>
-                <!--<td>-->
-                        <!--<span-->
-                            <!--v-bind:class="[{'label-success': isPublished(element), 'label-warning': !isPublished(element)}, 'label']">-->
-                            <!--{{ getMessage(element) }}-->
-                        <!--</span>-->
-                <!--</td>-->
                 <td v-if="settings.actions && settings.actions.delete">
                     <form v-on:submit.prevent="remove(element.id, index)">
                         <button type="submit" class="btn btn-danger">

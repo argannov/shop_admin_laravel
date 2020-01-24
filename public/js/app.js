@@ -2712,10 +2712,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "DataTable",
   data: function data() {
@@ -58873,14 +58869,27 @@ var render = function() {
                       _vm._l(_vm.settings.columns, function(column, key) {
                         return Object.keys(element).includes(key)
                           ? _c("td", [
-                              _vm._v(
-                                "\n                " +
-                                  _vm._s(
-                                    (column.before ? column.before : "") +
-                                      element[key] +
-                                      (column.after ? column.after : "")
-                                  ) +
-                                  "\n            "
+                              _c(
+                                "span",
+                                {
+                                  class: [
+                                    { label: key === "status" },
+                                    key === "status" && column.criteria
+                                      ? column.criteria[element[key]]
+                                      : ""
+                                  ]
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(
+                                        (column.before ? column.before : "") +
+                                          element[key] +
+                                          (column.after ? column.after : "")
+                                      ) +
+                                      "\n                "
+                                  )
+                                ]
                               )
                             ])
                           : _vm._e()
