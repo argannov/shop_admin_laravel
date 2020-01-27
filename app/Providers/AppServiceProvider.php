@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->when(QuestionsController::class)
             ->needs(Repository::class)
             ->give(function () {
-                return new QuestionsRepository();
+                return new QuestionsRepository($this->app->make(FiltrationKeeper::class));
             });
 
         $this->app->bind(FiltrationKeeper::class, function () {
