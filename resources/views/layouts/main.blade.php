@@ -22,15 +22,18 @@
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{ asset('admin/bower_components/jvectormap/jquery-jvectormap.css') }}">
     <!-- Date Picker -->
-    <link rel="stylesheet" href="{{ asset('admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{ asset('admin/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>tinymce.init({selector:'textarea'});</script>
+    <script>tinymce.init({selector: 'textarea'});</script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,8 +41,13 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script>
+        var csrfToken = "{!! csrf_token() !!}";
+    </script>
+
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -76,13 +84,15 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}" class="user-image" alt="User Image">
+                            <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}"
+                                 class="user-image" alt="User Image">
                             <span class="hidden-xs">{{\App\User::where('id',Auth::id())->first()->fio}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}" class="img-circle" alt="User Image">
+                                <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}"
+                                     class="img-circle" alt="User Image">
 
                                 <p>
                                     {{\App\User::where('id',Auth::id())->first()->fio}}
@@ -98,7 +108,8 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
@@ -118,7 +129,8 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}" class="img-circle" alt="User Image">
+                    <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}" class="img-circle"
+                         alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{\App\User::where('id',Auth::id())->first()->fio}}</p>
@@ -126,9 +138,10 @@
                 </div>
             </div>
             <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
+            <form action="{{ route('search_admin') }}" method="get" class="sidebar-form">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Поиск ...">
+                    <input type="text" name="text" class="form-control" placeholder="Поиск ..."
+                           @if (isset($text)) value="{{ $text }}" @endif>
                     <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -225,6 +238,28 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/admin/help">
+                        <i class="fa fa-cubes"></i>
+                        <span>Заказы</span>
+                        <span class="pull-right-container">
+{{--              <span class="label label-primary pull-right">{{count($order = \App\Help::all())}}</span>--}}
+            </span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-at"></i>
+                        <span>Техническая поддержка</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('show_questions') }}"><i class="fa fa-circle-o"></i>Обращения</a></li>
+                        <li><a href="{{ route('create_question') }}"><i class="fa fa-circle-o"></i>Написать обращение</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a href="/admin/setting">
                         <i class="fa fa-cogs"></i> <span>Настройки</span>
                         <span class="pull-right-container">
@@ -235,13 +270,13 @@
         </section>
         <!-- /.sidebar -->
     </aside>
-@yield('content')
+    @yield('content')
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
             Версия 0.1
         </div>
-       Copyright &copy; 2019 FireAdmin Все права не защищены
+        Copyright &copy; 2019 FireAdmin Все права не защищены
     </footer>
 
     <!-- /.control-sidebar -->
@@ -284,10 +319,10 @@
 <script src="{{ asset('admin/bower_components/fastclick/lib/fastclick.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('admin/dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('admin/dist/js/demo.js') }}"></script>
 <script src="{{ asset('/js/main.js') }}"></script>
+<script src="{{ asset('/js/app.js') }}"></script>
+<script>
+    $(".alert").alert()
+</script>
 </body>
 </html>

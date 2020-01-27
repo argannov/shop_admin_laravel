@@ -16,7 +16,7 @@ Auth::routes();
 Route::get('/', 'PagesController@index');
 
 Route::get('/catalog', 'GoodsController@index');
-Route::get('/catalog/{slug}', 'GoodsController@detailIndex');
+Route::get('/catalog/{slug}', 'GoodsController@detailIndex')->name('show_good');
 Route::get('/catalog/{slug}/{name}', 'GoodsController@index');
 
 
@@ -61,11 +61,12 @@ Route::group([
 
         //Создание и редактирование товаров в админке
         Route::get('/product', 'Admin\NewGoodsController@index');
+        Route::get('/product/fetch', 'Admin\NewGoodsController@all')->name('fetch_product');
         Route::get('/product/create', 'Admin\NewGoodsController@formProduct');
-        Route::post('/product/create', 'Admin\NewGoodsController@addProduct');
-        Route::get('/product/edit/{slug}', 'Admin\NewGoodsController@editProduct');
-        Route::post('/product/edit/{slug}', 'Admin\NewGoodsController@saveEditProduct');
-        Route::post('/product/delete/{slug}', 'Admin\NewGoodsController@deleteProduct');
+        Route::post('/product/create', 'Admin\NewGoodsController@create');
+        Route::get('/product/edit/{slug?}', 'Admin\NewGoodsController@update')->name('edit_product');
+        Route::post('/product/edit/{slug?}', 'Admin\NewGoodsController@update');
+        Route::post('/product/delete/{slug?}', 'Admin\NewGoodsController@delete')->name('delete_product');
         //************************************************************
 
         //Создание и редактирование страниц в админке
@@ -85,7 +86,7 @@ Route::group([
         Route::get('/posts', 'Admin\NewPostController@index');
         Route::get('/posts/create', 'Admin\NewPostController@create');
         Route::post('/posts/create', 'Admin\NewPostController@created');
-        Route::get('/posts/{slug}', 'Admin\NewPostController@editPost');
+        Route::get('/posts/{slug}', 'Admin\NewPostController@editPost')->name('show_post');
         Route::post('/posts/{slug}','Admin\NewPostController@edit');
         //************************************************************
 
@@ -106,7 +107,10 @@ Route::group([
         //Создание и редактирование магазинов в админке
         Route::get('/store', 'Admin\NewStoreController@index');
         Route::get('/store/create', 'Admin\NewStoreController@create');
-        Route::post('/store/create', 'Admin\NewStoreController@create');
+        Route::post('/store/create', 'Admin\NewStoreController@create')->name('create_store');
+        Route::get('/store/edit/{slug}', 'Admin\NewStoreController@update')->name('show_store');
+        Route::post('/store/edit/{slug}', 'Admin\NewStoreController@update')->name('update_store');
+        Route::post('/store/delete/{slug}', 'Admin\NewStoreController@delete')->name('delete_store');
         //************************************************************
 
         //Бонусная система в админке
@@ -119,6 +123,30 @@ Route::group([
         Route::get('/setting','Admin\SettingController@index');
         Route::post('/setting','Admin\SettingController@edit');
         //************************************************************
+
+        //Поиск в админке
+        Route::get('/search/{text?}', 'Admin\SearchDashboardController@search')->name('search_admin');
+        Route::get('/search/of/store/{text?}', 'Admin\SearchDashboardController@searchStores')->name('search_stores_admin');
+        Route::get('/search/of/goods/{text?}', 'Admin\SearchDashboardController@searchGoods')->name('search_goods_admin');
+        Route::get('/search/of/orders/{text?}', 'Admin\SearchDashboardController@searchOrders')->name('search_orders_admin');
+        Route::get('/search/of/posts/{text?}', 'Admin\SearchDashboardController@searchPosts')->name('search_posts_admin');
+
+        //Техническая поддержка - Обращения по email
+        Route::get('/support/questions', 'TechSupport\QuestionsController@index')->name('show_questions');
+        Route::get('/support/questions/fetch', 'TechSupport\QuestionsController@all')->name('fetch_questions');
+        Route::get('/support/questions/create', 'TechSupport\QuestionsController@create');
+        Route::post('/support/questions/create', 'TechSupport\QuestionsController@create')->name('create_question');
+        Route::get('/support/questions/edit/{id?}', 'TechSupport\QuestionsController@edit');
+        Route::post('/support/questions/edit/{id?}', 'TechSupport\QuestionsController@edit')->name('edit_question');
+        Route::post('/support/questions/delete/{id?}', 'TechSupport\QuestionsController@delete')->name('delete_question');
+
+        //Техническая поддержка - тикеты
+        Route::get('/support/issues', 'TechSupport\IssuesController@index')->name('support_issues');
+        Route::get('/support/issues/create', 'TechSupport\IssuesController@create');
+        Route::post('/support/issues/create', 'TechSupport\IssuesController@create')->name('create_issues');
+        Route::get('/support/issues/edit/{id}', 'TechSupport\IssuesController@edit');
+        Route::post('/support/issues/edit/{id}', 'TechSupport\IssuesController@edit')->name('edit_issues');
+        Route::post('/support/issues/delete/{id}', 'TechSupport\IssuesController@delete')->name('delete_issues');
 
     }
 );
