@@ -22,7 +22,27 @@ class QuestionsRepository implements Repository
      */
     public function all(Request $request = null)
     {
-        return Question::with('status')->get();
+        $builder = Question::with('status');
+
+        if ($subject = $request->get('subject')) {
+            $builder->where('subject', 'like', '%'.$subject.'%');
+        }
+
+        if ($email = $request->get('email')) {
+            $builder->where('email', $email);
+        }
+
+        if ($text = $request->get('text')) {
+            $builder->where('text', 'like', '%'.$text.'%');
+        }
+
+        if ($status = $request->get('status')) {
+            $builder->whereHas('status', function ($query) use ($status) {
+                $query->where('id', $status);
+            });
+        }
+
+        return $builder->get();
     }
 
     /**
