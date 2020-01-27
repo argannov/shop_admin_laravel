@@ -51,7 +51,6 @@ class QuestionsController extends Controller
                 ],
                 'email' => [
                     'title' => 'E-mail',
-                    'code' => 'email',
                     'field' => [
                         'component' => 'text-field',
                         'name' => 'email',
@@ -61,7 +60,6 @@ class QuestionsController extends Controller
                 ],
                 'text' => [
                     'title' => 'Текст',
-                    'code' => 'text',
                     'field' => [
                         'component' => 'text-field',
                         'name' => 'text',
@@ -69,6 +67,24 @@ class QuestionsController extends Controller
                         'value' => $params['price'] ?? null
                     ]
                 ],
+                'status.title' => [
+                    'title' => 'Статус',
+                    'criteria' => [
+                        'В ожидании' => 'label-danger',
+                        'В работ' => 'label-warning',
+                        'Закрыто' => 'label-success'
+                    ],
+                    'field' => [
+                        'component' => 'data-filter-select',
+                        'name' => 'status',
+                        'elements' => [
+                            '1' => 'В ожидании',
+                            '2' => 'В работе',
+                            '3' => 'Закрыто'
+                        ],
+                        'value' => $params['status'] ?? null
+                    ]
+                ]
             ],
             'actions' => [
                 'delete' => [

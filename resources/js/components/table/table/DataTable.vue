@@ -18,9 +18,9 @@
 
             <tr v-for="(element, index) in result.elements" v-bind:data-edit="edit(element.id)">
                 <td v-for="(column, key) in settings.columns"
-                    v-if="Object.keys(element).includes(key)">
-                    <span v-bind:class="[{'label': key === 'status'}, (key === 'status' && column.criteria) ? column.criteria[element[key]] : '']">
-                        {{ (column.before ? column.before : '') + element[key] + (column.after ? column.after : '')}}
+                    v-if="isFieldAvailable(element, key)">
+                    <span v-bind:class="[{'label': key.indexOf('status') === 0}, (key.indexOf('status') === 0 && column.criteria) ? column.criteria[parseElement(element, key)] : '']">
+                        {{ (column.before ? column.before : '') + parseElement(element, key) + (column.after ? column.after : '')}}
                     </span>
                 </td>
                 <td v-if="settings.actions && settings.actions.delete">
@@ -98,6 +98,7 @@
                 })
                     .then(function (response) {
                         vm.result = response.data;
+                        console.log(vm.settings);
                         vm.loading = false;
                         vm.processing = false;
                         vm.$emit('data-table-success', event);
@@ -109,11 +110,25 @@
                         vm.processing = false;
                     });
             },
-            isPublished: function (element) {
-                return element.status === 'published';
+            isFieldAvailable: function (element, key) {
+                let value = false;
+                let keys = key.split('.');
+                let currentElement = element;
+                keys.forEach(function (key) {
+                    value = Object.keys(currentElement).includes(key);
+                    if (value) {
+                        currentElement = element[key];
+                    }
+                });
+                return value;
             },
-            getMessage: function (element) {
-                return this.isPublished(element) ? 'Активен' : 'Черновик';
+            parseElement: function (element, key) {
+                let value = element;
+                let keys = key.split('.');
+                keys.forEach(function (key) {
+                    value = value[key];
+                });
+                return value;
             },
             edit: function (slug) {
                 return this.editRoute + '/' + slug;

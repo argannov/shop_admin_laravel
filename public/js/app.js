@@ -2770,6 +2770,7 @@ __webpack_require__.r(__webpack_exports__);
         params: vm.params
       }).then(function (response) {
         vm.result = response.data;
+        console.log(vm.settings);
         vm.loading = false;
         vm.processing = false;
         vm.$emit('data-table-success', event);
@@ -2780,11 +2781,26 @@ __webpack_require__.r(__webpack_exports__);
         vm.processing = false;
       });
     },
-    isPublished: function isPublished(element) {
-      return element.status === 'published';
+    isFieldAvailable: function isFieldAvailable(element, key) {
+      var value = false;
+      var keys = key.split('.');
+      var currentElement = element;
+      keys.forEach(function (key) {
+        value = Object.keys(currentElement).includes(key);
+
+        if (value) {
+          currentElement = element[key];
+        }
+      });
+      return value;
     },
-    getMessage: function getMessage(element) {
-      return this.isPublished(element) ? 'Активен' : 'Черновик';
+    parseElement: function parseElement(element, key) {
+      var value = element;
+      var keys = key.split('.');
+      keys.forEach(function (key) {
+        value = value[key];
+      });
+      return value;
     },
     edit: function edit(slug) {
       return this.editRoute + '/' + slug;
@@ -58867,15 +58883,18 @@ var render = function() {
                     { attrs: { "data-edit": _vm.edit(element.id) } },
                     [
                       _vm._l(_vm.settings.columns, function(column, key) {
-                        return Object.keys(element).includes(key)
+                        return _vm.isFieldAvailable(element, key)
                           ? _c("td", [
                               _c(
                                 "span",
                                 {
                                   class: [
-                                    { label: key === "status" },
-                                    key === "status" && column.criteria
-                                      ? column.criteria[element[key]]
+                                    { label: key.indexOf("status") === 0 },
+                                    key.indexOf("status") === 0 &&
+                                    column.criteria
+                                      ? column.criteria[
+                                          _vm.parseElement(element, key)
+                                        ]
                                       : ""
                                   ]
                                 },
@@ -58884,7 +58903,7 @@ var render = function() {
                                     "\n                    " +
                                       _vm._s(
                                         (column.before ? column.before : "") +
-                                          element[key] +
+                                          _vm.parseElement(element, key) +
                                           (column.after ? column.after : "")
                                       ) +
                                       "\n                "

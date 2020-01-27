@@ -22,7 +22,7 @@ class QuestionsRepository implements Repository
      */
     public function all(Request $request = null)
     {
-        return Question::all();
+        return Question::with('status')->get();
     }
 
     /**

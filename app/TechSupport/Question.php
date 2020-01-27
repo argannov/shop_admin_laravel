@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property $issue Issue
  * @property $status Statue
  *
+ * @property $statusLabel string
+ *
  * Class Question
  * @mixin \Eloquent
  * @package App\TechSupport
@@ -26,13 +28,27 @@ class Question extends Model
 {
     protected $fillable = ['id', 'subject', 'email', 'text', 'responding_user_id', 'issue_id', 'created_at', 'updated_at'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function issue()
     {
         return $this->hasOne(Issue::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function status()
     {
         return $this->belongsTo(HelpStatus::class);
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusLabelAttribute()
+    {
+        return $this->status->title;
     }
 }
