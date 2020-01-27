@@ -60,7 +60,7 @@
                                         <td>{{$bonus->card_number}}</td>
                                         <td>{{$bonus->val_bonus}}</td>
                                         <td>{{$bonus->created_at}}</td>
-                                        <td>@if($bonus->status == 'Y') Активен @else Не активен @endif</td>
+                                        <td>@if($bonus->active == 'Y') Активен @else Не активен @endif</td>
                                     </tr>
                                 @endforeach
                             </table>
