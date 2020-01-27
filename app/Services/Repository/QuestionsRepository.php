@@ -2,12 +2,23 @@
 
 namespace App\Services\Repository;
 
+use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
 use App\Services\Repository\Interfaces\Repository;
 use App\TechSupport\Question;
 use Illuminate\Http\Request;
 
 class QuestionsRepository implements Repository
 {
+
+    /**
+     * @var FiltrationKeeper
+     */
+    private $filtrationKeeper;
+
+    public function __construct(FiltrationKeeper $filtrationKeeper)
+    {
+        $this->filtrationKeeper = $filtrationKeeper;
+    }
 
     /**
      * @inheritdoc
@@ -42,6 +53,8 @@ class QuestionsRepository implements Repository
             });
         }
 
+        $this->filtrationKeeper->saveParams(Question::class, $request->all());
+
         return $builder->get();
     }
 
@@ -51,6 +64,7 @@ class QuestionsRepository implements Repository
     public function create(Request $request): bool
     {
         $question = Question::create($request->post());
+
         return $question->save();
     }
 

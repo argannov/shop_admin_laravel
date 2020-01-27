@@ -4,6 +4,7 @@ namespace App\Http\Controllers\TechSupport;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TechSupport\QuestionsRequest;
+use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
 use App\Services\Repository\Interfaces\Repository;
 use App\TechSupport\Question;
 use Illuminate\Http\Request;
@@ -16,18 +17,24 @@ class QuestionsController extends Controller
     /** @var Repository */
     private $repository;
 
-    public function __construct(QuestionsRequest $request, Repository $repository)
+    /** @var FiltrationKeeper */
+    private $filtrationKeeper;
+
+    public function __construct(QuestionsRequest $request, Repository $repository, FiltrationKeeper $filtrationKeeper)
     {
         $this->request = $request;
         $this->repository = $repository;
+        $this->filtrationKeeper = $filtrationKeeper;
     }
 
     public function index()
     {
+        $params = $this->filtrationKeeper->getParams(Question::class);
+
         $settings = [
-//            'filter' => [
-//                'params' => $params
-//            ],
+            'filter' => [
+                'params' => $params
+            ],
             'columns' => [
                 'id' => [
                     'title' => 'ID',
@@ -160,6 +167,6 @@ class QuestionsController extends Controller
             \Log::error($e->getMessage());
         }
 
-        return view('admin.questions.index');
+        return $this->index();
     }
 }
