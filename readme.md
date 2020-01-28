@@ -32,9 +32,15 @@ $ php artisan serve
     <li>Магазины - Stores</li>
 </ol>
 
+Необходимо установить и запустить ElasticSearch
+
 ###Windows
 
-Установить и запустить ElasticSearch по <a href="https://www.elastic.co/downloads/elasticsearch">этой инструкции</a>
+<a href="https://www.elastic.co/downloads/elasticsearch">Инструкция</a> по устанвоке ElasticSearch для Windows
+
+###Linux (Ubuntu)
+
+<a href="https://tecadmin.net/setup-elasticsearch-on-ubuntu/">Инструкция</a> по устанвоке ElasticSearch для Ubuntu
 
 ###После установки ElasticSearch
 
@@ -55,6 +61,18 @@ $ php artisan elastic:create-index "App\Orders"
 $ php artisan elastic:create-index "App\Posts"
 $ php artisan elastic:create-index "App\Stores"
 ```
+В случае возникновения ошибки:
+
+```sh
+Elasticsearch-PHP requires cURL, or a custom HTTP handler
+```
+Необходимо установить curl соответсвующей версии php командой (пример для php7.2):
+
+```sh
+$ sudo apt install php7.2-curl
+```
+
+и перезапустить веб-сервер
 
 ## Документация по проекту
 
