@@ -98,7 +98,6 @@
                 })
                     .then(function (response) {
                         vm.result = response.data;
-                        console.log(vm.settings);
                         vm.loading = false;
                         vm.processing = false;
                         vm.$emit('data-table-success', event);
