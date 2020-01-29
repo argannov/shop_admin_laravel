@@ -6,7 +6,9 @@ namespace App\Services\Repository;
 use App\Goods;
 use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
 use App\Services\Repository\Interfaces\Repository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\File;
 
 class GoodsRepository implements Repository
@@ -35,14 +37,14 @@ class GoodsRepository implements Repository
      */
     public function all(Request $request = null)
     {
-        $queryBuilder = Goods::query();
+        $builder = Goods::query();
 
         if ($title = $request->get('title')) {
-            $queryBuilder->where('title', 'like', '%'.$title.'%');
+            $builder->where('title', 'like', '%'.$title.'%');
         }
 
         if ($category = $request->get('category')) {
-            $queryBuilder->where('category', $category);
+            $builder->where('category', $category);
         }
 
         if ($updatedAt = $request->get('updated_at')) {
@@ -50,20 +52,38 @@ class GoodsRepository implements Repository
                 return date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $value)));
             }, explode(' - ', $updatedAt));
 
-            $queryBuilder->whereBetween('updated_at', [$startDate, $endDate]);
+            $builder->whereBetween('updated_at', [$startDate, $endDate]);
         }
 
         if ($status = $request->get('status')) {
-            $queryBuilder->where('status', $status);
+            $builder->where('status', $status);
         }
 
         if ($price = $request->get('price')) {
-            $queryBuilder->where('price', $price);
+            $builder->where('price', $price);
         }
 
         $this->filtrationKeeper->saveParams(Goods::class, $request->all());
 
-        return $queryBuilder->get();
+        /** @var LengthAwarePaginator $pagination */
+        $pagination = $builder->paginate(static::DEFAULT_COUNT_PER_PAGE, ['*'], 'Страница', $request->get('currentPage', 1));
+        /** @var Collection $collection */
+        $collection = $pagination->getCollection();
+
+        $previousPage = explode('=', $pagination->previousPageUrl())[1] ?? null;
+        $nextPage = explode('=', $pagination->nextPageUrl())[1] ?? null;
+
+        $collection->put('pagination', [
+            'total' => $pagination->total(),
+            'pages' => [
+                'previous' => $previousPage ? intval($previousPage) : null,
+                'current' => $pagination->currentPage(),
+                'next' => $nextPage ? intval($nextPage) : null,
+            ],
+            'lastPage' => $pagination->lastPage()
+        ]);
+
+        return $collection;
     }
 
     /**

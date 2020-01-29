@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 interface Repository
 {
+    const DEFAULT_COUNT_PER_PAGE = 10;
     /**
      * @param string $slug
      * @return mixed
