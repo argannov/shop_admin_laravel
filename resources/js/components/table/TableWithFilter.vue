@@ -45,7 +45,7 @@
             }
         },
         created: function () {
-            this.dataParams = (this.settings.filter && Object.keys(this.settings.filter.params).length > 0) ?
+            this.dataParams = (this.settings.filter && this.settings.filter.params && Object.keys(this.settings.filter.params).length > 0) ?
                 this.settings.filter.params : this.params;
         },
         methods: {
