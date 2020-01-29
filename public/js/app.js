@@ -2286,7 +2286,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.dataParams = this.settings.filter && Object.keys(this.settings.filter.params).length > 0 ? this.settings.filter.params : this.params;
+    this.dataParams = this.settings.filter && this.settings.filter.params && Object.keys(this.settings.filter.params).length > 0 ? this.settings.filter.params : this.params;
   },
   methods: {
     applyFiltering: function applyFiltering() {
@@ -2770,7 +2770,6 @@ __webpack_require__.r(__webpack_exports__);
         params: vm.params
       }).then(function (response) {
         vm.result = response.data;
-        console.log(vm.settings);
         vm.loading = false;
         vm.processing = false;
         vm.$emit('data-table-success', event);
@@ -72097,8 +72096,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! F:\Openserver\OSPanel\domains\shop_admin_laravel\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! F:\Openserver\OSPanel\domains\shop_admin_laravel\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/shop_admin_laravel/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/shop_admin_laravel/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

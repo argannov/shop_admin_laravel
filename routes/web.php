@@ -80,6 +80,12 @@ Route::group([
 
         //Создание и редактирование заказов в админке
         Route::get('/orders', 'Admin\OrdersController@index');
+        Route::get('/orders/fetch', 'Admin\OrdersController@all')->name('fetch_orders');
+        Route::get('/orders/create', 'Admin\OrdersController@create');
+        Route::post('/orders/create', 'Admin\OrdersController@create')->name('create_order');
+        Route::get('/orders/edit/{slug?}', 'Admin\OrdersController@edit');
+        Route::post('/orders/edit/{slug?}', 'Admin\OrdersController@edit')->name('edit_order');
+        Route::post('/orders/delete/{slug?}', 'Admin\OrdersController@delete')->name('delete_order');
         //************************************************************
 
         //Создание и редактирование записей в админке
