@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
 /**

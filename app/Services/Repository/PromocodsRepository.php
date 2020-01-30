@@ -22,7 +22,33 @@ class PromocodsRepository extends BaseRepository
      */
     public function all(Request $request = null)
     {
+        if (is_null($request)) {
+            return Promocods::all();
+        }
+
         $builder = Promocods::query();
+
+        if ($discount_name = $request->get('discount_name')) {
+            $builder->where('discount_name', 'like', '%'.$discount_name.'%');
+        }
+
+        if ($active = $request->get('active')) {
+            $builder->where('active', $active);
+        }
+
+        if ($coupon = $request->get('coupon')) {
+            $builder->where('coupon', 'like', '%'.$coupon.'%');
+        }
+
+        if ($date_apply = $request->get('date_apply')) {
+            list($startDate, $endDate) = array_map(function ($value) {
+                return date('Y-m-d H:i:s', strtotime(str_replace('/', '-', $value)));
+            }, explode(' - ', $date_apply));
+
+            $builder->whereBetween('date_apply', [$startDate, $endDate]);
+        }
+
+        $this->filtrationKeeper->saveParams(Promocods::class, $request);
 
         return $this->paginate($builder, $request->get(self::CURRENT_PAGE_PARAM_NAME));
     }

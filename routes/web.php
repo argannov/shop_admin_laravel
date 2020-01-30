@@ -98,11 +98,12 @@ Route::group([
 
         //Создание и редактирование скидок в админке
         Route::get('/sale', 'Admin\NewPromocodeController@index');
+        Route::get('/sale/fetch', 'Admin\NewPromocodeController@all')->name('fetch_promocods');
         Route::get('/sale/create', 'Admin\NewPromocodeController@create');
-        Route::post('/sale/create', 'Admin\NewPromocodeController@createPromo');
-        Route::get('/sale/edit/{slug}','Admin\NewPromocodeController@edit');
-        Route::post('/sale/edit/{slug}','Admin\NewPromocodeController@editSend');
-        Route::post('/sale/delete/{slug}','Admin\NewPromocodeController@deletePromo');
+        Route::post('/sale/create', 'Admin\NewPromocodeController@createPromo')->name('create_promocode');
+        Route::get('/sale/edit/{slug?}','Admin\NewPromocodeController@edit');
+        Route::post('/sale/edit/{slug?}','Admin\NewPromocodeController@editSend')->name('edit_promocode');
+        Route::post('/sale/delete/{slug?}','Admin\NewPromocodeController@deletePromo')->name('delete_promocode');
         //************************************************************
 
         //Создание и редактирование пользователей в админке
