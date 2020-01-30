@@ -9,7 +9,7 @@
         />
         <data-table
             v-bind:settings="settings"
-            v-bind:params="dataParams"
+            v-bind:filterParams="dataParams"
             v-bind:route="route"
             v-bind:edit-route="editRoute"
             v-bind:delete-route="deleteRoute"

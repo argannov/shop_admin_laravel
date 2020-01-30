@@ -2728,12 +2728,7 @@ __webpack_require__.r(__webpack_exports__);
       paginationSettings: {},
       error: false,
       errorMessage: '',
-      paginationParams: {
-        type: Object,
-        "default": function _default() {
-          return {};
-        }
-      }
+      paginationParams: {}
     };
   },
   props: {
@@ -2895,6 +2890,11 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return {};
       }
+    }
+  },
+  computed: {
+    show: function show() {
+      return this.paginationSettings.pages.previous || this.paginationSettings.pages.next;
     }
   },
   methods: {
@@ -58579,7 +58579,7 @@ var render = function() {
       _c("data-table", {
         attrs: {
           settings: _vm.settings,
-          params: _vm.dataParams,
+          filterParams: _vm.dataParams,
           route: _vm.route,
           "edit-route": _vm.editRoute,
           "delete-route": _vm.deleteRoute,
@@ -59062,7 +59062,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.paginationSettings
+  return _vm.show
     ? _c("div", { staticClass: "box-footer clearfix" }, [
         _c(
           "ul",
@@ -72238,7 +72238,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!******************************************************************************************!*\
   !*** ./resources/js/components/table/table/DataTable.vue?vue&type=template&id=1d7786a7& ***!
   \******************************************************************************************/
-/*! no static exports found */
+/*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -1,5 +1,5 @@
 <template>
-    <div class="box-footer clearfix" v-if="paginationSettings">
+    <div class="box-footer clearfix" v-if="show">
         <ul class="pagination pagination-sm no-margin pull-right">
             <li>
                 <a href="" v-on:click.prevent="leaf(1)">«</a>
@@ -25,6 +25,11 @@
                 default: function () {
                     return {};
                 }
+            }
+        },
+        computed: {
+            show: function () {
+                return this.paginationSettings.pages.previous || this.paginationSettings.pages.next;
             }
         },
         methods: {

@@ -55,12 +55,7 @@
                 paginationSettings: {},
                 error: false,
                 errorMessage: '',
-                paginationParams: {
-                    type: Object,
-                    default: function () {
-                        return {};
-                    }
-                },
+                paginationParams: {}
             }
         },
         props: {
