@@ -125,8 +125,9 @@
                 let value = false;
                 let keys = key.split('.');
                 let currentElement = element;
+                var vm = this;
                 keys.forEach(function (key) {
-                    value = Object.keys(currentElement).includes(key);
+                    value = Object.keys(currentElement).includes(key) || Object.keys(currentElement).includes(vm.settings.columns[key].field.name);
                     if (value) {
                         currentElement = element[key];
                     }
@@ -136,8 +137,9 @@
             parseElement: function (element, key) {
                 let value = element;
                 let keys = key.split('.');
+                var vm = this;
                 keys.forEach(function (key) {
-                    value = value[key];
+                    value = value[key] ? value[key] : value[vm.settings.columns[key].field.name];
                 });
                 return value;
             },

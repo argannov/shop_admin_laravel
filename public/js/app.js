@@ -2798,8 +2798,9 @@ __webpack_require__.r(__webpack_exports__);
       var value = false;
       var keys = key.split('.');
       var currentElement = element;
+      var vm = this;
       keys.forEach(function (key) {
-        value = Object.keys(currentElement).includes(key);
+        value = Object.keys(currentElement).includes(key) || Object.keys(currentElement).includes(vm.settings.columns[key].field.name);
 
         if (value) {
           currentElement = element[key];
@@ -2810,8 +2811,9 @@ __webpack_require__.r(__webpack_exports__);
     parseElement: function parseElement(element, key) {
       var value = element;
       var keys = key.split('.');
+      var vm = this;
       keys.forEach(function (key) {
-        value = value[key];
+        value = value[key] ? value[key] : value[vm.settings.columns[key].field.name];
       });
       return value;
     },
