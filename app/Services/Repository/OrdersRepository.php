@@ -6,10 +6,9 @@ namespace App\Services\Repository;
 
 use App\Orders;
 use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
-use App\Services\Repository\Interfaces\Repository;
 use Illuminate\Http\Request;
 
-class OrdersRepository implements Repository
+class OrdersRepository extends BaseRepository
 {
     /** @var FiltrationKeeper */
     private $filtrationKeeper;
@@ -58,9 +57,9 @@ class OrdersRepository implements Repository
             $builder->where('price', $price);
         }
 
-        $this->filtrationKeeper->saveParams(Orders::class, $request->all());
+        $this->filtrationKeeper->saveParams(Orders::class, $request);
 
-        return $builder->get();
+        return $this->paginate($builder, $request->get('currentPage', 1));
     }
 
     /**

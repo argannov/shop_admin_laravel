@@ -5,13 +5,10 @@ namespace App\Services\Repository;
 
 use App\Goods;
 use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
-use App\Services\Repository\Interfaces\Repository;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\File;
 
-class GoodsRepository implements Repository
+class GoodsRepository extends BaseRepository
 {
     /**
      * @var FiltrationKeeper
@@ -63,27 +60,9 @@ class GoodsRepository implements Repository
             $builder->where('price', $price);
         }
 
-        $this->filtrationKeeper->saveParams(Goods::class, $request->all());
+        $this->filtrationKeeper->saveParams(Goods::class, $request);
 
-        /** @var LengthAwarePaginator $pagination */
-        $pagination = $builder->paginate(static::DEFAULT_COUNT_PER_PAGE, ['*'], 'Страница', $request->get('currentPage', 1));
-        /** @var Collection $collection */
-        $collection = $pagination->getCollection();
-
-        $previousPage = explode('=', $pagination->previousPageUrl())[1] ?? null;
-        $nextPage = explode('=', $pagination->nextPageUrl())[1] ?? null;
-
-        $collection->put('pagination', [
-            'total' => $pagination->total(),
-            'pages' => [
-                'previous' => $previousPage ? intval($previousPage) : null,
-                'current' => $pagination->currentPage(),
-                'next' => $nextPage ? intval($nextPage) : null,
-            ],
-            'lastPage' => $pagination->lastPage()
-        ]);
-
-        return $collection;
+        return $this->paginate($builder, $request->get(self::CURRENT_PAGE_PARAM_NAME, 1));
     }
 
     /**

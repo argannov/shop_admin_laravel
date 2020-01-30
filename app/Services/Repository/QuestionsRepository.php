@@ -3,11 +3,10 @@
 namespace App\Services\Repository;
 
 use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
-use App\Services\Repository\Interfaces\Repository;
 use App\TechSupport\Question;
 use Illuminate\Http\Request;
 
-class QuestionsRepository implements Repository
+class QuestionsRepository extends BaseRepository
 {
 
     /**
@@ -53,9 +52,9 @@ class QuestionsRepository implements Repository
             });
         }
 
-        $this->filtrationKeeper->saveParams(Question::class, $request->all());
+        $this->filtrationKeeper->saveParams(Question::class, $request);
 
-        return $builder->get();
+        return $this->paginate($builder, $request->get('currentPage', 1));
     }
 
     /**
