@@ -4,6 +4,7 @@
 namespace App\Services\Repository;
 
 
+use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
 use App\Services\Repository\Interfaces\Repository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -17,6 +18,16 @@ abstract class BaseRepository implements Repository
         self::CURRENT_PAGE_PARAM_NAME,
         self::COUNT_PER_PAGE_PARAM_NAME
     ];
+
+    /**
+     * @var FiltrationKeeper
+     */
+    protected $filtrationKeeper;
+
+    public function __construct(FiltrationKeeper $filtrationKeeper)
+    {
+        $this->filtrationKeeper = $filtrationKeeper;
+    }
 
     /**
      * @param \Illuminate\Database\Eloquent\Builder $builder

@@ -4,22 +4,11 @@ namespace App\Services\Repository;
 
 
 use App\Goods;
-use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class GoodsRepository extends BaseRepository
 {
-    /**
-     * @var FiltrationKeeper
-     */
-    private $filtrationKeeper;
-
-    public function __construct(FiltrationKeeper $filtrationKeeper)
-    {
-        $this->filtrationKeeper = $filtrationKeeper;
-    }
-
     /**
      * @inheritdoc
      */

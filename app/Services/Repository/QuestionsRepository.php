@@ -8,17 +8,6 @@ use Illuminate\Http\Request;
 
 class QuestionsRepository extends BaseRepository
 {
-
-    /**
-     * @var FiltrationKeeper
-     */
-    private $filtrationKeeper;
-
-    public function __construct(FiltrationKeeper $filtrationKeeper)
-    {
-        $this->filtrationKeeper = $filtrationKeeper;
-    }
-
     /**
      * @inheritdoc
      */

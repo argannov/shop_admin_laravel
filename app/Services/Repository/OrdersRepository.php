@@ -10,14 +10,6 @@ use Illuminate\Http\Request;
 
 class OrdersRepository extends BaseRepository
 {
-    /** @var FiltrationKeeper */
-    private $filtrationKeeper;
-
-    public function __construct(FiltrationKeeper $filtrationKeeper)
-    {
-        $this->filtrationKeeper = $filtrationKeeper;
-    }
-
     /**
      * @inheritDoc
      */
