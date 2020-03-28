@@ -237,15 +237,6 @@
             </span>
                     </a>
                 </li>
-                <li>
-                    <a href="/admin/help">
-                        <i class="fa fa-cubes"></i>
-                        <span>Заказы</span>
-                        <span class="pull-right-container">
-{{--              <span class="label label-primary pull-right">{{count($order = \App\Help::all())}}</span>--}}
-            </span>
-                    </a>
-                </li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-at"></i>

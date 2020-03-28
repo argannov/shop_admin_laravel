@@ -6,11 +6,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="all-goods-h1">
-                Промокоды
+                Все заказы
             </h1>
-            <div class="input-group-btn">
-                <a href="/admin/sale/create" class="btn btn-success">Добавить промокод</a>
-            </div>
 
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fa fa-tv"></i>На сайт</a></li>
@@ -25,9 +22,9 @@
                 <div class="col-xs-12">
                     <table-with-filter
                         v-bind:settings="{{ $settings }}"
-                        route="{{ route('fetch_promocods') }}"
-                        edit-route="{{ route('edit_promocode') }}"
-                        delete-route="{{ route('delete_promocode') }}"
+                        route="{{ route('fetch_orders') }}"
+                        edit-route="{{ route('edit_order') }}"
+                        delete-route="{{ route('delete_order') }}"
                         csrf-token="{{ csrf_token() }}"
                     />
                 </div>

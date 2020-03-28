@@ -55,7 +55,7 @@
                                 </tr>
                                 @foreach($orders as $order)
                                     <tr>
-                                        <td><a href="#">{{$order->id}}</a></td>
+                                        <td><a href="/admin/orders/{{$order->id}}">{{$order->id}}</a></td>
                                         <td>{{$order->surname}} {{$order->name}} {{$order->last_name}}</td>
                                         <td>{{$order->street}},{{$order->house}} кв/оф №{{$order->kvoroffice}}</td>
                                         <td>{{$order->created_at}}</td>

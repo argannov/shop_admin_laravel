@@ -3,6 +3,8 @@
 namespace App\Services\FiltrationKeeper;
 
 use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
+use App\Services\Repository\BaseRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class FiltrationKeeperService implements FiltrationKeeper
@@ -10,12 +12,12 @@ class FiltrationKeeperService implements FiltrationKeeper
 
     /**
      * @param string $entityClass
-     * @param array $params
+     * @param Request $request
      * @return bool
      */
-    public function saveParams($entityClass, $params)
+    public function saveParams($entityClass, $request)
     {
-        Session::put($entityClass, $params);
+        Session::put($entityClass, $request->except(BaseRepository::PAGINATION_PARAMS));
         return true;
     }
 

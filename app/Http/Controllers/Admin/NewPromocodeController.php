@@ -2,73 +2,151 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Services\FiltrationKeeper\Interfaces\FiltrationKeeper;
+use App\Services\Repository\Interfaces\Repository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Promocods;
 use App\Goods;
-use Carbon\Carbon;
 
 class NewPromocodeController extends Controller
 {
-    public function index(){
+    /** @var Repository */
+    private $repository;
 
-        $promo = Promocods::all();
-        $count = 0;
-        foreach ($promo as $itemPromo){
-            $count = $count + 1;
-        }
-        return view("admin.promo.index",['promo'=>$promo,'count'=>$count]);
+    /** @var FiltrationKeeper */
+    private $filtrationKeeper;
+
+    public function __construct(Repository $repository, FiltrationKeeper $filtrationKeeper)
+    {
+        $this->repository = $repository;
+        $this->filtrationKeeper = $filtrationKeeper;
     }
-    public function create(){
+
+    public function index()
+    {
+        $params = $this->filtrationKeeper->getParams(Promocods::class);
+        $settings = [
+            'filter' => [
+                'params' => $params
+            ],
+            'columns' => [
+                'id' => [
+                    'title' => 'ID'
+                ],
+                'discount_name' => [
+                    'title' => 'Название',
+                    'field' => [
+                        'component' => 'text-field',
+                        'name' => 'discount_name',
+                        'type' => 'text',
+                        'value' => $params['discount_name'] ?? null
+                    ]
+                ],
+                'coupon' => [
+                    'title' => 'Код',
+                    'field' => [
+                        'component' => 'text-field',
+                        'name' => 'coupon',
+                        'type' => 'text',
+                        'value' => $params['coupon'] ?? null
+                    ]
+                ],
+                'size_promo' => [
+                    'title' => 'Размер скидки',
+                    'field' => [
+                        'component' => 'text-field',
+                        'name' => 'size_promo',
+                        'type' => 'number',
+                        'value' => $params['size_promo'] ?? null
+                    ]
+                ],
+                'date_apply' => [
+                    'title' => 'Дата окончания скидки',
+                    'field' => [
+                        'component' => 'datetime-range',
+                        'name' => 'date_apply',
+                        'value' => $params['date_apply'] ?? null
+                    ]
+                ],
+                'status' => [
+                    'title' => 'Статус',
+                    'criteria' => [
+                        'published' => 'label-success',
+                        'draft' => 'label-warning'
+                    ],
+                    'field' => [
+                        'component' => 'data-filter-select',
+                        'name' => 'active',
+                        'elements' => [
+                            'published' => 'Активна',
+                            'draft' => 'Неактивна'
+                        ],
+                        'value' => $params['active'] ?? null
+                    ]
+                ]
+            ],
+            'actions' => [
+                'delete' => [
+                    'title' => 'Удалить'
+                ]
+            ]
+        ];
+        return view("admin.promo.index", ['settings' => json_encode($settings)]);
+    }
+
+    public function all(Request $request)
+    {
+        $promos = $this->repository->all($request);
+        return ['elements' => $promos, 'count' => $promos->count()];
+    }
+
+    public function create(Request $request)
+    {
         $goods = Goods::all();
-        return view('admin.promo.createpromo',['goods'=>$goods]);
-    }
-    public function createPromo(Request $request){
-        $promo = new Promocods();
-        $promo->discount_name = $request->namepromo;
-        $promo->coupon = $request->codepromo;
-        $promo->size_promo=$request->sizepromo;
-        $promo->date_apply = $request->promocodedate;
-        $promo->goods_items =$request->goodspromo;
-        $promo->active=$request->statusgoods;
-        $promo->created_at = Carbon::now();
-        $promo->updated_at = Carbon::now();
-        $promo->save();
-        return redirect('/admin/sale/');
-    }
-    public function edit($slug){
-        $promo = Promocods::where('id','=',$slug)->first();
-        $goods = Goods::all();
-        $promo->date_apply = Carbon::parse($promo->date_apply)->format('Y-m-d\TH:i');
-        return view('admin.promo.editpromo',['promo'=>$promo,'goods'=>$goods]);
-    }
-    public function editSend($slug, Request $request){
-
-        $promo = Promocods::where('id','=',$slug)->first();
-        $promo->discount_name = $request->namepromo;
-        $promo->coupon = $request->codepromo;
-        $promo->size_promo=$request->sizepromo;
-        $promo->date_apply = $request->promocodedate;
-        $goods =$request->goodspromo;
-
-        $goodsItem = array();
-        $intArr = 0;
-        foreach ($goods as $intArr => $goodsItemArrDate) {
-            $goodsItem[$intArr] = $goodsItemArrDate;
-            $intArr++;
+        if ($request->isMethod('GET')) {
+            return view('admin.promo.createpromo', ['goods' => $goods]);
         }
-        //dd($goodsItem);
-        $encode = json_encode($goodsItem);
-        $promo->goods_items = $encode;
 
-        $promo->active=$request->statusgoods;
-        $promo->updated_at = Carbon::now();
-        $promo->save();
-        return redirect('/admin/sale/');
+        try {
+            $this->repository->create($request);
+        } catch (\Throwable $e) {
+            \Log::error($e->getMessage());
+        }
+
+        return view('admin.promo.createpromo', ['goods' => $goods]);
     }
-    public function deletePromo($slug){
-        $promo = Promocods::where('id','=',$slug)->first();
-        $promo->delete();
-        return redirect('/admin/sale/');
+
+    public function edit(Request $request, $slug)
+    {
+        $goods = Goods::all();
+        /** @var Promocods $promo */
+        $promo = $this->repository->get($slug);
+
+        if ($request->isMethod('GET')) {
+            return view('admin.promo.editpromo', ['promo' => $promo, 'goods' => $goods]);
+        }
+
+        try {
+            $this->repository->update($promo, $request);
+        } catch (\Throwable $e) {
+            \Log::error($e->getMessage());
+        }
+//        $promo->date_apply = Carbon::parse($promo->date_apply)->format('Y-m-d\TH:i');
+
+        return view('admin.promo.editpromo', ['promo' => $promo, 'goods' => $goods]);
+    }
+
+    public function delete($slug)
+    {
+        $promo = $this->repository->get($slug);
+
+        try {
+            $this->repository->delete($promo);
+        } catch (\Throwable $e) {
+            \Log::error($e->getMessage());
+        }
+
+        return $this->index();
     }
 }

@@ -2,12 +2,11 @@
 
 namespace App\Services\Repository;
 
-use App\Services\Repository\Interfaces\Repository;
 use App\Stores;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 
-class StoresRepository implements Repository
+class StoresRepository extends BaseRepository
 {
     /**
      * @inheritdoc
@@ -22,7 +21,9 @@ class StoresRepository implements Repository
      */
     public function all(Request $request = null)
     {
-        return Stores::all();
+        $builder = Stores::query();
+
+        return $this->paginate($builder, $request->get('currentPage', 1));
     }
 
     /**

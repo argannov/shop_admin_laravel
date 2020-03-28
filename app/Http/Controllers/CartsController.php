@@ -62,9 +62,9 @@ class CartsController extends Controller
     public function store(Request $request, $slug)
     {
         if (Auth::check() == true) {
-            $emptyCarts = Carts::where('user_id', $request->user_info)->get();
+            //$emptyCarts = Carts::where('user_id', $request->user_info)->get();
             $emptyCartProduct = Carts::where('user_id', $request->user_info)->where('product_id', $request->product_info)->first();
-            if (count($emptyCarts) == 0) {
+            if (empty($emptyCartProduct)) {
                 $cart = new Carts();
                 $cart->user_id = $request->user_info;
                 $cart->product_id = $request->product_info;

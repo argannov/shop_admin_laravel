@@ -2,14 +2,17 @@
 
 namespace App\Services\FiltrationKeeper\Interfaces;
 
+
+use Illuminate\Http\Request;
+
 interface FiltrationKeeper
 {
     /**
      * @param string $entityClass
-     * @param array $params
+     * @param Request $request
      * @return bool
      */
-    public function saveParams($entityClass, $params);
+    public function saveParams($entityClass, $request);
 
     /**
      * @param string $entityClass
