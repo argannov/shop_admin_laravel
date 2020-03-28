@@ -19,7 +19,8 @@
             <tr v-for="(element, index) in result.elements" v-bind:data-edit="edit(element.id)">
                 <td v-for="(column, key) in settings.columns"
                     v-if="isFieldAvailable(element, key)">
-                    <span v-bind:class="[{'label': key.indexOf('status') === 0}, (key.indexOf('status') === 0 && column.criteria) ? column.criteria[parseElement(element, key)] : '']">
+                    <span
+                        v-bind:class="[{'label': key.indexOf('status') === 0}, (key.indexOf('status') === 0 && column.criteria) ? column.criteria[parseElement(element, key)] : '']">
                         {{ (column.before ? column.before : '') + parseElement(element, key) + (column.after ? column.after : '')}}
                     </span>
                 </td>
@@ -34,6 +35,11 @@
             </tbody>
         </table>
 
+        <pagination v-if="(successful && filled && paginationSettings) || processing"
+                    v-bind:paginationSettings="paginationSettings"
+                    v-on:pagination-leaf="leaf($event)"
+        />
+
         <error-alert v-if="unsuccessful" v-bind:message="errorMessage"/>
     </div>
 </template>
@@ -46,16 +52,15 @@
                 loading: true,
                 processing: false,
                 result: [],
-                total: 0,
-                offset: 0,
-                take: 10,
+                paginationSettings: {},
                 error: false,
-                errorMessage: ''
+                errorMessage: '',
+                paginationParams: {}
             }
         },
         props: {
             settings: Object,
-            params: {
+            filterParams: {
                 type: Object,
                 default: function () {
                     return {};
@@ -67,7 +72,7 @@
             csrfToken: String,
         },
         watch: {
-            params: {
+            filterParams: {
                 handler: function () {
                     this.applyFiltering();
                 }
@@ -85,6 +90,9 @@
             },
             unfilled: function () {
                 return !this.filled;
+            },
+            params: function () {
+                return Object.assign({}, this.filterParams, this.paginationParams);
             }
         },
         created: function () {
@@ -97,8 +105,11 @@
                     params: vm.params
                 })
                     .then(function (response) {
+                        vm.paginationSettings = response.data.elements.pagination;
+                        if (vm.paginationSettings) {
+                            delete response.data.elements.pagination;
+                        }
                         vm.result = response.data;
-                        console.log(vm.settings);
                         vm.loading = false;
                         vm.processing = false;
                         vm.$emit('data-table-success', event);
@@ -114,8 +125,9 @@
                 let value = false;
                 let keys = key.split('.');
                 let currentElement = element;
+                var vm = this;
                 keys.forEach(function (key) {
-                    value = Object.keys(currentElement).includes(key);
+                    value = Object.keys(currentElement).includes(key) || Object.keys(currentElement).includes(vm.settings.columns[key].field.name);
                     if (value) {
                         currentElement = element[key];
                     }
@@ -125,8 +137,9 @@
             parseElement: function (element, key) {
                 let value = element;
                 let keys = key.split('.');
+                var vm = this;
                 keys.forEach(function (key) {
-                    value = value[key];
+                    value = value[key] ? value[key] : value[vm.settings.columns[key].field.name];
                 });
                 return value;
             },
@@ -156,6 +169,13 @@
                     });
             },
             applyFiltering: function () {
+                this.processing = true;
+                this.fetchResult();
+            },
+            leaf: function (page) {
+                this.paginationParams = {
+                    currentPage: page
+                };
                 this.processing = true;
                 this.fetchResult();
             }

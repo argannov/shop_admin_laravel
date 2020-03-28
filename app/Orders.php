@@ -30,6 +30,8 @@ use ScoutElastic\Searchable;
  * @property $house string
  * @property $kvoroffice string
  *
+ * @property $user User
+ *
  * Class Orders
  * @mixin \Eloquent
  * @package App
@@ -60,4 +62,12 @@ class Orders extends Model
             ],
         ]
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

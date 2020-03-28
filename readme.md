@@ -7,6 +7,7 @@ PS: Весь проект собирается локально
 
 <ol>
 <li>Делаем клон проекта</li>
+<li>Запускаем команды: composer install и npm install</li>
 <li>Создаем базу данных</li>
 <li>Прописываем в .env все доступы к базе</li>
 <li>Также в файле database.php в папке /config</li>
@@ -21,13 +22,72 @@ $ php artisan migrate
 $ php artisan serve
 ```
 
+##Настройка поиска
+
+В системе предусмотрен поиск по 4-м сущностям:
+<ol>
+    <li>Товары - Goods</li>
+    <li>Заказы - Orders</li>
+    <li>Статьи - Posts</li>
+    <li>Магазины - Stores</li>
+</ol>
+
+Необходимо установить и запустить ElasticSearch
+
+###Windows
+
+<a href="https://www.elastic.co/downloads/elasticsearch">Инструкция</a> по устанвоке ElasticSearch для Windows
+
+###Linux (Ubuntu)
+
+<a href="https://tecadmin.net/setup-elasticsearch-on-ubuntu/">Инструкция</a> по устанвоке ElasticSearch для Ubuntu
+
+###После установки ElasticSearch
+
+Создать индексы для каждой сущности запустив команды:
+
+```sh 
+$ php artisan elastic:create-index "App\Search\Configurators\GoodsIndexConfigurator"
+$ php artisan elastic:create-index "App\Search\Configurators\OrdersIndexConfigurator"
+$ php artisan elastic:create-index "App\Search\Configurators\PostsIndexConfigurator"
+$ php artisan elastic:create-index "App\Search\Configurators\StoresIndexConfigurator"
+```
+
+Далее необходимо испортировать записи в базе в наши поисковые индексы запустив команды:
+
+```sh 
+$ php artisan elastic:create-index "App\Goods"
+$ php artisan elastic:create-index "App\Orders"
+$ php artisan elastic:create-index "App\Posts"
+$ php artisan elastic:create-index "App\Stores"
+```
+В случае возникновения ошибки:
+
+```sh
+Elasticsearch-PHP requires cURL, or a custom HTTP handler
+```
+Необходимо установить curl соответсвующей версии php командой (пример для php7.2):
+
+```sh
+$ sudo apt install php7.2-curl
+```
+
+и перезапустить веб-сервер
+
 ## Документация по проекту
 
 ### Структура проекта
 
 <p>Основные контроллеры админки находятся в директории /app/Http/Contollers/Admin</p>
 <p>Основные контроллеры клиент-части находятся в директории /app/Http/Contollers/</p>
+<p>Классы риквесты с валидацией - /app/Http/Requests/</p>
+<p>Конфиги поисковых индексов - /app/Search/Configurators</p>
+<p>Правила поиска для моделей - /app/Search/Rules</p>
+<p>Все сервисы в директории /app/Services</p>
 <p>Все модели проекта в /app</p>
+<p>Vue компоненты пользовательского интерфейса находятся в директории /resources/js/components</p>
+<p>Для автоматической компиляции компонентов запустите к</p>
+<p>Файлы могут быть логически сгруппированы</p>
 <p>Публичные картинки, загружаемые пользователями находятся в /public/img/</p>
 <p>Роутинг в /routes/web.php</p>
 <p>Стили и скрипты сайта находятся в /public/css и /public/js</p>

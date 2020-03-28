@@ -22,6 +22,7 @@ class CreatePagesTable extends Migration
             $table->string('meta_description');
             $table->string('meta_keywords');
             $table->string('status');
+            $table->string('banners');
             $table->timestamps();
         });
     }

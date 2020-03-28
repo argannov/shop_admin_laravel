@@ -80,8 +80,6 @@ Route::group([
 
         //Создание и редактирование заказов в админке
         Route::get('/orders', 'Admin\OrdersController@index');
-        Route::get('/orders/{slug}', 'Admin\OrdersController@oneOrder');
-        Route::get('/orders/{slug}/print', ['uses' => 'Admin\OrdersController@printPDF']);
         //************************************************************
 
         //Создание и редактирование записей в админке

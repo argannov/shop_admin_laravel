@@ -11,6 +11,7 @@ Vue.component('search-admin', require('./components/search/SearchAdmin.vue').def
 Vue.component('search-box', require('./components/search/SearchBox.vue').default);
 
 Vue.component('data-table', require('./components/table/table/DataTable.vue').default);
+Vue.component('pagination', require('./components/table/table/pagination/Pagination.vue').default);
 Vue.component('data-filter', require('./components/table/filter/DataFilter.vue').default);
 Vue.component('text-field', require('./components/table/filter/fields/TextField.vue').default);
 Vue.component('datetime-range', require('./components/table/filter/fields/DateTimeRange.vue').default);
