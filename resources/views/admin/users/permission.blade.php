@@ -22,7 +22,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Всего: 1337</h3>
+                            <h3 class="box-title">Всего: {{count(\App\User::all())}}</h3>
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
@@ -50,13 +50,15 @@
                                     <th>Роль</th>
 
                                 </tr>
+                                @foreach($users as $user)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Иван Иванов</td>
-                                    <td>testuser</td>
-                                    <td>testuser@test.tu</td>
-                                    <td>Зарег. пользователь</td>
+                                    <td>{{$user->id}}</td>
+                                    <td>{{$user->fio}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->role}}</td>
                                 </tr>
+                                @endforeach
                             </table>
                         </div>
                         <!-- /.box-body -->

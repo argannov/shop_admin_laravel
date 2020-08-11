@@ -3,40 +3,37 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Панель администратора</title>
-    <!-- Tell the browser to be responsive to screen width -->
+    <title>Панель управления - {{config('app.name')}}</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.7 -->
+
     <link rel="stylesheet" href="{{ asset('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
-    <!-- Font Awesome -->
+
     <link rel="stylesheet" href="{{ asset('admin/bower_components/font-awesome/css/font-awesome.min.css') }}">
-    <!-- Ionicons -->
+
     <link rel="stylesheet" href="{{ asset('admin/bower_components/Ionicons/css/ionicons.min.css') }}">
-    <!-- Theme style -->
+
     <link rel="stylesheet" href="{{ asset('admin/dist/css/AdminLTE.min.css') }}">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
+
     <link rel="stylesheet" href="{{ asset('admin/dist/css/skins/_all-skins.min.css') }}">
-    <!-- Morris chart -->
+
     <link rel="stylesheet" href="{{ asset('admin/bower_components/morris.js/morris.css') }}">
-    <!-- jvectormap -->
+
     <link rel="stylesheet" href="{{ asset('admin/bower_components/jvectormap/jquery-jvectormap.css') }}">
-    <!-- Date Picker -->
+
     <link rel="stylesheet"
           href="{{ asset('admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
-    <!-- Daterange picker -->
+
     <link rel="stylesheet" href="{{ asset('admin/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
-    <!-- bootstrap wysihtml5 - text editor -->
+
     <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    <link rel="shortcut icon" href="{{\Illuminate\Support\Facades\Storage::url('favicon.ico')}}" type="image/x-icon">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({selector: 'textarea'});</script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -53,35 +50,63 @@
 <div class="wrapper">
 
     <header class="main-header">
-        <!-- Logo -->
-        <a href="index2.html" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><i class="fa fa-fw fa-cog"></i></span>
-            <!-- logo for regular state and mobile devices -->
+
+        <a href="/" class="logo">
+
             <span class="logo-lg">{{ config('app.name') }}</span>
         </a>
-        <!-- Header Navbar: style can be found in header.less -->
+
         <nav class="navbar navbar-static-top">
-            <!-- Sidebar toggle button-->
+
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
             </a>
 
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <!-- Notifications: style can be found in dropdown.less -->
+
                     <li class="dropdown notifications-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">0</span>
+                            <span class="label label-warning">{{count(\App\Alerts::where('user_id','=',Auth::id())->get())}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">У вас нет оповещений</li>
-
-                            <li class="footer"><a href="#">Посмотреть все</a></li>
+                            @if(count(\App\Alerts::where('user_id','=',Auth::id())->get()) == 0)
+                                <li class="header">У вас нет оповещений</li>
+                            @else
+                            <li>
+                                <ul class="menu">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                                            page and may cause design problems
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-users text-red"></i> 5 new members joined
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-user text-red"></i> You changed your username
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            @endif
                         </ul>
                     </li>
-                    <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}"
@@ -89,7 +114,6 @@
                             <span class="hidden-xs">{{\App\User::where('id',Auth::id())->first()->fio}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <!-- User image -->
                             <li class="user-header">
                                 <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}"
                                      class="img-circle" alt="User Image">
@@ -99,7 +123,6 @@
                                 </p>
                             </li>
 
-                            <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-right">
                                     <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
@@ -116,17 +139,17 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- Control Sidebar Toggle Button -->
+
 
                 </ul>
             </div>
         </nav>
     </header>
-    <!-- Left side column. contains the logo and sidebar -->
+
     <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
+
         <section class="sidebar">
-            <!-- Sidebar user panel -->
+
             <div class="user-panel">
                 <div class="pull-left image">
                     <img src="/img/users/{{\App\User::where('id',Auth::id())->first()->avatar}}" class="img-circle"
@@ -137,7 +160,7 @@
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
-            <!-- search form -->
+
             <form action="{{ route('search_admin') }}" method="get" class="sidebar-form">
                 <div class="input-group">
                     <input type="text" name="text" class="form-control" placeholder="Поиск ..."
@@ -148,8 +171,8 @@
               </span>
                 </div>
             </form>
-            <!-- /.search form -->
-            <!-- sidebar menu: : style can be found in sidebar.less -->
+
+
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">Основное меню</li>
                 <li class="treeview">
@@ -218,97 +241,94 @@
                         <li><a href="/admin/roles"><i class="fa fa-circle-o"></i>Права пользователей</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-map-o"></i> <span>Магазины</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="/admin/store/"><i class="fa fa-circle-o"></i>Все магазины</a></li>
-                        <li><a href="/admin/store/create"><i class="fa fa-circle-o"></i>Добавить магазин</a></li>
-                    </ul>
-                </li>
+                {{--                <li class="treeview">--}}
+                {{--                    <a href="#">--}}
+                {{--                        <i class="fa fa-map-o"></i> <span>Магазины</span>--}}
+                {{--                        <span class="pull-right-container">--}}
+                {{--              <i class="fa fa-angle-left pull-right"></i>--}}
+                {{--            </span>--}}
+                {{--                    </a>--}}
+                {{--                    <ul class="treeview-menu">--}}
+                {{--                        <li><a href="/admin/store/"><i class="fa fa-circle-o"></i>Все магазины</a></li>--}}
+                {{--                        <li><a href="/admin/store/create"><i class="fa fa-circle-o"></i>Добавить магазин</a></li>--}}
+                {{--                    </ul>--}}
+                {{--                </li>--}}
                 <li>
                     <a href="/admin/bonus">
                         <i class="fa fa-trophy"></i> <span>Бонусная система</span>
                         <span class="pull-right-container">
-            </span>
-                    </a>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-at"></i>
-                        <span>Техническая поддержка</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{ route('show_questions') }}"><i class="fa fa-circle-o"></i>Обращения</a></li>
-                        <li><a href="{{ route('create_question') }}"><i class="fa fa-circle-o"></i>Написать обращение</a></li>
-                    </ul>
                 </li>
+                {{--                <li class="treeview">--}}
+                {{--                    <a href="#">--}}
+                {{--                        <i class="fa fa-at"></i>--}}
+                {{--                        <span>Техническая поддержка</span>--}}
+                {{--                        <span class="pull-right-container">--}}
+                {{--                            <i class="fa fa-angle-left pull-right"></i>--}}
+                {{--                        </span>--}}
+                {{--                    </a>--}}
+                {{--                    <ul class="treeview-menu">--}}
+                {{--                        <li><a href="{{ route('show_questions') }}"><i class="fa fa-circle-o"></i>Обращения</a></li>--}}
+                {{--                        <li><a href="{{ route('create_question') }}"><i class="fa fa-circle-o"></i>Написать обращение</a></li>--}}
+                {{--                    </ul>--}}
+                {{--                </li>--}}
                 <li>
                     <a href="/admin/setting">
                         <i class="fa fa-cogs"></i> <span>Настройки</span>
                         <span class="pull-right-container">
-            </span>
+                        </span>
                     </a>
                 </li>
             </ul>
         </section>
-        <!-- /.sidebar -->
+
     </aside>
     @yield('content')
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            Версия 0.1
+            Версия 0.2.1
         </div>
-        Copyright &copy; 2019 FireAdmin Все права не защищены
+        Copyright &copy; 2019-2020 FireAdmin E-commerce panel
     </footer>
 
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-         immediately after the control sidebar -->
+
     <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
 
-<!-- jQuery 3 -->
+
 <script src="{{ asset('admin/bower_components/jquery/dist/jquery.min.js') }}"></script>
 
 <script src="{{ asset('admin/bower_components/jquery-ui/jquery-ui.min.js') }}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
 <script>
     $.widget.bridge('uibutton', $.ui.button);
 </script>
-<!-- Bootstrap 3.3.7 -->
+
 <script src="{{ asset('admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<!-- Morris.js charts -->
+
 <script src="{{ asset('admin/bower_components/raphael/raphael.min.js') }}"></script>
 <script src="{{ asset('admin/bower_components/morris.js/morris.min.js') }}"></script>
-<!-- Sparkline -->
+
 <script src="{{ asset('admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
-<!-- jvectormap -->
+
 <script src="{{ asset('admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
 <script src="{{ asset('admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-<!-- jQuery Knob Chart -->
+
 <script src="{{ asset('admin/bower_components/jquery-knob/dist/jquery.knob.min.js') }}"></script>
-<!-- daterangepicker -->
+
 <script src="{{ asset('admin/bower_components/moment/min/moment.min.js') }}"></script>
 <script src="{{ asset('admin/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-<!-- datepicker -->
+
 <script src="{{ asset('admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-<!-- Bootstrap WYSIHTML5 -->
+
 <script src="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}"></script>
-<!-- Slimscroll -->
+
 <script src="{{ asset('admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
-<!-- FastClick -->
+
 <script src="{{ asset('admin/bower_components/fastclick/lib/fastclick.js') }}"></script>
-<!-- AdminLTE App -->
+
 <script src="{{ asset('admin/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('/js/main.js') }}"></script>
 <script src="{{ asset('/js/app.js') }}"></script>

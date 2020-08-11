@@ -12,9 +12,9 @@
 */
 
 Auth::routes();
-
+Route::get('/setup', 'SetupController@index');
+Route::post('/setup/success', 'SetupController@install');
 Route::get('/', 'PagesController@index');
-
 Route::get('/catalog', 'GoodsController@index');
 Route::get('/catalog/{slug}', 'GoodsController@detailIndex')->name('show_good');
 Route::get('/catalog/{slug}/{name}', 'GoodsController@index');

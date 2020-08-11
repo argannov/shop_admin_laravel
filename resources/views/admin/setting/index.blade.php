@@ -25,8 +25,8 @@
                             <!-- TAB NAVIGATION -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Основные</a></li>
-                                <li><a href="#tab2" role="tab" data-toggle="tab">Условия</a></li>
-                                <li><a href="#tab3" role="tab" data-toggle="tab">Дополнительные поля</a></li>
+{{--                                <li><a href="#tab2" role="tab" data-toggle="tab">Условия</a></li>--}}
+{{--                                <li><a href="#tab3" role="tab" data-toggle="tab">Дополнительные поля</a></li>--}}
                             </ul>
                             <!-- TAB CONTENT -->
                             <div class="tab-content">
@@ -39,17 +39,18 @@
                                     <div class="form-group">
                                         <img src="" alt="">
                                         <label for="namesite">Иконка сайта</label>
+                                        <img src="/favicon.ico" alt="">
                                         <input type="file" class="form-control" name="iconsite" id="iconsite">
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="tab2">
-                                    <div class="form-group">
+{{--                                <div class="tab-pane fade" id="tab2">--}}
+{{--                                    <div class="form-group">--}}
 
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="tab3">
-                                    Пока в разработке
-                                </div>
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="tab-pane fade" id="tab3">--}}
+{{--                                    Пока в разработке--}}
+{{--                                </div>--}}
 
                             </div>
 

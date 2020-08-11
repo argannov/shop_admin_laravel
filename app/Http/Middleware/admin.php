@@ -19,7 +19,8 @@ class admin
     {
         if (!Auth::check() || 'admin' !== Auth::user()->role)
         {
-            return redirect('/home');
+            return
+                redirect('/personal');
         }
 
         return $next($request);

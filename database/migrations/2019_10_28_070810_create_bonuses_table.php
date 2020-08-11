@@ -20,6 +20,7 @@ class CreateBonusesTable extends Migration
             $table->string('active',1);
             $table->dateTime('date_accept');
             $table->dateTime('date_created');
+            $table->string('card_number');
         });
     }
 

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Pages;
+use App\Alerts;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class PagesController extends Controller
+class AlertsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,21 +15,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $page = Pages::where('slug','/')->first();
-
-        return view('client-part.index',["pages"=>$page]);
-    }
-
-
-    public function otherPage($slug){
-
-            $page = Pages::where('slug', '=',$slug)->where('status','=','published')->first();
-            if($page != null) {
-                return view('client-part.index', ["pages" => $page]);
-            }
-            else{
-                return abort(404);
-            }
+        //
     }
 
     /**
@@ -55,10 +42,10 @@ class PagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Pages  $pages
+     * @param  \App\Alerts  $alerts
      * @return \Illuminate\Http\Response
      */
-    public function show(Pages $pages)
+    public function show(Alerts $alerts)
     {
         //
     }
@@ -66,10 +53,10 @@ class PagesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Pages  $pages
+     * @param  \App\Alerts  $alerts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pages $pages)
+    public function edit(Alerts $alerts)
     {
         //
     }
@@ -78,10 +65,10 @@ class PagesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pages  $pages
+     * @param  \App\Alerts  $alerts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pages $pages)
+    public function update(Request $request, Alerts $alerts)
     {
         //
     }
@@ -89,10 +76,10 @@ class PagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Pages  $pages
+     * @param  \App\Alerts  $alerts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pages $pages)
+    public function destroy(Alerts $alerts)
     {
         //
     }

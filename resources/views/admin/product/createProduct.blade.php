@@ -22,12 +22,12 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box form-add-goods">
-                        <form action="" method="post" role="form" enctype="multipart/form-data">
+                        <form action="/admin/product/create" method="post" role="form" enctype="multipart/form-data">
                             <!-- TAB NAVIGATION -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Основные</a></li>
                                 <li><a href="#tab2" role="tab" data-toggle="tab">SEO настройка</a></li>
-                                <li><a href="#tab3" role="tab" data-toggle="tab">Дополнительные поля</a></li>
+{{--                                <li><a href="#tab3" role="tab" data-toggle="tab">Дополнительные поля</a></li>--}}
                                 <li><a href="#tab4" role="tab" data-toggle="tab">Доступность</a></li>
                             </ul>
                             <!-- TAB CONTENT -->
@@ -98,9 +98,9 @@
                                                placeholder="Введите описание">
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="tab3">
-                                    Пока в разработке
-                                </div>
+{{--                                <div class="tab-pane fade" id="tab3">--}}
+{{--                                    Пока в разработке--}}
+{{--                                </div>--}}
                                 <div class="tab-pane fade" id="tab4">
                                     <div class="form-group">
                                         <label for="statusgoods">Статус товара</label>
