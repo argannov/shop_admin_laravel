@@ -14,6 +14,6 @@ class PermissionController extends Controller
         $users = User::all();
         $Roles = Roles::all();
         $user_roles = User_roles::all();
-        return view('admin.users.permission');
+        return view('admin.users.permission', ['users'=>$users]);
     }
 }

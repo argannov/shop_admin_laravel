@@ -13,7 +13,7 @@
                 <li><a href="/"><i class="fa fa-tv"></i>На сайт</a></li>
                 <li><a href="/admin/dashboard">Дашборд</a></li>
                 <li><a href="/admin/pages">Все статьи</a></li>
-                <li class="active">Добавление статьи</li>
+                <li class="active">Редактирование статьи</li>
             </ol>
         </section>
         <!-- Main content -->
@@ -27,7 +27,7 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="active"><a href="#tab1" role="tab" data-toggle="tab">Основные</a></li>
                                 <li><a href="#tab2" role="tab" data-toggle="tab">SEO настройка</a></li>
-                                <li><a href="#tab3" role="tab" data-toggle="tab">Дополнительные поля</a></li>
+{{--                                <li><a href="#tab3" role="tab" data-toggle="tab">Дополнительные поля</a></li>--}}
                                 <li><a href="#tab4" role="tab" data-toggle="tab">Доступность</a></li>
                             </ul>
                             <!-- TAB CONTENT -->
@@ -81,9 +81,9 @@
                                                placeholder="Введите описание" value="{{$post->meta_description}}">
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="tab3">
-                                    Пока в разработке
-                                </div>
+{{--                                <div class="tab-pane fade" id="tab3">--}}
+{{--                                    Пока в разработке--}}
+{{--                                </div>--}}
                                 <div class="tab-pane fade" id="tab4">
                                     <div class="form-group">
                                         <label for="statusgoods">Статус страницы</label>
