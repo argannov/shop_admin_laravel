@@ -4,7 +4,6 @@
 <title>{{$pages['title']}}</title>
 @section('content')
     <div class="container-fluid">
-
         @if($pages['banners'][0]['image'] != null)
 
                 <div id="carousel" class="carousel slide" data-ride="carousel">

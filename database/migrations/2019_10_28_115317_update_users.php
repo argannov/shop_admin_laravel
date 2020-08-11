@@ -15,8 +15,9 @@ class UpdateUsers extends Migration
     {
         Schema::table('users', function ($table) {
             $table->string('role')->default('Пользователь');
-            $table->string('fio');
-            $table->string('phone');
+            $table->string('fio')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('avatar')->default('user-default.png');
         });
     }
 

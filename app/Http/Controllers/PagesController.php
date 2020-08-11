@@ -20,9 +20,7 @@ class PagesController extends Controller
         $page =  str_replace($arrayUtf, $arrayCyr, json_encode($page));
         $page = json_decode($page, true);
 
-
-        $page["banners"] = json_decode($page["banners"],true);
-        //dd($page);
+            $page["banners"] = json_decode($page["banners"], true);
 
         return view('client-part.index',["pages"=>$page]);
     }

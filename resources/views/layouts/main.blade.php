@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Панель администратора</title>
+    <title>Панель управления - {{config('app.name')}}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 
     <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+    <link rel="shortcut icon" href="{{\Illuminate\Support\Facades\Storage::url('favicon.ico')}}" type="image/x-icon">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>tinymce.init({selector: 'textarea'});</script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -218,43 +219,43 @@
                         <li><a href="/admin/roles"><i class="fa fa-circle-o"></i>Права пользователей</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-map-o"></i> <span>Магазины</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="/admin/store/"><i class="fa fa-circle-o"></i>Все магазины</a></li>
-                        <li><a href="/admin/store/create"><i class="fa fa-circle-o"></i>Добавить магазин</a></li>
-                    </ul>
-                </li>
+                {{--                <li class="treeview">--}}
+                {{--                    <a href="#">--}}
+                {{--                        <i class="fa fa-map-o"></i> <span>Магазины</span>--}}
+                {{--                        <span class="pull-right-container">--}}
+                {{--              <i class="fa fa-angle-left pull-right"></i>--}}
+                {{--            </span>--}}
+                {{--                    </a>--}}
+                {{--                    <ul class="treeview-menu">--}}
+                {{--                        <li><a href="/admin/store/"><i class="fa fa-circle-o"></i>Все магазины</a></li>--}}
+                {{--                        <li><a href="/admin/store/create"><i class="fa fa-circle-o"></i>Добавить магазин</a></li>--}}
+                {{--                    </ul>--}}
+                {{--                </li>--}}
                 <li>
                     <a href="/admin/bonus">
                         <i class="fa fa-trophy"></i> <span>Бонусная система</span>
                         <span class="pull-right-container">
-            </span>
-                    </a>
-                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-at"></i>
-                        <span>Техническая поддержка</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{ route('show_questions') }}"><i class="fa fa-circle-o"></i>Обращения</a></li>
-                        <li><a href="{{ route('create_question') }}"><i class="fa fa-circle-o"></i>Написать обращение</a></li>
-                    </ul>
                 </li>
+                {{--                <li class="treeview">--}}
+                {{--                    <a href="#">--}}
+                {{--                        <i class="fa fa-at"></i>--}}
+                {{--                        <span>Техническая поддержка</span>--}}
+                {{--                        <span class="pull-right-container">--}}
+                {{--                            <i class="fa fa-angle-left pull-right"></i>--}}
+                {{--                        </span>--}}
+                {{--                    </a>--}}
+                {{--                    <ul class="treeview-menu">--}}
+                {{--                        <li><a href="{{ route('show_questions') }}"><i class="fa fa-circle-o"></i>Обращения</a></li>--}}
+                {{--                        <li><a href="{{ route('create_question') }}"><i class="fa fa-circle-o"></i>Написать обращение</a></li>--}}
+                {{--                    </ul>--}}
+                {{--                </li>--}}
                 <li>
                     <a href="/admin/setting">
                         <i class="fa fa-cogs"></i> <span>Настройки</span>
                         <span class="pull-right-container">
-            </span>
+                        </span>
                     </a>
                 </li>
             </ul>
@@ -265,9 +266,9 @@
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            Версия 0.1
+            Версия 0.2
         </div>
-        Copyright &copy; 2019 FireAdmin Все права не защищены
+        Copyright &copy; 2019-2020 FireAdmin E-commerce panel
     </footer>
 
     <!-- /.control-sidebar -->

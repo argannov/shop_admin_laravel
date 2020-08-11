@@ -76,19 +76,23 @@ class NewPageController extends Controller
         $page->title = $request->namepages;
         $page->slug = $request->slugpages;
         $page->body = $request->contentpage;
-        $page->image = $request->imagepage;
+        if($request->imagepage){
+            $page->image = $request->imagepage;
+        }
         $page->meta_description = $request->seodescriptiongoods;
         $page->meta_keywords = $request->seokeywordgoods;
         $page->status = $request->statusgoods;
-        $imagesbanner = $request->imagesbanner;
-        $imagebannerArr = array();
-        $intArr = 0;
-        foreach ($imagesbanner as $intArr => $imagebannerArrDate) {
-            $imagebannerArr[$intArr]['image'] = $imagebannerArrDate;
-            $intArr++;
+        if($request->imagesbanner) {
+            $imagesbanner = $request->imagesbanner;
+            $imagebannerArr = array();
+            $intArr = 0;
+            foreach ($imagesbanner as $intArr => $imagebannerArrDate) {
+                $imagebannerArr[$intArr]['image'] = $imagebannerArrDate;
+                $intArr++;
+            }
+            $encode = json_encode($imagebannerArr);
+            $page->banners = $encode;
         }
-        $encode = json_encode($imagebannerArr);
-        $page->banners = $encode;
         $page->save();
         return redirect('/admin/pages/');
     }

@@ -13,7 +13,7 @@
                 <li><a href="/"><i class="fa fa-tv"></i>На сайт</a></li>
                 <li><a href="/admin/dashboard">Дашборд</a></li>
                 <li><a href="/admin/pages">Все страницы</a></li>
-                <li class="active">Добавление страницы</li>
+                <li class="active">Редактирование страницы</li>
             </ol>
         </section>
 
