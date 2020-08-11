@@ -42,15 +42,7 @@ class NewPageController extends Controller
         $page->meta_description = $request->seodescriptiongoods;
         $page->meta_keywords = $request->seokeywordgoods;
         $page->status = $request->statusgoods;
-        $imagesbanner = $request->imagesbanner;
-        $imagebannerArr = array();
-        $intArr = 0;
-        foreach ($imagesbanner as $intArr => $imagebannerArrDate) {
-            $imagebannerArr[$intArr]['image'] = $imagebannerArrDate;
-            $intArr++;
-        }
-        $encode = json_encode($imagebannerArr);
-        $page->banners = $encode;
+        $page->banners = ' ';
         $page->save();
         return redirect('/admin/pages/');
     }

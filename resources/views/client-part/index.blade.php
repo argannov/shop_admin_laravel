@@ -4,4 +4,8 @@
 <title>{{$pages['title']}}</title>
 @section('content')
 
+    @if($pages)
+        {!! $pages['body'] !!}
+    @endif
+
 @endsection
